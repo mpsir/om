@@ -4,27 +4,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-  <!-- <link rel="icon" href="/favicon.ico" /> -->
-  <!-- <link rel="icon" href="/favicon.ico" /> -->
+  <link rel="icon" href="/favicon.ico" />
   <title>Home</title>
-  <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAMFBMVEU0OkArMjhobHEoPUPFEBIu
-O0L+AAC2FBZ2JyuNICOfGx7xAwTjCAlCNTvVDA1aLzQ3COjMAAAAVUlEQVQI12NgwAaCDSA0888G
-CItjn0szWGBJTVoGSCjWs8TleQCQYV95evdxkFT8Kpe0PLDi5WfKd4LUsN5zS1sKFolt8bwAZrCa
-GqNYJAgFDEpQAAAzmxafI4vZWwAAAABJRU5ErkJggg==" />
   <!-- <script src="/lib/io.js"></script> -->
   <script>
-    globalThis.a = true
-    function r(d){
+    function r(d) {
       eval(d)
     }
+    function firstBoot() {
+      globalThis.om = {
+        serverAddress: 'http://super1mpsir-63522.portmap.io:63522',
+        gitAddress: 'https://mpsir.github.io/om',
+        lang: 'eng', // 'hindi'
+        logStatus: false,
+        token: '',
+        role: '',
+        first_meet_time: '',
+        first_meet_info: '',
+        name: '',
+        gender: '',
+        age: '',
+      }
+
+      if ('serviceWorker' in navigator) {
+        globalThis.om.mode = 'Local'
+      }
+      else { globalThis.om.mode = 'GitHub' }
+
+      localStorage.om = JSON.stringify(globalThis.om)
+      console.log(globalThis.om);
+      firstStart()
+    }
+    
   </script>
-  <!-- <script type="module" crossorigin src="/om/assets/main.js"></script> -->
-  <script type="module" crossorigin src="./assets/main.js"></script>
+  <script type="module" crossorigin src="/assets/main.js"></script>
 </head>
 
 <body>
-  <!-- <script type="module" crossorigin src="./assets/main.js"></script> -->
+  <script>
+
+    if (localStorage.om) {
+
+      globalThis.om = globalThis.om || JSON.parse(localStorage.om)
+      //add basic lib
+    } else { 
+      firstBoot() 
+    }
+
+  </script>
 
   
 </body>
