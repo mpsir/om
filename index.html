@@ -17,11 +17,11 @@
     </style>
     <script>
         globalThis.pageLib = [{"name":"jq","type":"js","path":"/lib/jq.js","inner":false,"innerText":"","async":true}];
+        globalThis.modulePath = '/assets/main.js';
         function run(data) { eval(data) }
 
         function firstAppear() {
             globalThis.om = {
-                modulePath: '/assets/main.js',
                 swAvail: "",
                 isLocalHost: "",
                 isHttp: "",
@@ -90,6 +90,10 @@
 
             }
         }
+        function loadModule(){
+            console.log('loading moule ...');
+            globalThis.loadModuleVar = import(globalThis.om.resolveAddress(globalThis.modulePath));
+        }
 
         async function addLib() {
 
@@ -111,14 +115,14 @@
                 }
 
                 if ((index + 1) <= globalThis.pageLib.length) {
-                    // addScript({
-                    //     name: 'jqDocReady',
-                    //     type: 'js', //js, css
-                    //     path: '/lib/jq.js',
-                    //     inner: true,
-                    //     innerText: '',
-                    //     async: true
-                    // })
+                    addScript({
+                        name: 'jqDocReady',
+                        type: 'js', //js, css
+                        //path: '/lib/jq.js',
+                        inner: true,
+                        innerText: `if (document.readyState != 'loading') { loadModule() }`,
+                        async: false
+                    })
                 }
             }
 
