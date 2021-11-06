@@ -16,7 +16,7 @@
         }
     </style>
     <script>
-        globalThis.pageLib = [{"name":"jq","type":"js","path":"/lib/jq.js","inner":true,"innerText":"","async":true}];
+        globalThis.pageLib = [{"name":"jq","type":"js","path":"/lib/jq.js","inner":false,"innerText":"","async":true}];
         function run(data) { eval(data) }
 
         function firstAppear() {
@@ -73,9 +73,9 @@
             jsElm.async = this_lib.async
             if (this_lib.inner == true) {
                 jsElm.innerText = this_lib.innerText
-            } else { 
+            } else {
                 console.log(this_lib);
-                jsElm.src = globalThis.om.resolveAddress(this_lib.path) 
+                jsElm.src = globalThis.om.resolveAddress(this_lib.path)
             }
             document.body.appendChild(jsElm);
             // name: 'jq', type: 'js', //js, css
@@ -109,6 +109,17 @@
                         console.log(this_lib);
                         break;
                 }
+
+                if ((index + 1) <= globalThis.pageLib.length) {
+                    // addScript({
+                    //     name: 'jqDocReady',
+                    //     type: 'js', //js, css
+                    //     path: '/lib/jq.js',
+                    //     inner: true,
+                    //     innerText: '',
+                    //     async: true
+                    // })
+                }
             }
 
             // if (document.readyState != 'loading') {
@@ -120,7 +131,18 @@
         function windowAppLoad() {
             if (localStorage.om) {
                 globalThis.om = JSON.parse(localStorage.om)
-                addLib()
+                if (window.location.hostname == 'localhost') {
+                    globalThis.om.resolveAddress = function (address) {
+                        return address
+                    }
+                    addLib()
+                } else {
+                    globalThis.om.resolveAddress = function (address) {
+                        return globalThis.om.webAddress + address
+                    }
+                    addLib()
+                }
+                
             }
             else { firstAppear() }
         }
