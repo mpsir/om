@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <link href="data:image/x-icon;base64,AAABAAA==" rel="icon" type="image/x-icon" />
+    <title>Admin</title>
+    <style>
+        .hide-me {
+            display: none;
+        }
+
+        .CodeMirror {
+            height: auto;
+        }
+    </style>
+    <script>
+        globalThis.pageLib = [{"name":"jq","type":"js","path":"/lib/jq.js","inner":false,"innerText":"","async":true}];
+        globalThis.modulePath = '/assets/admin.js';
+        function run(data) { eval(data) }
+
+        function firstAppear() {
+            globalThis.om = {
+                swAvail: "",
+                isLocalHost: "",
+                isHttp: "",
+                mode: '', //Local, GitHub
+                firstAppear: "",
+                logStatus: "",
+                token: '',
+                role: '',
+                serverAddress: 'http://super1mpsir-63522.portmap.io:63522',
+                webAddress: 'https://mpsir.github.io/om',
+                lang: 'eng', // 'hindi'
+                first_meet_time: '',
+                first_meet_info: '',
+                name: '',
+                gender: '',
+                age: '',
+            }
+
+            if (window.location.protocol == "http:") {
+                globalThis.om.isHttp = true
+            } else {
+                globalThis.om.isHttp = false
+            }
+
+            if (window.location.hostname == 'localhost') {
+                globalThis.om.isLocalHost = true
+                globalThis.om.resolveAddress = function (address) {
+                    return address
+                }
+            } else {
+                globalThis.om.isLocalHost = false
+                globalThis.om.resolveAddress = function (address) {
+                    return globalThis.om.webAddress + address
+                }
+            }
+
+            if ('serviceWorker' in navigator) {
+                globalThis.om.swAvail = true
+            }
+            else { globalThis.om.swAvail = false }
+
+            localStorage.om = JSON.stringify(globalThis.om)
+            windowAppLoad()
+        }
+
+        function addScript(this_lib) {
+            var jsElm = document.createElement("script");
+            jsElm.type = "application/javascript";
+            jsElm.async = this_lib.async
+            if (this_lib.inner == true) {
+                jsElm.innerText = this_lib.innerText
+            } else {
+                console.log(this_lib);
+                jsElm.src = globalThis.om.resolveAddress(this_lib.path)
+            }
+            document.body.appendChild(jsElm);
+            // name: 'jq', type: 'js', //js, css
+            //path: '/lib/jq.js', inner:true, innerText:''
+            //async:true
+        }
+
+        function addStyle(this_lib) {
+            if (this_lib.inner == true) {
+
+            } else {
+
+            }
+        }
+        function loadModule(){
+            console.log('loading moule ...');
+            globalThis.loadModuleVar = import(globalThis.om.resolveAddress(globalThis.modulePath));
+        }
+
+        async function addLib() {
+
+            for (let index = 0; index < globalThis.pageLib.length; index++) {
+                const this_lib = globalThis.pageLib[index];
+                switch (this_lib.type) {
+                    case 'js':
+                        addScript(this_lib)
+                        break;
+
+                    case 'css':
+                        addStyle(this_lib)
+                        break;
+
+                    default:
+                        console.log('no match for this lib');
+                        console.log(this_lib);
+                        break;
+                }
+
+                if ((index + 1) <= globalThis.pageLib.length) {
+                    addScript({
+                        name: 'jqDocReady',
+                        type: 'js', //js, css
+                        //path: '/lib/jq.js',
+                        inner: true,
+                        innerText: `if (document.readyState != 'loading') { loadModule() }`,
+                        async: false
+                    })
+                }
+            }
+
+            // if (document.readyState != 'loading') {
+            //     console.log(globalThis.om.pageLib);
+            // }
+
+        }
+
+        function windowAppLoad() {
+            if (localStorage.om) {
+                globalThis.om = JSON.parse(localStorage.om)
+                if (window.location.hostname == 'localhost') {
+                    globalThis.om.resolveAddress = function (address) {
+                        return address
+                    }
+                    addLib()
+                } else {
+                    globalThis.om.resolveAddress = function (address) {
+                        return globalThis.om.webAddress + address
+                    }
+                    addLib()
+                }
+                
+            }
+            else { firstAppear() }
+        }
+    </script>
+</head>
+
+<body onload="windowAppLoad()">
+
+</body>
+
+</html>
