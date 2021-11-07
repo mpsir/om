@@ -58,6 +58,7 @@
                 age: '',
             }
 
+
             if (window.location.protocol == "http:") {
                 globalThis.om.isHttp = true
             } else { globalThis.om.isHttp = false }
@@ -221,7 +222,33 @@
 </head>
 
 <body onload="windowAppLoad()">
+    <script>
+        window.addEventListener('load', function () {
 
+            if (window.location.hostname == 'localhost') {
+                navigator.serviceWorker.register('/sw.js')
+                .then(function (registration) {
+                    // Registration was successful
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function (err) {
+                    // registration failed :(
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            }
+
+            if (window.location.protocol == "https:") {
+                navigator.serviceWorker.register('https://mpsir.github.io/om' + '/sw.js')
+                .then(function (registration) {
+                    // Registration was successful
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function (err) {
+                    // registration failed :(
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            }
+
+        });
+    </script>
 </body>
 
 </html>
