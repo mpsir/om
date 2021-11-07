@@ -27,6 +27,7 @@
                 swAvail: "",
                 isLocalHost: "",
                 isHttp: "",
+                isHttps: "",
                 mode: '', //Local, GitHub
                 firstAppear: "",
                 logStatus: "",
@@ -44,9 +45,10 @@
 
             if (window.location.protocol == "http:") {
                 globalThis.om.isHttp = true
-            } else {
-                globalThis.om.isHttp = false
-            }
+            } else { globalThis.om.isHttp = false }
+            if (window.location.protocol == "https:") {
+                globalThis.om.isHttps = true
+            } else { globalThis.om.isHttps = false }
 
             if (window.location.hostname == 'localhost') {
                 globalThis.om.isLocalHost = true
@@ -105,7 +107,7 @@
                     case 'script':
                         addScript(this_lib)
                         break;
- 
+
                     case 'style':
                         addStyle(this_lib)
                         break;
@@ -149,10 +151,23 @@
 
                 if (
                     window.location.hostname == 'localhost' ||
-                    globalThis.om.isHttp == false
+                    globalThis.om.isHttps == true
                 ) {
                     addLib(); //add sw.js, 
                 } else { //addLib cache.js
+
+                    var z = {}
+
+                    globalThis.pageLib.forEach(lib => {
+                        eval(`lib.uri = globalThis.om.resolveAddress(lib.uri)`)
+                        eval(`z.${lib.name} = lib`)
+                    });
+
+                    var resources = {
+                        onFinished: function () { loadModule() },
+                        files: z
+                    };
+
                 }
 
 
