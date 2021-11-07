@@ -16,6 +16,21 @@
         }
     </style>
     <script class="addScript">
+        function showSize() {
+            var _lsTotal = 0,
+                _xLen, _x;
+            for (_x in localStorage) {
+                if (!localStorage.hasOwnProperty(_x)) {
+                    continue;
+                }
+                _xLen = ((localStorage[_x].length + _x.length) * 2);
+                _lsTotal += _xLen;
+                console.log(_x.substr(0, 50) + " = " + (_xLen / 1024).toFixed(2) + " KB")
+            };
+            console.log("Total = " + (_lsTotal / 1024).toFixed(2) + " KB");
+
+        }
+
         var cacheJs = { config: null, loadedCounter: 0, resourcesCounter: 0, initializeDone: function () { cacheJs.config.onFinished() }, initialize: function (a) { cacheJs.getConfig(a) }, getConfig: function (a) { var b = localStorage.getItem("cacheJs.localStorageConfig"); cacheJs.config = a, null === b ? (localStorage.setItem("cacheJs.localStorageConfig", JSON.stringify(cacheJs.config)), cacheJs.checkFiles(cacheJs.config, cacheJs.config)) : cacheJs.checkFiles(cacheJs.config, JSON.parse(b)) }, checkFiles: function (a, b) { for (var c in a.files) a.files.hasOwnProperty(c) && cacheJs.resourcesCounter++; for (var c in a.files) void 0 !== a.files[c] ? b !== {} && void 0 !== b.files[c] && null !== localStorage.getItem(c) && b.files[c].version === a.files[c].version && "-" !== a.files[c].version ? cacheJs.checkIfLoaded() : cacheJs.getFile(c, a.files[c]) : void 0 !== a.files[c] && null !== localStorage.getItem(c) && cacheJs.getFile(c, a.files[c]); localStorage.setItem("cacheJs.localStorageConfig", JSON.stringify(a)) }, injectFile: function (a, b) { var c = document.createElement(b.type); c.innerHTML = localStorage.getItem(a); for (var d in b.attributes) void 0 !== b.attributes[d] && c.setAttribute(b.attributes[d].name, b.attributes[d].value); document.head.appendChild(c) }, checkIfLoaded: function () { ++cacheJs.loadedCounter === cacheJs.resourcesCounter && cacheJs.injectAllFiles() }, getFile: function (a, b) { var c = new XMLHttpRequest; c.onreadystatechange = function () { if (4 === c.readyState) if (-1 !== [304, 302, 200, 201, 202].indexOf(c.status)) localStorage.setItem(a, "/*" + a + "*/\n" + c.responseText), cacheJs.checkIfLoaded(); else if (0 === c.status) { var d = document.createElement(b.type); switch (b.type) { case "style": d.setAttribute("href", b.uri), d.setAttribute("rel", "stylesheet"); break; case "script": d.setAttribute("src", b.uri); break; default: console.warn("Unknown resource type : " + b.type) }d.onload = function () { cacheJs.checkIfLoaded() }; for (var e in b.attributes) void 0 !== b.attributes[e] && d.setAttribute(b.attributes[e].name, b.attributes[e].value); document.head.appendChild(d) } else console.warn("Unable to load Resource : " + a + "(response code " + c.status + ")", b.uri) }, c.open("GET", b.uri, !0), c.send() }, injectAllFiles: function () { for (var a in cacheJs.config.files) cacheJs.injectFile(a, cacheJs.config.files[a]); cacheJs.initializeDone() } };
 
         globalThis.pageLib = [{"name":"codemirrorJs","type":"script","version":"1","uri":"/lib/codemirror/lib/codemirror.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"roboto","type":"style","version":"1","uri":"/lib/typeface-roboto/index.min.css","inner":false,"innerText":"","async":true},{"name":"materialdesignicons","type":"style","version":"1","uri":"/lib/@mdi/font/css/materialdesignicons.min2.css","inner":false,"innerText":"","async":true},{"name":"vuetifyCss","type":"style","version":"1","uri":"/lib/vuetify/vuetify.min2.css","inner":false,"innerText":"","async":true},{"name":"codemirrorCss","type":"style","version":"1","uri":"/lib/codemirror/lib/codemirror.min.css","inner":false,"innerText":"","async":true},{"name":"foldgutterCss","type":"style","version":"1","uri":"/lib/codemirror/addon/fold/foldgutter.min.css","inner":false,"innerText":"","async":true},{"name":"ayudarkCss","type":"style","version":"1","uri":"/lib/codemirror/theme/ayu-dark.min.css","inner":false,"innerText":"","async":true},{"name":"jq","type":"script","version":"1","uri":"/lib/jq.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"vueJs","type":"script","version":"1","uri":"/lib/vuetify/vue.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"sortableJs","type":"script","version":"1","uri":"/lib/sortable.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"vuedraggableJs","type":"script","version":"1","uri":"/lib/vuedraggable.umd.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"vuetifyJs","type":"script","version":"1","uri":"/lib/vuetify/vuetify.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"beautifyJs","type":"script","version":"1","uri":"/lib/beautify.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"beanJs","type":"script","version":"1","uri":"/lib/bean.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"vuecodemirrorJs","type":"script","version":"1","uri":"/lib/vue-codemirror.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"foldcodeJs","type":"script","version":"1","uri":"/lib/codemirror/addon/fold/foldcode.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"foldgutterJs","type":"script","version":"1","uri":"/lib/codemirror/addon/fold/foldgutter.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"braceFoldJs","type":"script","version":"1","uri":"/lib/codemirror/addon/fold/brace-fold.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"xmlFoldJs","type":"script","version":"1","uri":"/lib/codemirror/addon/fold/xml-fold.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"indentFoldJs","type":"script","version":"1","uri":"/lib/codemirror/addon/fold/indent-fold.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"markdownFoldJs","type":"script","version":"1","uri":"/lib/codemirror/addon/fold/markdown-fold.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"commentFoldJs","type":"script","version":"1","uri":"/lib/codemirror/addon/fold/comment-fold.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"closebracketsJs","type":"script","version":"1","uri":"/lib/codemirror/addon/edit/closebrackets.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"closetagJs","type":"script","version":"1","uri":"/lib/codemirror/addon/edit/closetag.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"activeLineJs","type":"script","version":"1","uri":"/lib/codemirror/addon/selection/active-line.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"javascriptJs","type":"script","version":"1","uri":"/lib/codemirror/mode/javascript/javascript.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"xmlJs","type":"script","version":"1","uri":"/lib/codemirror/mode/xml/xml.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"cssJs","type":"script","version":"1","uri":"/lib/codemirror/mode/css/css.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]},{"name":"htmlmixedJs","type":"script","version":"1","uri":"/lib/codemirror/mode/htmlmixed/htmlmixed.min.js","inner":false,"innerText":"","async":true,"attributes":[{"name":"class","value":"addScript"}]}];
@@ -75,14 +90,14 @@
             var head = document.getElementsByTagName('head')[0];
             var jsElm = document.createElement("script");
             jsElm.type = "application/javascript";
-            jsElm.setAttribute('class','addScript');
+            jsElm.setAttribute('class', 'addScript');
             //jsElm.async = this_lib.async
             if (this_lib.inner == true) {
                 jsElm.innerText = this_lib.innerText
             } else {
                 //console.log(this_lib);
-                jsElm.src = 
-                globalThis.om.resolveAddress(this_lib.uri)
+                jsElm.src =
+                    globalThis.om.resolveAddress(this_lib.uri)
             }
             //document.body.appendChild(jsElm);
             head.appendChild(jsElm);
@@ -102,9 +117,9 @@
         function loadModule() {
             //console.log('loading moule ...');
             const elements = document.getElementsByClassName('addScript');
-    while(elements.length > 0){
-        elements[0].parentNode.removeChild(elements[0]);
-    }
+            while (elements.length > 0) {
+                elements[0].parentNode.removeChild(elements[0]);
+            }
             globalThis.loadModuleVar = import(globalThis.om.resolveAddress(globalThis.modulePath));
         }
 
@@ -127,7 +142,7 @@
                         break;
                 }
 
-                if (index >= globalThis.pageLib.length-1) {
+                if (index >= globalThis.pageLib.length - 1) {
                     addScript({ // no uri
                         name: 'jqDocReady',
                         type: 'js', //js, css
