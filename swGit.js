@@ -1,7 +1,6 @@
 var CACHE_NAME = 'my-site-cache-v1';
-var w = 'https://mpsir.github.io/om'
 var urlsToCache = [
-  w + '/',
+  //'/',
   //'/styles/main.css',
   //'/script/main.js'
 ];
