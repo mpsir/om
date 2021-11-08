@@ -12,7 +12,7 @@ var urlsToCache = [
   'https://mpsir.github.io/om' + '/lib/vuetify/vue.min.js',
   'https://mpsir.github.io/om' + '/lib/sortable.js',
   'https://mpsir.github.io/om' + '/lib/vuedraggable.umd.js',
-  'https://mpsir.github.io/om' + '/lib/vuetify/vuetify.min.js',
+  'https://mpsir.github.io/om' + '/lib/vuetify/vuetify.js',
   'https://mpsir.github.io/om' + '/lib/beautify.min.js',
   'https://mpsir.github.io/om' + '/lib/bean.min.js',
   'https://mpsir.github.io/om' + '/lib/cod.js'
