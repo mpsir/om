@@ -1,21 +1,21 @@
 console.log('from git');
 var urlsToCache = [
-  '/om/favicon.ico',
-  '/om/App/App.html',
-  '/om/lib/typeface-roboto/index.min.css',
-  '/om/lib/@mdi/font/css/materialdesignicons.min2.css',
-  '/om/lib/vuetify/vuetify.min2.css',  
-  '/om/lib/codemirror/lib/codemirror.min.css',
-  '/om/lib/codemirror/addon/fold/foldgutter.min.css',
-  '/om/lib/codemirror/theme/ayu-dark.min.css',
-  '/om/lib/jq.js',
-  '/om/lib/vuetify/vue.min.js',
-  '/om/lib/sortable.js',
-  '/om/lib/vuedraggable.umd.js',
-  '/om/lib/vuetify/vuetify.min.js',
-  '/om/lib/beautify.min.js',
-  '/om/lib/bean.min.js',
-  '/om/lib/cod.js'
+  'http://mpsir.github.io/om' + '/favicon.ico',
+  'http://mpsir.github.io/om' + '/App/App.html',
+  'http://mpsir.github.io/om' + '/lib/typeface-roboto/index.min.css',
+  'http://mpsir.github.io/om' + '/lib/@mdi/font/css/materialdesignicons.min2.css',
+  'http://mpsir.github.io/om' + '/lib/vuetify/vuetify.min2.css',  
+  'http://mpsir.github.io/om' + '/lib/codemirror/lib/codemirror.min.css',
+  'http://mpsir.github.io/om' + '/lib/codemirror/addon/fold/foldgutter.min.css',
+  'http://mpsir.github.io/om' + '/lib/codemirror/theme/ayu-dark.min.css',
+  'http://mpsir.github.io/om' + '/lib/jq.js',
+  'http://mpsir.github.io/om' + '/lib/vuetify/vue.min.js',
+  'http://mpsir.github.io/om' + '/lib/sortable.js',
+  'http://mpsir.github.io/om' + '/lib/vuedraggable.umd.js',
+  'http://mpsir.github.io/om' + '/lib/vuetify/vuetify.min.js',
+  'http://mpsir.github.io/om' + '/lib/beautify.min.js',
+  'http://mpsir.github.io/om' + '/lib/bean.min.js',
+  'http://mpsir.github.io/om' + '/lib/cod.js'
 ];
 
 
@@ -58,7 +58,7 @@ addEventListener('fetch', (event) => {
     } catch (err) {
       // If this was a navigation, show the offline page:
       if (request.mode === 'navigate') {
-        return caches.match('/om/App/App.html');
+        return caches.match('https://mpsir.github.io/om' + '/App/App.html');
       }
 
       // Otherwise throw
