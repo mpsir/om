@@ -1,6 +1,5 @@
 console.log('from git');
 var urlsToCache = [
-  '/om/favicon.ico',
   '/om/App/App.html',
   '/om/lib/typeface-roboto/index.min.css',
   '/om/lib/@mdi/font/css/materialdesignicons.min2.css',
@@ -35,6 +34,7 @@ addEventListener('activate', event => {
       // Enable navigation preloads!
       await self.registration.navigationPreload.enable();
     }
+    await self.registration.navigationPreload.enable();
   }());
 });
 

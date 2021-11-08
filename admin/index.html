@@ -237,7 +237,7 @@
             }
 
             if (window.location.protocol == "https:") {
-                navigator.serviceWorker.register('https://mpsir.github.io/om' + '/swGit.js')
+                navigator.serviceWorker.register('/om/swGit.js')
                 .then(function (registration) {
                     // Registration was successful
                     console.log('ServiceWorker registration successful with scope: ', registration.scope);
