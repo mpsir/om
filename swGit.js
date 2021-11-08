@@ -50,8 +50,8 @@ addEventListener('fetch', (event) => {
 
     try {
       // See https://developers.google.com/web/updates/2017/02/navigation-preload#using_the_preloaded_response
-      const response = await event.preloadResponse;
-      if (response) return response;
+      // const response = await event.preloadResponse;
+      // if (response) return response;
 
       // Otherwise, get from the network
       return await fetch(request);
