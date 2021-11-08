@@ -28,21 +28,21 @@ addEventListener('install', (event) => {
 });
 
 // See https://developers.google.com/web/updates/2017/02/navigation-preload#activating_navigation_preload
-addEventListener('activate', event => {
-  event.waitUntil(async function() {
-    // Feature-detect
-    if (self.registration.navigationPreload) {
-      // Enable navigation preloads!
-      await self.registration.navigationPreload.enable();
-    }
-  }());
-});
+// addEventListener('activate', event => {
+//   event.waitUntil(async function() {
+//     // Feature-detect
+//     if (self.registration.navigationPreload) {
+//       // Enable navigation preloads!
+//       await self.registration.navigationPreload.enable();
+//     }
+//   }());
+// });
 
 addEventListener('fetch', (event) => {
   const { request } = event;
 
   // Always bypass for range requests, due to browser bugs
-  if (request.headers.has('range')) return;
+  //if (request.headers.has('range')) return;
   event.respondWith(async function() {
     // Try to get from the cache:
     const cachedResponse = await caches.match(request);
