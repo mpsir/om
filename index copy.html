@@ -61,23 +61,23 @@
 
   </div>
   
-  <!-- <script src="https://mpsir.github.io/om/lib/vs/loader.js"></script> -->
+  <script src="https://mpsir.github.io/om/lib/vs/loader.js"></script>
   <script>
     require.config({ paths: { vs: 'https://mpsir.github.io/om/lib/vs' } });
 
-    // require(['vs/editor/editor.main'], function () {
-    //   var editor = monaco.editor.create(document.getElementById('container'), {
-    //     //automaticLayout: true,
-    //     value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
-    //     language: 'javascript', //html
-    //     //lineNumbers: 'off',
-    //     roundedSelection: false,
-    //     scrollBeyondLastLine: false,
-    //     readOnly: false,
-    //     //theme: 'vs-dark',
-    //     minimap: { enabled: false }
-    //   });
-    // });
+    require(['vs/editor/editor.main'], function () {
+      var editor = monaco.editor.create(document.getElementById('container'), {
+        //automaticLayout: true,
+        value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
+        language: 'javascript', //html
+        //lineNumbers: 'off',
+        roundedSelection: false,
+        scrollBeyondLastLine: false,
+        readOnly: false,
+        //theme: 'vs-dark',
+        minimap: { enabled: false }
+      });
+    });
 
 
     // setTimeout(function () {
