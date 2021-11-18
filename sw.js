@@ -1,20 +1,3 @@
-try {
-    importScripts('https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.slim.js')
-    
-    
-    const socket = io("http://localhost:8080")
-    
-    
-    socket.on('connect', () => {
-        console.log(socket.id)
-    })
-    
-    
-    } catch (e) {
-    console.log(e)
-    }
-
-
 
 
 const bc = new BroadcastChannel('sw');
