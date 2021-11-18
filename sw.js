@@ -4,6 +4,7 @@ function sendMsg(msg){ bc.postMessage(msg); }
 
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
+    'https://mpsir.github.io/om/favicon.ico',
     'https://mpsir.github.io/om/App/',
     'https://mpsir.github.io/om/lib/typeface-roboto/files/roboto-latin-700.woff2',
     'https://mpsir.github.io/om/lib/typeface-roboto/files/roboto-latin-700.woff',
@@ -24,7 +25,6 @@ self.addEventListener('install', function (event) {
 
 var hmlFiles = [
 
-    'https://mpsir.github.io/om/favicon.ico',
     'https://mpsir.github.io/om/lib/typeface-roboto/index.min.css',
     'https://mpsir.github.io/om/lib/@mdi/font/css/materialdesignicons.min2.css',
     'https://mpsir.github.io/om/lib/vuetify/vuetify.min2.css',
