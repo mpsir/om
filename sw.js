@@ -1,5 +1,5 @@
 try {
-    importScripts('https://mpsir.github.io/om/lib/io.js')
+    importScripts('https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.slim.js')
     
     
     const socket = io("http://localhost:8080")
