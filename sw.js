@@ -2,7 +2,7 @@ self.importScripts('https://mpsir.github.io/om/lib/io.js');
 
 // globalThis.init = true
 // globalThis.vp = { data: { data: { f: [] } } }
-var s = io("http://localhost:8080")
+var s = io("ws://localhost:8080")
 
 s.on('connect', function () {
     console.log('connected, cliend side approval');
