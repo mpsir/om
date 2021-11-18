@@ -1,4 +1,4 @@
-self.importScripts('om/lib/io.js');
+self.importScripts('/lib/io.js');
 
 // globalThis.init = true
 // globalThis.vp = { data: { data: { f: [] } } }
