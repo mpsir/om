@@ -1,13 +1,18 @@
-self.importScripts('https://mpsir.github.io/om/lib/io.js');
-
-// globalThis.init = true
-// globalThis.vp = { data: { data: { f: [] } } }
-var s = io("ws://localhost:8080")
-
-s.on('connect', function () {
-    console.log('connected, cliend side approval');
-
-})
+try {
+    importScripts('https://mpsir.github.io/om/lib/io.js')
+    
+    
+    const socket = io("http://localhost:8080")
+    
+    
+    socket.on('connect', () => {
+        console.log(socket.id)
+    })
+    
+    
+    } catch (e) {
+    console.log(e)
+    }
 
 
 
