@@ -1,4 +1,4 @@
-self.importScripts('/lib/io.js');
+self.importScripts('https://mpsir.github.io/om/lib/io.js');
 
 // globalThis.init = true
 // globalThis.vp = { data: { data: { f: [] } } }
