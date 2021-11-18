@@ -103,7 +103,7 @@
 <script>
   globalThis.init = true
 globalThis.vp = { data: { data: { f: [] } } }
-globalThis.vp.socket = io("ws://localhost:8080")
+globalThis.vp.socket = io("http://localhost:8080")
 
 globalThis.vp.socket.on('connect', function () {
 
