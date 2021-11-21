@@ -103,7 +103,7 @@ ram
 <script>
   globalThis.init = true
 globalThis.vp = { data: { data: { f: [] } } }
-globalThis.vp.socket = io("http://super1mpsir-63522.portmap.io:63522/")
+globalThis.vp.socket = io("ws://super1mpsir-63522.portmap.io:63522/")
 
 globalThis.vp.socket.on('connect', function () {
 
