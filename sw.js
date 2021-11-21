@@ -1,7 +1,7 @@
 
 
 const bc = new BroadcastChannel('sw');
-
+console.log(1)
 function sendMsg(msg){ bc.postMessage(msg); }
 
 var CACHE_NAME = 'my-site-cache-v1';
