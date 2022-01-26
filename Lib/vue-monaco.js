@@ -37,7 +37,8 @@
       language: String,
       options: Object,
       amdRequire: {
-        type: Function
+        type: Function,
+        "default": globalThis.require
       },
       diffEditor: {
         type: Boolean,
