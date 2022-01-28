@@ -18,6 +18,7 @@ var mpSir = globalThis.mpSir = {}
       //location.reload() 
     }
     mpSir.AutoLogIn = function(){
+        console.log('AutoLogIn Called');
       const cat = localStorage.getItem("mpSir2");
       if (cat) {
         var a = JSON.parse(cat);
