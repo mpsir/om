@@ -29,11 +29,11 @@ var mpSir = globalThis.mpSir = {}
     }
     mpSir.LogIn = function () {
       function a() {
-        let name = prompt("Please enter your user name", "ram");
+        let name = prompt("Please enter your user name", "");
         if (name != null) { b(name) }
       }
       function b(name) {
-        let password = prompt("Please enter your password", "ram");
+        let password = prompt("Please enter your password", "");
         if (password != null) { c(name, password) }
       }
       function c(name, password) {
