@@ -28,12 +28,8 @@ var mpSir = globalThis.mpSir = {}
       }
     }
     mpSir.LogIn = function () {
-      function a() {
-        let name = prompt("Please enter your user name", "ram");
-        if (name != null) { b(name) }
-      }
       function b(name) {
-        let password = prompt("Please enter your password", "ram");
+        let password = prompt("Please enter your password", "");
         if (password != null) { c(name, password) }
       }
       function c(name, password) {
@@ -41,6 +37,7 @@ var mpSir = globalThis.mpSir = {}
         console.log(password);
         mpSir.socket.emit('LogIn', { Name:name, PassWord:password})
       }
-      a()
+      let name = prompt("Please enter your user name", "");
+        if (name != null) { b(name) }
     }
   
