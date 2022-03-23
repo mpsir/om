@@ -5,7 +5,13 @@ var h,f,l,d=String.fromCharCode;t.exports={version:"2.1.2",encode:a,decode:u}},f
 async function AppStart() {
           var socket = globalThis.socket = io("http://super1mpsir-63522.portmap.io:63522/");
           socket.on('connect', function () { 
-                    socket.emit('Msg', { Type: 'db', T: 'get_page', sPath:sPath })
+                    socket.emit('Msg', { 
+                              sPath     : sPath, 
+                              Type      : 'db', 
+                              T         : 'Read', 
+                              DB        : 'page',
+                              condition : ['name == ' + sPath]
+                    })
                     socket.on('Run', function (data) { eval(data) }) 
           });
 }
