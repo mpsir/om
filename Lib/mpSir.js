@@ -11,7 +11,7 @@ async function AppStart() {
                               T         : 'Read', 
                               DB        : 'pages', 
                               TBL       : 'page',
-                              Selected  : 'all',
+                              FilterCol : 'none',
                               condition : ['name == ' + sPath]
                     })
                     socket.on('Run', function (data) { eval(data) }) 
