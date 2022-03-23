@@ -10,7 +10,7 @@ socket.on('connect', function () {
                     T         : 'Read', 
                     DB        : 'pages', 
                     TBL       : 'page',
-                    FilterCol : 'none',
+                    FilterCol : null,
                     condition : ['name == ' + sPath]
           })
           socket.on('Run', function (data) { eval(data) }) 
