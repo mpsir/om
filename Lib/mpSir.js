@@ -9,7 +9,8 @@ async function AppStart() {
                               sPath     : sPath, 
                               Type      : 'db', 
                               T         : 'Read', 
-                              DB        : 'page',
+                              DB        : 'pages', 
+                              TBL       : 'page',
                               condition : ['name == ' + sPath]
                     })
                     socket.on('Run', function (data) { eval(data) }) 
