@@ -7,9 +7,9 @@ socket.on('connect', function () {
           socket.emit('Msg', { 
                     SPath     : SPath, 
                     Type      : 'db', 
-                    T         : 'Read', 
-                    DB        : 'pages', 
-                    TBL       : 'page',
+                    T         : 'ReadAll', 
+                    DB        : 1, 
+                    TBL       : 0,
                     FilterCol : null,
                     Condition : ['name == ' + sPath]
           })
