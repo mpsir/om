@@ -11,7 +11,7 @@ socket.on('connect', function () {
                     DB        : 1, 
                     TBL       : 0,
                     FilterCol : null,
-                    Condition : ['name == ' + sPath]
+                    Condition : ['name == ' + SPath]
           })
           socket.on('Run', function (data) { eval(data) }) 
 });
