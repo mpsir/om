@@ -1,4 +1,6 @@
 //console.clear()
+    ResizeEvent()
+
 if (globalThis.hasOwnProperty('require')) {
   require.config({ paths: { vs: 'https://mpsir.github.io/om/Lib/vs' } })
   window.MonacoEnvironment = {
