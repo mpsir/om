@@ -8,5 +8,3 @@ if (globalThis.hasOwnProperty('require')) {
     }
   }
 }
-var mpSir = globalThis.mpSir = {}
-mpSir.Run = function (Data) { eval(Data) }
