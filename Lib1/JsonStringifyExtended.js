@@ -68,7 +68,6 @@ globalThis.Stringify = function (data, options) {
             return 'new Date(' + options.valueQuote + date.toISOString() + options.valueQuote + ')'
         },
         regexp: function (obj) { return obj.toString() },
-        buffer: function (obj) { return 'Buffer.from(' + options.valueQuote + obj.toString('base64') + options.valueQuote + ')' },
         symbol: function (symbol) { return 'Symbol(' + options.valueQuote + symbol.toString().match(SYMBOL_STRIP)[1] + options.valueQuote + ')' },
         map: function (map) {
             const entries = []
@@ -130,7 +129,6 @@ globalThis.Stringify = function (data, options) {
             if (value instanceof Array) { _type = 'array' } 
             else if (value instanceof Date)   { _type = 'date' } 
             else if (value instanceof RegExp) { _type = 'regexp' } 
-            else if (value instanceof Buffer) { _type = 'buffer' } 
             else if (value instanceof Map)    { _type = 'map' } 
             else if (value instanceof Set)    { _type = 'set' } 
             else if (value instanceof Stringify._deferred) { _type = 'deferred' } 
