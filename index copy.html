@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link
+        href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAADUsYIAS6/pAAI29gD9/f4A+fHmAA8x0gC8vroAx6HiACBbtgAHbPMAUIvjAD7f+AA6lt4Ah+L9AKyemQD8/vwA/f78AP7+/ADw+P0ATYDRANvUxgCp+PgA6KfAAPRdwQC1ldQA+P79APDXtQB+W6sAqTWYAPz+/QDLx8sArLypAP7+/QD51qcABB/NAOO2hgBXaacAkDZ+APb49gCguuoA2cK4AAMy6wDI9v4A/f7+ANSYuwAFL+MA/v7+AMV7qgBcQ8gA64PMAPLZuQDv1/kAy2frAMK1zgDt7e0ACTbxAOa8oAAH2vsAxV/hAN6F0ABneOEA4IjxAP7+/wCILHsAb4FkAHjKuAChl+sAZEWSAO3l7ADvv/wA3bOBAA1F6QDaluwAj0DIANG1zwD4+f4Al3VLAB2n7gCEW6YApmnQADJmtADJl+IA8s28AP3a0QDKm74A79GxAP7//gD09PQA///+AGmD5QDXg/EA3j6qAKNOkACe7/4A3Y32AB89pQD1f9IAq+z+AD1k5AD9//8A/v//AP///wBxpJkAYqr9AP3t3wDw8PAAtrydALy0xAD7/voASdbuAP39/QDu7u4A39/fAE7Q3gBQlv0AqntEAEux/ADktZcA+P3+AGnLwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZWVlZWVlZWVlZEQrZWVlZWVlZWVlYx5hckpOMWVlZWVlZWVlLlxDZwE7HDACLmVlZWVlBGovPyYqGRAFX2JlZWVlR1l3MlZWZWVlEilGZWVlHQwIditlZWVlZRFATBFlZSwYN2VlZWVlZWVlGkg1ZS4kJS5lV29waWllZTM8XmUuFgZlZVc2cGlpbmVlPUVlIUEAZWVlZWVlZWVlZXUfFGUjUi5lZVhlZWVlZQNoU2VlBxNJC3FaNGtlZWVgG1suZStPUU0JOkIOZWU+DRdUZWVlLj4VOSBVZjgtCm10K2VlZWVlZWVlbHMoUCJdD2VlZWVlZWVlZWVlZSdLZWVlZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+        rel="icon" type="image/x-icon" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShreeRam</title>
+    <script src="/JS/fn.js"></script>
+    <link rel="stylesheet" href="/Lib/fontawesome-free-6.3.0-web/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/Lib/fontawesome-free-6.3.0-web/css/brands.min.css">
+    <link rel="stylesheet" href="/Lib/fontawesome-free-6.3.0-web/css/solid.min.css">
+    <link rel="stylesheet" href="/node_modules/vue-select/dist/vue-select.css">
+    <link href="/Lib/jquery-ui-1.13.2.custom/jquery-ui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/node_modules/primeflex/primeflex.min.css">
+    <link rel="stylesheet" href="/node_modules/primevue/resources/themes/lara-light-blue/theme.css">
+    <link rel="stylesheet" href="/node_modules/primevue/resources/primevue.min.css">
+    <link rel="stylesheet" href="/node_modules/primeicons/primeicons.css">
+    <script src="/node_modules/vue/dist/vue.global.js"></script>
+    <script src="/JS/vue3-shortkey.js"></script>
+    <script src="/node_modules/vue-select/dist/vue-select.umd.js"></script>
+    <script src="/node_modules/vue3-draggable/dist/vue3-draggable.umd.min.js"></script>
+    <script src="/node_modules/vue-router/dist/vue-router.global.prod.js"></script>
+    <script src="/Lib/jquery-ui-1.13.2.custom/external/jquery/jquery.min.js"></script>
+    <script src="/Lib/jquery-ui-1.13.2.custom/jquery-ui.min.js"></script>
+    <script src="/Lib/jquery-ui-touch-punch/touch.min.js"></script>
+    <script src="/node_modules/primevue/core/core.min.js"></script>
+    <script src="/node_modules/primevue/portal/portal.min.js"></script>
+    <script src="/node_modules/primevue/usedialog/usedialog.min.js"></script>
+    <script src="/node_modules/primevue/usetoast/usetoast.min.js"></script>
+    <script src="/node_modules/primevue/overlayeventbus/overlayeventbus.min.js"></script>
+    <script src="/node_modules/primevue/api/api.min.js"></script>
+    <script src="/node_modules/primevue/utils/utils.js"></script>
+    <script src="/node_modules/primevue/config/config.js"></script>
+    <script src="/node_modules/primevue/autocomplete/autocomplete.js"></script>
+    <script src="/node_modules/primevue/accordion/accordion.min.js"></script>
+    <script src="/node_modules/primevue/accordiontab/accordiontab.min.js"></script>
+    <script src="/node_modules/primevue/avatar/avatar.min.js"></script>
+    <script src="/node_modules/primevue/avatargroup/avatargroup.min.js"></script>
+    <script src="/node_modules/primevue/badge/badge.min.js"></script>
+    <script src="/node_modules/primevue/badgedirective/badgedirective.min.js"></script>
+    <script src="/node_modules/primevue/blockui/blockui.min.js"></script>
+    <script src="/node_modules/primevue/button/button.js"></script>
+    <script src="/node_modules/primevue/breadcrumb/breadcrumb.min.js"></script>
+    <script src="/node_modules/primevue/calendar/calendar.min.js"></script>
+    <script src="/node_modules/primevue/card/card.min.js"></script>
+    <script src="/node_modules/primevue/cascadeselect/cascadeselect.min.js"></script>
+    <script src="/node_modules/primevue/carousel/carousel.min.js"></script>
+    <script src="/node_modules/primevue/checkbox/checkbox.min.js"></script>
+    <script src="/node_modules/primevue/chip/chip.min.js"></script>
+    <script src="/node_modules/primevue/chips/chips.min.js"></script>
+    <script src="/node_modules/primevue/colorpicker/colorpicker.min.js"></script>
+    <script src="/node_modules/primevue/column/column.min.js"></script>
+    <script src="/node_modules/primevue/columngroup/columngroup.min.js"></script>
+    <script src="/node_modules/primevue/confirmationeventbus/confirmationeventbus.min.js"></script>
+    <script src="/node_modules/primevue/confirmationservice/confirmationservice.min.js"></script>
+    <script src="/node_modules/primevue/confirmdialog/confirmdialog.min.js"></script>
+    <script src="/node_modules/primevue/confirmpopup/confirmpopup.min.js"></script>
+    <script src="/node_modules/primevue/confirmationservice/confirmationservice.js"></script>
+    <script src="/node_modules/primevue/contextmenu/contextmenu.min.js"></script>
+    <script src="/node_modules/primevue/datatable/datatable.min.js"></script>
+    <script src="/node_modules/primevue/dataview/dataview.min.js"></script>
+    <script src="/node_modules/primevue/dataviewlayoutoptions/dataviewlayoutoptions.min.js"></script>
+    <script src="/node_modules/primevue/deferredcontent/deferredcontent.min.js"></script>
+    <script src="/node_modules/primevue/dialog/dialog.min.js"></script>
+    <script src="/node_modules/primevue/dialogservice/dialogservice.min.js"></script>
+    <script src="/node_modules/primevue/divider/divider.min.js"></script>
+    <script src="/node_modules/primevue/dock/dock.min.js"></script>
+    <script src="/node_modules/primevue/dropdown/dropdown.min.js"></script>
+    <script src="/node_modules/primevue/dynamicdialog/dynamicdialog.min.js"></script>
+    <script src="/node_modules/primevue/fieldset/fieldset.min.js"></script>
+    <script src="/node_modules/primevue/fileupload/fileupload.min.js"></script>
+    <script src="/node_modules/primevue/focustrap/focustrap.min.js"></script>
+    <script src="/node_modules/primevue/galleria/galleria.min.js"></script>
+    <script src="/node_modules/primevue/image/image.min.js"></script>
+    <script src="/node_modules/primevue/inlinemessage/inlinemessage.min.js"></script>
+    <script src="/node_modules/primevue/inplace/inplace.min.js"></script>
+    <script src="/node_modules/primevue/inputswitch/inputswitch.min.js"></script>
+    <script src="/node_modules/primevue/inputtext/inputtext.min.js"></script>
+    <script src="/node_modules/primevue/inputmask/inputmask.min.js"></script>
+    <script src="/node_modules/primevue/inputnumber/inputnumber.min.js"></script>
+    <script src="/node_modules/primevue/knob/knob.min.js"></script>
+    <script src="/node_modules/primevue/listbox/listbox.min.js"></script>
+    <script src="/node_modules/primevue/megamenu/megamenu.min.js"></script>
+    <script src="/node_modules/primevue/menu/menu.min.js"></script>
+    <script src="/node_modules/primevue/menubar/menubar.min.js"></script>
+    <script src="/node_modules/primevue/message/message.min.js"></script>
+    <script src="/node_modules/primevue/multiselect/multiselect.js"></script>
+    <script src="/node_modules/primevue/orderlist/orderlist.min.js"></script>
+    <script src="/node_modules/primevue/organizationchart/organizationchart.min.js"></script>
+    <script src="/node_modules/primevue/overlaypanel/overlaypanel.min.js"></script>
+    <script src="/node_modules/primevue/paginator/paginator.min.js"></script>
+    <script src="/node_modules/primevue/panel/panel.min.js"></script>
+    <script src="/node_modules/primevue/panelmenu/panelmenu.min.js"></script>
+    <script src="/node_modules/primevue/password/password.min.js"></script>
+    <script src="/node_modules/primevue/picklist/picklist.min.js"></script>
+    <script src="/node_modules/primevue/progressbar/progressbar.min.js"></script>
+    <script src="/node_modules/primevue/progressspinner/progressspinner.min.js"></script>
+    <script src="/node_modules/primevue/rating/rating.min.js"></script>
+    <script src="/node_modules/primevue/radiobutton/radiobutton.min.js"></script>
+    <script src="/node_modules/primevue/ripple/ripple.min.js"></script>
+    <script src="/node_modules/primevue/row/row.min.js"></script>
+    <script src="/node_modules/primevue/selectbutton/selectbutton.min.js"></script>
+    <script src="/node_modules/primevue/scrollpanel/scrollpanel.min.js"></script>
+    <script src="/node_modules/primevue/scrolltop/scrolltop.min.js"></script>
+    <script src="/node_modules/primevue/skeleton/skeleton.min.js"></script>
+    <script src="/node_modules/primevue/slider/slider.min.js"></script>
+    <script src="/node_modules/primevue/sidebar/sidebar.min.js"></script>
+    <script src="/node_modules/primevue/speeddial/speeddial.min.js"></script>
+    <script src="/node_modules/primevue/splitbutton/splitbutton.min.js"></script>
+    <script src="/node_modules/primevue/splitter/splitter.min.js"></script>
+    <script src="/node_modules/primevue/splitterpanel/splitterpanel.min.js"></script>
+    <script src="/node_modules/primevue/steps/steps.min.js"></script>
+    <script src="/node_modules/primevue/styleclass/styleclass.min.js"></script>
+    <script src="/node_modules/primevue/tabmenu/tabmenu.min.js"></script>
+    <script src="/node_modules/primevue/tieredmenu/tieredmenu.min.js"></script>
+    <script src="/node_modules/primevue/textarea/textarea.min.js"></script>
+    <script src="/node_modules/primevue/toast/toast.min.js"></script>
+    <script src="/node_modules/primevue/toasteventbus/toasteventbus.js"></script>
+    <script src="/node_modules/primevue/toastservice/toastservice.js"></script>
+    <script src="/node_modules/primevue/toolbar/toolbar.min.js"></script>
+    <script src="/node_modules/primevue/tabview/tabview.min.js"></script>
+    <script src="/node_modules/primevue/tabpanel/tabpanel.min.js"></script>
+    <script src="/node_modules/primevue/tag/tag.min.js"></script>
+    <script src="/node_modules/primevue/terminal/terminal.min.js"></script>
+    <script src="/node_modules/primevue/timeline/timeline.min.js"></script>
+    <script src="/node_modules/primevue/togglebutton/togglebutton.min.js"></script>
+    <script src="/node_modules/primevue/tooltip/tooltip.min.js"></script>
+    <script src="/node_modules/primevue/tree/tree.min.js"></script>
+    <script src="/node_modules/primevue/treeselect/treeselect.min.js"></script>
+    <script src="/node_modules/primevue/treetable/treetable.min.js"></script>
+    <script src="/node_modules/primevue/tristatecheckbox/tristatecheckbox.min.js"></script>
+    <script src="/node_modules/primevue/virtualscroller/virtualscroller.min.js"></script>
+    <script src="/JS/F.js"></script>
+    <script src="/JS/Vue.js"></script>
+    <script src="/JS/Render.js"></script>
+    <script src="/node_modules/monaco-editor/min/vs/loader.js"></script>
+    <script>require.config({ paths: { vs: '/node_modules/monaco-editor/min/vs' } });</script>
+    <link rel="stylesheet" href="/CSS/Boot.css">
+</head>
+
+<body onload="g.f.Boot()">
+
+    <div id="HomeApp">
+        <p-button v-shortkey="['ctrl',  '1']" @shortkey="g.alert(7)" v-focus icon="fa-solid fa-house"
+            class="p-1"></p-button>
+        <!-- <div v-focus class="m-1">focus</div> -->
+    </div>
+
+    <script id="page-template" type="text/html">
+
+        <p-toast />
+        
+
+        <div id="sidebar-1-wrapper" class="card flex justify-content-center">
+            <p-sidebar v-model:visible="sidebar1_visible" :position="sidebar1_position">
+                <h2>Sidebar 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                    commodo consequat.</p>
+            </p-sidebar>
+        </div>
+        
+        <div id="sidebar-2-wrapper" class="card flex justify-content-center">
+            <p-sidebar v-model:visible="sidebar2_visible" :position="sidebar2_position">
+                <h2>Sidebar 2</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                    commodo consequat.</p>
+            </p-sidebar>
+        </div>
+        
+        <div id="sidebar-3-wrapper" class="card flex justify-content-center">
+            <p-sidebar v-model:visible="sidebar3_visible" :position="sidebar3_position">
+                <h2>Sidebar 3</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                    commodo consequat.</p>
+            </p-sidebar>
+        </div>
+        
+        <div id="sidebar-4-wrapper" class="card flex justify-content-center">
+            <p-sidebar v-model:visible="sidebar4_visible" :position="sidebar4_position">
+                <h2>Sidebar 4</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                    commodo consequat.</p>
+            </p-sidebar>
+        </div>
+        
+        <div id="sidebar-5-wrapper" class="card flex justify-content-center">
+            <p-sidebar v-model:visible="sidebar5_visible" :position="sidebar5_position">
+                <h2>Sidebar 5</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                    commodo consequat.</p>
+            </p-sidebar>
+        </div>
+        
+        <div v-if="show_topBarWrapper" id="top-bar-wrapper" class="text-center top-0 border-dotted border-1 fixed w-full z-5" :style="{height:calculate_top_margin}">
+            Top Nav Bar
+            <p-toast />
+            <p-button label="Show" @click="show()" />
+        </div>
+        
+        <div v-if="show_topMenuWrapper" id="top-menu-wrapper" class="flex gap-4 justify-content-between  border-dotted border-1" :style="{marginTop:calculate_top_margin}">
+            <div class="border-dotted border-0 align-self-center ml-1">ShreeRam</div>
+            <div class="flex-grow-1 md:flex-grow-0">
+                <p-menubar :model="items" class="p-0 m-0 border-0 w-full"></p-menubar>
+            </div>
+        </div>
+
+        <div id="body-wrapper" class="flex flex-wrap">
+            <div id="body-left-wrapper" v-if="show_leftBodyWrapper"
+                class="col-12 md:col-2 lg:col-2 border-dotted border-1 flex flex-column border-dotted flex-order-0">
+                <div class="p-2"> Left Menu </div>
+            </div>        
+            <div v-if="show_centerBodyWrapper" id="body-center-wrapper" class="col border-dotted flex border-1 flex-column flex-order-1">
+                <div class="border-1 border-dotted p-3 m-3">
+                    <p-button class="mx-1" icon="pi pi-arrow-right"
+                        @click="sidebar1_position = 'right'; sidebar1_visible  = true"></p-button>
+                    <p-button class="mx-1" icon="pi pi-arrow-left"
+                        @click="sidebar1_position = 'left'; sidebar1_visible  = true"> </p-button>
+                    <p-button class="mx-1" icon="pi pi-arrow-down"
+                        @click="sidebar1_position = 'bottom'; sidebar1_visible  = true"> </p-button>
+                    <p-button class="mx-1" icon="pi pi-arrow-up" @click="sidebar1_position = 'top'; sidebar1_visible  = true">
+                    </p-button>
+                    <p-button class="mx-1" label="full" @click="sidebar1_position = 'full'; sidebar1_visible  = true">
+                    </p-button>
+                </div>
+                <div class="border-1 border-dotted p-3 m-3">main1</div>
+            </div>
+            <div v-if="show_rightBodyWrapper" id="body-right-wrapper"
+                class="col-12 md:col-2 lg:col-2 border-1 flex flex-column  border-dotted sm:flex-order-0 md:flex-order-2">
+                <div class="p-2"> Right Menu </div>
+                <div class="p-2"> Quick Links </div>
+                <div class="p-2"> On this page </div>
+            </div>        
+        </div>
+
+        <div v-if="show_footer" id="footer-wrapper" class="p-1 border-dotted border-1 text-center">Footer</div>
+
+    </script>
+
+</body>
+
+</html>
