@@ -1,6 +1,13 @@
 var g = globalThis;
 
 g.f = {
+	// window.location.hostname.search("github.io")
+	IsGithubHosted(){
+		if (window.location.hostname.search("github.io") == -1) {
+			return false
+		}  
+		return true
+	},
 	add2(){
 		g.db.friends.add({
 			name: 'a2',
