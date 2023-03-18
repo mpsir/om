@@ -1,178 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-  <title>ShreeRam</title>
-
+  <title>ShreeRam-G</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="stylesheet" href="https://mpsir.github.io/om/node_modules/material-icons/iconfont/material-icons.css">
-  <link rel="stylesheet" href="/Frame/CSS/roboto.css">
-  <link
-    href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAADUsYIAS6/pAAI29gD9/f4A+fHmAA8x0gC8vroAx6HiACBbtgAHbPMAUIvjAD7f+AA6lt4Ah+L9AKyemQD8/vwA/f78AP7+/ADw+P0ATYDRANvUxgCp+PgA6KfAAPRdwQC1ldQA+P79APDXtQB+W6sAqTWYAPz+/QDLx8sArLypAP7+/QD51qcABB/NAOO2hgBXaacAkDZ+APb49gCguuoA2cK4AAMy6wDI9v4A/f7+ANSYuwAFL+MA/v7+AMV7qgBcQ8gA64PMAPLZuQDv1/kAy2frAMK1zgDt7e0ACTbxAOa8oAAH2vsAxV/hAN6F0ABneOEA4IjxAP7+/wCILHsAb4FkAHjKuAChl+sAZEWSAO3l7ADvv/wA3bOBAA1F6QDaluwAj0DIANG1zwD4+f4Al3VLAB2n7gCEW6YApmnQADJmtADJl+IA8s28AP3a0QDKm74A79GxAP7//gD09PQA///+AGmD5QDXg/EA3j6qAKNOkACe7/4A3Y32AB89pQD1f9IAq+z+AD1k5AD9//8A/v//AP///wBxpJkAYqr9AP3t3wDw8PAAtrydALy0xAD7/voASdbuAP39/QDu7u4A39/fAE7Q3gBQlv0AqntEAEux/ADktZcA+P3+AGnLwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZWVlZWVlZWVlZEQrZWVlZWVlZWVlYx5hckpOMWVlZWVlZWVlLlxDZwE7HDACLmVlZWVlBGovPyYqGRAFX2JlZWVlR1l3MlZWZWVlEilGZWVlHQwIditlZWVlZRFATBFlZSwYN2VlZWVlZWVlGkg1ZS4kJS5lV29waWllZTM8XmUuFgZlZVc2cGlpbmVlPUVlIUEAZWVlZWVlZWVlZXUfFGUjUi5lZVhlZWVlZQNoU2VlBxNJC3FaNGtlZWVgG1suZStPUU0JOkIOZWU+DRdUZWVlLj4VOSBVZjgtCm10K2VlZWVlZWVlbHMoUCJdD2VlZWVlZWVlZWVlZSdLZWVlZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
-    rel="icon" type="image/x-icon" />
-  <link href="/Lib/quasar/quasar.prod.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/node_modules/vue-select/dist/vue-select.css">
+  <link rel="stylesheet" href="https://mpsir.github.io/om/Frame/CSS/roboto.css">
+  <link href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAADUsYIAS6/pAAI29gD9/f4A+fHmAA8x0gC8vroAx6HiACBbtgAHbPMAUIvjAD7f+AA6lt4Ah+L9AKyemQD8/vwA/f78AP7+/ADw+P0ATYDRANvUxgCp+PgA6KfAAPRdwQC1ldQA+P79APDXtQB+W6sAqTWYAPz+/QDLx8sArLypAP7+/QD51qcABB/NAOO2hgBXaacAkDZ+APb49gCguuoA2cK4AAMy6wDI9v4A/f7+ANSYuwAFL+MA/v7+AMV7qgBcQ8gA64PMAPLZuQDv1/kAy2frAMK1zgDt7e0ACTbxAOa8oAAH2vsAxV/hAN6F0ABneOEA4IjxAP7+/wCILHsAb4FkAHjKuAChl+sAZEWSAO3l7ADvv/wA3bOBAA1F6QDaluwAj0DIANG1zwD4+f4Al3VLAB2n7gCEW6YApmnQADJmtADJl+IA8s28AP3a0QDKm74A79GxAP7//gD09PQA///+AGmD5QDXg/EA3j6qAKNOkACe7/4A3Y32AB89pQD1f9IAq+z+AD1k5AD9//8A/v//AP///wBxpJkAYqr9AP3t3wDw8PAAtrydALy0xAD7/voASdbuAP39/QDu7u4A39/fAE7Q3gBQlv0AqntEAEux/ADktZcA+P3+AGnLwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZWVlZWVlZWVlZEQrZWVlZWVlZWVlYx5hckpOMWVlZWVlZWVlLlxDZwE7HDACLmVlZWVlBGovPyYqGRAFX2JlZWVlR1l3MlZWZWVlEilGZWVlHQwIditlZWVlZRFATBFlZSwYN2VlZWVlZWVlGkg1ZS4kJS5lV29waWllZTM8XmUuFgZlZVc2cGlpbmVlPUVlIUEAZWVlZWVlZWVlZXUfFGUjUi5lZVhlZWVlZQNoU2VlBxNJC3FaNGtlZWVgG1suZStPUU0JOkIOZWU+DRdUZWVlLj4VOSBVZjgtCm10K2VlZWVlZWVlbHMoUCJdD2VlZWVlZWVlZWVlZSdLZWVlZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" rel="icon" type="image/x-icon" />
+  <link href="https://mpsir.github.io/om/Lib/quasar/quasar.prod.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://mpsir.github.io/om/node_modules/vue-select/dist/vue-select.css">
   <link rel="stylesheet" href="/Frame/CSS/Boot.css">
-  <link rel="stylesheet" href="/node_modules/vue3-draggable-resizable/dist/Vue3DraggableResizable.css">
-  <script src="/Frame/JS/fn.js"></script>
-  <script src="/node_modules/vue/dist/vue.global.js"></script>
-  <script src="/Lib/v-drag/browser.js"></script>
-  <script src="/node_modules/vue3-draggable-resizable/dist/Vue3DraggableResizable.umd.min.js"></script>
-  <script src="/Frame/JS/vue3-shortkey.js"></script>
-  <script src="/node_modules/vue-select/dist/vue-select.umd.js"></script>
-  <script src="/node_modules/vue3-draggable/dist/vue3-draggable.umd.min.js"></script>
-  <script src="/node_modules/vue-router/dist/vue-router.global.prod.js"></script>
-  <script src="/Lib/jquery-ui-1.13.2.custom/external/jquery/jquery.min.js"></script>
+  <script src="https://mpsir.github.io/om/Frame/JS/fn.js"></script>
+  <script src="https://mpsir.github.io/om/node_modules/vue/dist/vue.global.js"></script>
+  <script src="https://mpsir.github.io/om/Lib/v-drag/browser.js"></script>
+  <script src="https://mpsir.github.io/om/Frame/JS/vue3-shortkey.js"></script>
+  <script src="https://mpsir.github.io/om/Lib/vue-resizable.js"></script>
+  <script src="https://mpsir.github.io/om/node_modules/vue-select/dist/vue-select.umd.js"></script>
+  <script src="https://mpsir.github.io/om/node_modules/vue-router/dist/vue-router.global.prod.js"></script>
+  <script src="https://mpsir.github.io/om/Lib/jquery-ui-1.13.2.custom/external/jquery/jquery.min.js"></script>
   <script src="/Frame/JS/F.js"></script>
-  <script src="/Frame/JS/VueRender.js"></script>
-  <script src="https://mpsir.github.io/om/Frame/Data/d.js"></script>
-
 </head>
-
-<body onload="start()">
-
+<body onload="g.f.start()">
   <div id="page-dom-wrapper"> </div>
   <div id="editor-dom-wrapper"></div>
-
-  <script type="text/html" id="page-home-template">
-
-        <q-layout view="hHh lpR fFf">
-
-            <q-header elevated class="bg-primary text-white" height-hint="98">
-              <q-toolbar>
-                <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" ></q-btn>
-                <q-toolbar-title>
-                  <q-avatar>
-                    <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-                  </q-avatar>
-                  ShreeRam
-                </q-toolbar-title>
-                <q-btn dense flat round icon="menu" @click="toggleRightDrawer" ></q-btn>
-              </q-toolbar>
-            </q-header>
-        
-            <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
-              left drawer
-            </q-drawer>
-        
-            <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
-              right drawer
-            </q-drawer>
-        
-            <q-page-container>
-                page-body
-            </q-page-container>
-        
-            <q-footer elevated class="bg-grey-8 text-white">
-              <q-toolbar>
-                <q-toolbar-title class="flex">
-                  <q-avatar>
-                    <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-                  </q-avatar>
-                  <div style="margin-left: 16px; text-align: center;">ShreeRam</div>
-                </q-toolbar-title>
-              </q-toolbar>
-            </q-footer>
-        
-          </q-layout>
-        
-  </script>
-
-  <script type="text/html" id="editor-template">
-{{g.navigator.platform}}
-    <div class="parent" style="width: 200px;
-      height: 200px;
-      position: absolute;
-      top: 100px;
-      left: 100px;
-      border: 1px solid #000;
-      user-select: none;
-        ">
-      <Vue3DraggableResizable
-      :parent="false"
-        :initW="110"
-        :initH="120"
-        v-model:x="x"
-        v-model:y="y"
-        v-model:w="w"
-        v-model:h="h"
-        v-model:active="active"
-        :draggable="true"
-        :resizable="true"
-        @activated="print('activated')"
-        @deactivated="print('deactivated')"
-        @drag-start="print('drag-start')"
-        @resize-start="print('resize-start')"
-        @dragging="print('dragging')"
-        @resizing="print('resizing')"
-        @drag-end="print('drag-end')"
-        @resize-end="print('resize-end')"
-      >
-        This is a test example
-      </Vue3DraggableResizable>
-    </div>
-
-    <div v-if="false" class="q-pa-md flex justify-center">
-      <div style="max-width: 90%; width: 300px;">
-        <q-intersection
-          v-for="index in 60"
-          :key="index"
-          transition="flip-right"
-          class="example-item"
-        >
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-avatar color="primary" text-color="white">
-                Q
-              </q-avatar>
-            </q-item-section>
-  
-            <q-item-section>
-              <q-item-label>Contact #{{ index }}</q-item-label>
-              <q-item-label caption lines="1">some@email.com</q-item-label>
-            </q-item-section>
-  
-            <q-item-section side>
-              <q-icon name="chat_bubble" color="green" ></q-icon>
-            </q-item-section>
-          </q-item>
-        </q-intersection>
-      </div>
-    </div>
-
-    <div>div 1</div>
-    <br/>
-    <div v-if="false" v-drag style="width:100px; border:1px solid black; z-index: 5555; position: absolute; top: 0px;">ok</div>
-    <br/>
-    
-    <div v-drag style="border:1px solid black; position: absolute;">
-      drag me! 
-      drag me! 
-    </div>
-    <br/>
-    <br/>
-    <div style="width:100px; border:1px solid black; ">div 2</div>
-
-</script>
-
-  <script src="/Lib/quasar/quasar.umd.prod.js"></script>
-  <!-- <script src="/Lib/quasar/fontawesome-v6.umd.prod.js"></script> -->
-
-  <script>
-
-
-
-    async function start() {
-      g.f.add_monaco()
-      g.f.Boot()
-    }
-
-  </script>
-
+  <script src="https://mpsir.github.io/om/Lib/quasar/quasar.umd.prod.js"></script>
 </body>
-
 </html>
