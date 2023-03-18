@@ -2,17 +2,17 @@ var g = globalThis;
 
 g.f = {
 	// window.location.hostname.search("github.io")
-	IsGithubHosted(){
-		if (window.location.hostname.search("github.io") == -1) {
-			return false
-		}  
-		return true
+	IsGithubHosted() {
+		if (window.location.hostname.search('github.io') == -1) {
+			return false;
+		}
+		return true;
 	},
-	add2(){
+	add2() {
 		g.db.friends.add({
 			name: 'a2',
-			age: 566,
-		  });
+			age: 566
+		});
 	},
 	addDB() {
 		g.db = new Dexie('myDatabase');
@@ -34,10 +34,11 @@ g.f = {
 		);
 	},
 	start() {
-		
-		var script_path =  '/Frame/JS/F.js'
-		if (g.f.IsGithubHosted()) { script_path = ('https://mpsir.github.io/om' + script_path) } 
-		g.f.create_script(script_path, isAsync=false, function(){})
+		var script_path = '/Frame/JS/F.js';
+		if (g.f.IsGithubHosted()) {
+			script_path = 'https://mpsir.github.io/om' + script_path;
+		}
+		g.f.create_script(script_path, (isAsync = false), function() {});
 
 		g.f.add_monaco();
 		g.f.addDB();
@@ -46,16 +47,16 @@ g.f = {
 	GetPageName() {
 		const queryString = window.location.search;
 		if (queryString == '') {
-			return 'Home';
+			return 'home';
 		}
 		const urlParams = new URLSearchParams(queryString);
 		const p = urlParams.get('p');
 		if (!p) {
-			return 'Home';
+			return 'home';
 		} else {
 			return p;
 		}
-		return 'Home';
+		return 'home';
 	},
 	parse: JSONF.parse,
 	string: JSONF.stringify,
@@ -67,10 +68,9 @@ g.f = {
 		Boot();
 	},
 	GetPageObject(PageName) {
-		var FoundPage = g.d.Pages.find(p => {
-			return p.name == PageName;
-		});
-		return FoundPage;
+		var FoundPage = g.d.Pages.find(p => { return p.name == PageName; });
+		if (FoundPage) { return FoundPage } 
+		else { return g.d.Pages.find(p => { return p.name == 'home' }) }
 	},
 	ArrayUp(Arr, INo) {},
 	ArrayDn(Arr, INo) {},
@@ -79,22 +79,30 @@ g.f = {
 	ArrayMoveTo(Arr, INo) {},
 	ArrToObject() {},
 	ObjectToArr() {},
-	create_script(file_path, isAsync, callback){
+	create_script(file_path, isAsync, callback) {
 		const script = document.createElement('script');
-		script.setAttribute( 'src', file_path );
-		script.setAttribute('async', isAsync + "");
-		script.onload = function handleScriptLoaded() { if (callback != null) { callback() } };
-		script.onerror = function handleScriptError() { console.log('error loading script', file_path) };
+		script.setAttribute('src', file_path);
+		script.setAttribute('async', isAsync + '');
+		script.onload = function handleScriptLoaded() {
+			if (callback != null) {
+				callback();
+			}
+		};
+		script.onerror = function handleScriptError() {
+			console.log('error loading script', file_path);
+		};
 		document.body.appendChild(script);
 	},
 	add_monaco() {
-		var script_path =  '/node_modules/monaco-editor/min/vs/loader.js'
-		if (g.f.IsGithubHosted()) { script_path = ('https://mpsir.github.io/om' + script_path) } 
-		g.f.create_script(script_path, isAsync=false, function(){
+		var script_path = '/node_modules/monaco-editor/min/vs/loader.js';
+		if (g.f.IsGithubHosted()) {
+			script_path = 'https://mpsir.github.io/om' + script_path;
+		}
+		g.f.create_script(script_path, (isAsync = false), function() {
 			g.require.config({
 				paths: { vs: script_path + '/node_modules/monaco-editor/min/vs' }
 			});
-		})
+		});
 	},
 	CreateApp(App, DomTarget) {
 		//console.log(App, 'App');
@@ -192,7 +200,7 @@ g.d = {
 	Templates: [],
 	Pages: [
 		{
-			name: 'Home',
+			name: 'home',
 			gcomps: [],
 			Vue: {
 				setup() {
@@ -255,13 +263,110 @@ g.d = {
 					}
 				}
 			}
+		},
+		{
+			name: 'home2',
+			gcomps: [],
+			Vue: {
+				setup() {
+					return {
+						tab: Vue.ref('Pages'),
+					};
+				},
+				template: `
+				<q-layout view="hHh lpR fFf">
+				  <q-header elevated class="bg-primary text-white" height-hint="98">
+					<q-tabs v-model="tab">
+						<q-tab name="Pages" label="Pages" :no-caps="true" />
+						<q-tab name="Comps" label="Comps" :no-caps="true" />
+						<q-tab name="Opts" label="Opts" :no-caps="true" />
+						<q-tab name="Mixins" label="Mixins" :no-caps="true" />
+						<q-tab name="Composable" label="Composable" :no-caps="true" />
+						<q-tab name="Templates" label="Templates" :no-caps="true" />
+						<q-tab name="F" label="F" :no-caps="true" />
+						<q-tab name="BkpRestore" label="BkpRestore" :no-caps="true" />
+					</q-tabs>
+				  </q-header>
+			  
+				  <q-page-container>
+					<q-tab-panels v-model="tab">
+						<q-tab-panel name="Pages">
+							<div class="text-h4 q-mb-md">Pages</div>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+						</q-tab-panel>
+
+						<q-tab-panel name="Comps">
+							<div class="text-h4 q-mb-md">Comps</div>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+						</q-tab-panel>
+
+						<q-tab-panel name="Opts">
+							<div class="text-h4 q-mb-md">Opts</div>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+						</q-tab-panel>
+						
+						<q-tab-panel name="Mixins">
+							<div class="text-h4 q-mb-md">Mixins</div>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+						</q-tab-panel>
+
+
+						<q-tab-panel name="Composable">
+							<div class="text-h4 q-mb-md">Composable</div>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+						</q-tab-panel>
+
+						<q-tab-panel name="Templates">
+							<div class="text-h4 q-mb-md">Templates</div>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+						</q-tab-panel>
+
+						<q-tab-panel name="F">
+							<div class="text-h4 q-mb-md">F</div>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+						</q-tab-panel>
+
+						<q-tab-panel name="BkpRestore">
+							<div class="text-h4 q-mb-md">BkpRestore</div>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+						</q-tab-panel>
+
+					</q-tab-panels>
+
+				  </q-page-container>
+				</q-layout>
+        `,
+				created() {
+					// console.log(55);
+					//console.log(this.$toast.add)
+				},
+				computed: {
+					g() {
+						return globalThis;
+					}
+				}
+			}
 		}
 	],
 	Components: [],
 	Themes: [],
 	Options: [],
 	EditorObj: {
-		name: 'Home',
+		name: 'home',
 		gcomps: [],
 		Vue: {
 			data() {
@@ -274,10 +379,13 @@ g.d = {
 			},
 			setup() {
 				const { x, y } = VueUse.useMouse();
-				return { isB: true, x, y, 
-					friends: VueUse.useObservable (
+				return {
+					isB: true,
+					x,
+					y,
+					friends: VueUse.useObservable(
 						Dexie.liveQuery(() => db.friends.toArray())
-					  )
+					)
 				};
 			},
 			template: `
