@@ -1,4 +1,3 @@
-alert(6)
 var g = globalThis;
 
 g.f = {
@@ -35,6 +34,11 @@ g.f = {
 		);
 	},
 	start() {
+		
+		var script_path =  '/Frame/JS/F.js'
+		if (g.f.IsGithubHosted()) { script_path = ('https://mpsir.github.io/om' + script_path) } 
+		g.f.create_script(script_path, isAsync=false, function(){})
+
 		g.f.add_monaco();
 		g.f.addDB();
 		g.f.Boot();
@@ -75,24 +79,22 @@ g.f = {
 	ArrayMoveTo(Arr, INo) {},
 	ArrToObject() {},
 	ObjectToArr() {},
-	add_monaco() {
+	create_script(file_path, isAsync, callback){
 		const script = document.createElement('script');
-		var a = 'https://mpsir.github.io/om';
-		script.setAttribute(
-			'src',
-			a + '/node_modules/monaco-editor/min/vs/loader.js'
-		);
-		script.setAttribute('async', 'false');
-		script.onload = function handleScriptLoaded() {
-			// console.log(require);
-			require.config({
-				paths: { vs: a + '/node_modules/monaco-editor/min/vs' }
-			});
-		};
-		script.onerror = function handleScriptError() {
-			console.log('error loading script');
-		};
+		script.setAttribute( 'src', file_path );
+		script.setAttribute('async', isAsync + "");
+		script.onload = function handleScriptLoaded() { if (callback != null) { callback() } };
+		script.onerror = function handleScriptError() { console.log('error loading script', file_path) };
 		document.body.appendChild(script);
+	},
+	add_monaco() {
+		var script_path =  '/node_modules/monaco-editor/min/vs/loader.js'
+		if (g.f.IsGithubHosted()) { script_path = ('https://mpsir.github.io/om' + script_path) } 
+		g.f.create_script(script_path, isAsync=false, function(){
+			g.require.config({
+				paths: { vs: script_path + '/node_modules/monaco-editor/min/vs' }
+			});
+		})
 	},
 	CreateApp(App, DomTarget) {
 		//console.log(App, 'App');
