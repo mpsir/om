@@ -278,13 +278,11 @@ g.d = {
 				  <q-header elevated class="bg-primary text-white" height-hint="98">
 					<q-tabs v-model="tab">
 						<q-tab name="Pages" label="Pages" :no-caps="true" />
-						<q-tab name="Comps" label="Comps" :no-caps="true" />
 						<q-tab name="Opts" label="Opts" :no-caps="true" />
 						<q-tab name="Mixins" label="Mixins" :no-caps="true" />
-						<q-tab name="Composable" label="Composable" :no-caps="true" />
-						<q-tab name="Templates" label="Templates" :no-caps="true" />
+						<q-tab name="T" label="T" :no-caps="true" />
 						<q-tab name="F" label="F" :no-caps="true" />
-						<q-tab name="BkpRestore" label="BkpRestore" :no-caps="true" />
+						<q-tab name="Bkp" label="Bkp" :no-caps="true" />
 					</q-tabs>
 				  </q-header>
 			  
@@ -296,11 +294,7 @@ g.d = {
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
 						</q-tab-panel>
 
-						<q-tab-panel name="Comps">
-							<div class="text-h4 q-mb-md">Comps</div>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
-						</q-tab-panel>
+						
 
 						<q-tab-panel name="Opts">
 							<div class="text-h4 q-mb-md">Opts</div>
@@ -317,14 +311,9 @@ g.d = {
 						</q-tab-panel>
 
 
-						<q-tab-panel name="Composable">
-							<div class="text-h4 q-mb-md">Composable</div>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
-						</q-tab-panel>
+						
 
-						<q-tab-panel name="Templates">
+						<q-tab-panel name="T">
 							<div class="text-h4 q-mb-md">Templates</div>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
@@ -338,7 +327,7 @@ g.d = {
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
 						</q-tab-panel>
 
-						<q-tab-panel name="BkpRestore">
+						<q-tab-panel name="Bkp">
 							<div class="text-h4 q-mb-md">BkpRestore</div>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
