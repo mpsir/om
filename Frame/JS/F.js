@@ -1,5 +1,5 @@
 var g = globalThis;
-
+g.JSONF = JSONF
 g.f = {
 	// window.location.hostname.search("github.io")
 	IsGithubHosted() {
@@ -17,8 +17,15 @@ g.f = {
 	addDB() {
 		g.db = new Dexie('myDatabase');
 		db.version(1).stores({
-			friends: '++id, name, age'
+			funs: '++id, name, value',
+			options: '++id, name, value',
+			mixins: '++id, name, value',
+			composable: '++id, name, value',
+			templates: '++id, name, value',
+			pages: '++id, name, value',
+			comps: '++id, name, value',
 		});
+		// g.db.functions
 		// g.db.friends.add({
 		// 	name: 'a1',
 		// 	age: 5,
@@ -58,8 +65,8 @@ g.f = {
 		}
 		return 'home';
 	},
-	parse: JSONF.parse,
-	string: JSONF.stringify,
+	parse(s){ return JSONF.parse(s) },
+	string(s){ return JSONF.stringify(s) },
 	pstring: function(data) {
 		return JSONF.parse(JSONF.stringify(data));
 	},
@@ -78,7 +85,9 @@ g.f = {
 	ArrayDel(Arr, INo) {},
 	ArrayMoveTo(Arr, INo) {},
 	ArrToObject() {},
-	ObjectToArr() {},
+	ObjectToArr(obj1) {
+		return Object.entries(obj1)
+	},
 	create_script(file_path, isAsync, callback) {
 		const script = document.createElement('script');
 		script.setAttribute('src', file_path);
@@ -270,7 +279,7 @@ g.d = {
 			Vue: {
 				setup() {
 					return {
-						tab: Vue.ref('F'),
+						tab: Vue.ref('Funs'),
 					};
 				},
 				template: `
@@ -291,11 +300,12 @@ g.d = {
 				  <q-page-container>
 					<q-tab-panels v-model="tab">
 
-					<q-tab-panel name="F">
-							<div class="text-h4 q-mb-md">F</div>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+					<q-tab-panel name="Funs">
+							<div class="text-h4 q-mb-md">Functions</div>
+							<p>
+							<m-edit-funs>
+							</m-edit-funs>
+							</p>
 					</q-tab-panel>
 
 						<q-tab-panel name="Pages">
@@ -364,6 +374,22 @@ g.d = {
 					g() {
 						return globalThis;
 					}
+				},
+				components:{
+					'm-edit-funs': {
+						setup() {
+							return {
+								funs: VueUse.useObservable(
+									Dexie.liveQuery(() => db.funs.toArray())
+								)
+							};
+						},
+						template:`
+						<div>
+						{{ funs }}
+						</div>
+						`
+					}
 				}
 			}
 		}
@@ -384,7 +410,6 @@ g.d = {
 				}
 			},
 			setup() {
-				const { x, y } = VueUse.useMouse();
 				return {
 					isB: true,
 					x,
