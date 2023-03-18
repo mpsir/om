@@ -19,10 +19,10 @@ g.f = {
 		db.version(1).stores({
 			friends: '++id, name, age'
 		});
-		g.db.friends.add({
-			name: 'a1',
-			age: 5,
-		  });
+		// g.db.friends.add({
+		// 	name: 'a1',
+		// 	age: 5,
+		//   });
 	},
 	GetHighestZ() {
 		return Math.max.apply(
@@ -166,11 +166,11 @@ g.f = {
 			PageObject.Vue.template = g.f.ResolveTemplate(PageObject.Vue.template);
 			//console.log('PageObject', PageObject);
 			// console.log('template', PageObject.Vue.template);
-			// g.App = g.f.CreateApp(g.f.pstring(PageObject.Vue), '#page-dom-wrapper');
+			g.App = g.f.CreateApp(g.f.pstring(PageObject.Vue), '#page-dom-wrapper');
 		} else {
 			console.log('Page Not Found: ', g.f.GetPageName());
 		}
-		g.f.BootEditor();
+		//g.f.BootEditor();
 	},
 	ResolveTemplate(template) {
 		if (typeof template == 'string') {
