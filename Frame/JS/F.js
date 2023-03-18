@@ -265,38 +265,53 @@ g.d = {
 			}
 		},
 		{
-			name: 'home2',
+			name: 'admin',
 			gcomps: [],
 			Vue: {
 				setup() {
 					return {
-						tab: Vue.ref('Pages'),
+						tab: Vue.ref('F'),
 					};
 				},
 				template: `
 				<q-layout view="hHh lpR fFf">
 				  <q-header elevated class="bg-primary text-white" height-hint="98">
 					<q-tabs v-model="tab">
-						<q-tab name="Pages" label="Pages" :no-caps="true" />
-						<q-tab name="Opts" label="Opts" :no-caps="true" />
-						<q-tab name="Mixins" label="Mixins" :no-caps="true" />
-						<q-tab name="T" label="T" :no-caps="true" />
 						<q-tab name="F" label="F" :no-caps="true" />
 						<q-tab name="Bkp" label="Bkp" :no-caps="true" />
+						<q-tab name="Pages" label="Pages" :no-caps="true" />
+						<q-tab name="Comps" label="Comps" :no-caps="true" />
+						<q-tab name="Options" label="Options" :no-caps="true" />
+						<q-tab name="Mixins" label="Mixins" :no-caps="true" />
+						<q-tab name="Composable" label="Composable" :no-caps="true" />
+						<q-tab name="Templates" label="Templates" :no-caps="true" />
 					</q-tabs>
 				  </q-header>
 			  
 				  <q-page-container>
 					<q-tab-panels v-model="tab">
+
+					<q-tab-panel name="F">
+							<div class="text-h4 q-mb-md">F</div>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+					</q-tab-panel>
+
 						<q-tab-panel name="Pages">
 							<div class="text-h4 q-mb-md">Pages</div>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+						</q-tab-panel>
+						<q-tab-panel name="Comps">
+							<div class="text-h4 q-mb-md">Comps</div>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
 						</q-tab-panel>
 
 						
 
-						<q-tab-panel name="Opts">
+						<q-tab-panel name="Options">
 							<div class="text-h4 q-mb-md">Opts</div>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
@@ -310,22 +325,24 @@ g.d = {
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
 						</q-tab-panel>
 
+						<q-tab-panel name="Composable">
+							<div class="text-h4 q-mb-md">Composable</div>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
+						</q-tab-panel>
+
 
 						
 
-						<q-tab-panel name="T">
+						<q-tab-panel name="Templates">
 							<div class="text-h4 q-mb-md">Templates</div>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
 						</q-tab-panel>
 
-						<q-tab-panel name="F">
-							<div class="text-h4 q-mb-md">F</div>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</p>
-						</q-tab-panel>
+						
 
 						<q-tab-panel name="Bkp">
 							<div class="text-h4 q-mb-md">BkpRestore</div>
