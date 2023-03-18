@@ -1,3 +1,4 @@
+alert(5)
 var g = globalThis;
 
 g.f = {
