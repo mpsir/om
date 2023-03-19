@@ -1,20 +1,35 @@
 var g = globalThis;
-g.JSONF = JSONF
+function create_script(file_path, isAsync, callback) {
+	const script = document.createElement('script');
+	script.setAttribute('src', file_path);
+	script.setAttribute('async', isAsync + '');
+	script.onload = function handleScriptLoaded() {
+		if (callback != null) {
+			callback();
+		}
+	};
+	script.onerror = function handleScriptError() {
+		console.log('error loading script', file_path);
+	};
+	document.body.appendChild(script);
+}
+g.JSONF = JSONF;
 g.f = {
 	// window.location.hostname.search("github.io")
-	IsGithubHosted() {
+	c: async function() {},
+	IsGithubHosted: function() {
 		if (window.location.hostname.search('github.io') == -1) {
 			return false;
 		}
 		return true;
 	},
-	add2() {
+	add2:function() {
 		g.db.friends.add({
 			name: 'a2',
 			age: 566
 		});
 	},
-	addDB() {
+	addDB:function() {
 		g.db = new Dexie('myDatabase');
 		db.version(1).stores({
 			funs: '++id, name, value',
@@ -23,7 +38,7 @@ g.f = {
 			composable: '++id, name, value',
 			templates: '++id, name, value',
 			pages: '++id, name, value',
-			comps: '++id, name, value',
+			comps: '++id, name, value'
 		});
 		// g.db.functions
 		// g.db.friends.add({
@@ -31,7 +46,7 @@ g.f = {
 		// 	age: 5,
 		//   });
 	},
-	GetHighestZ() {
+	GetHighestZ:function() {
 		return Math.max.apply(
 			null,
 			$.map($('body *'), function(e, n) {
@@ -40,18 +55,17 @@ g.f = {
 			})
 		);
 	},
-	start() {
+	start: async function() {
 		var script_path = '/Frame/JS/F.js';
 		if (g.f.IsGithubHosted()) {
 			script_path = 'https://mpsir.github.io/om' + script_path;
 		}
-		g.f.create_script(script_path, (isAsync = false), function() {});
+		create_script(script_path, (isAsync = false), function() {});
 
-		g.f.add_monaco();
 		g.f.addDB();
 		g.f.Boot();
 	},
-	GetPageName() {
+	GetPageName:function() {
 		const queryString = window.location.search;
 		if (queryString == '') {
 			return 'home';
@@ -65,55 +79,57 @@ g.f = {
 		}
 		return 'home';
 	},
-	parse(s){ return JSONF.parse(s) },
-	string(s){ return JSONF.stringify(s) },
+	parse:function(s) {
+		return JSONF.parse(s);
+	},
+	string:function (s) {
+		return JSONF.stringify(s);
+	},
 	pstring: function(data) {
 		return JSONF.parse(JSONF.stringify(data));
 	},
-	AppReBoot() {
+	AppReBoot:function() {
 		g.App.unmount();
 		Boot();
 	},
-	GetPageObject(PageName) {
-		var FoundPage = g.d.Pages.find(p => { return p.name == PageName; });
-		if (FoundPage) { return FoundPage } 
-		else { return g.d.Pages.find(p => { return p.name == 'home' }) }
-	},
-	ArrayUp(Arr, INo) {},
-	ArrayDn(Arr, INo) {},
-	ArrayDup(Arr, INo) {},
-	ArrayDel(Arr, INo) {},
-	ArrayMoveTo(Arr, INo) {},
-	ArrToObject() {},
-	ObjectToArr(obj1) {
-		return Object.entries(obj1)
-	},
-	create_script(file_path, isAsync, callback) {
-		const script = document.createElement('script');
-		script.setAttribute('src', file_path);
-		script.setAttribute('async', isAsync + '');
-		script.onload = function handleScriptLoaded() {
-			if (callback != null) {
-				callback();
-			}
-		};
-		script.onerror = function handleScriptError() {
-			console.log('error loading script', file_path);
-		};
-		document.body.appendChild(script);
-	},
-	add_monaco() {
-		var script_path = '/node_modules/monaco-editor/min/vs/loader.js';
-		if (g.f.IsGithubHosted()) {
-			script_path = 'https://mpsir.github.io/om' + script_path;
-		}
-		g.f.create_script(script_path, (isAsync = false), function() {
-			g.require.config({
-				paths: { vs: script_path + '/node_modules/monaco-editor/min/vs' }
-			});
+	GetPageObject:function(PageName) {
+		var FoundPage = g.d.Pages.find(p => {
+			return p.name == PageName;
 		});
+		if (FoundPage) {
+			return FoundPage;
+		} else {
+			return g.d.Pages.find(p => {
+				return p.name == 'home';
+			});
+		}
 	},
-	CreateApp(App, DomTarget) {
+	ArrayUp:function(Arr, INo) {},
+	ArrayDn:function(Arr, INo) {},
+	ArrayDup:function(Arr, INo) {},
+	ArrayDel:function(Arr, INo) {},
+	ArrayMoveTo:function(Arr, INo) {},
+	ArrToObject:function() {},
+	ObjectToArr:function(obj1) {
+		var r = Object.entries(obj1);
+		return r;
+	},
+	// create_script(file_path, isAsync, callback) {
+	// 	const script = document.createElement('script');
+	// 	script.setAttribute('src', file_path);
+	// 	script.setAttribute('async', isAsync + '');
+	// 	script.onload = function handleScriptLoaded() {
+	// 		if (callback != null) {
+	// 			callback();
+	// 		}
+	// 	};
+	// 	script.onerror = function handleScriptError() {
+	// 		console.log('error loading script', file_path);
+	// 	};
+	// 	document.body.appendChild(script);
+	// },
+	
+	CreateApp:function(App, DomTarget) {
 		//console.log(App, 'App');
 		var a = Vue.createApp(App);
 		{
@@ -157,6 +173,7 @@ g.f = {
 				// called when the parent component is unmounted
 				unmounted(el, binding, vnode, prevVnode) {}
 			});
+			
 		}
 		{
 			// comps
@@ -171,16 +188,85 @@ g.f = {
 				d1 {{ d1 }}
 				</div>`
 			});
+			a.component(
+				'm-edit-funs', {
+					setup:function() {
+						return {
+							funs: VueUse.useObservable(
+								Dexie.liveQuery(() => db.funs.toArray())
+							)
+						};
+					},
+					template: `
+					<div>
+					{{ funs }}
+					</div>
+
+					<div>
+						<m-editor></m-editor>
+					</div>
+					`
+				}
+			)
+			a.component('m-editor', {
+				template:`
+				<div style="border:1px solid black">
+					<div ref="m_editor" style="min-height:28px;" class="">
+					</div>
+				</div>
+				`,
+				mounted() {
+					console.log(this.$refs.m_editor)
+					const text = `function hello() {
+						alert('Hello world!');
+					}`;
+
+					var editor = g.monaco.editor.create(
+						this.$refs.m_editor, 
+					{
+						value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
+						language: 'javascript'
+					});
+
+					setTimeout(() => {
+						const contentHeight = editor.getModel().getLineCount() * 19 ;
+						console.log(contentHeight);
+						$(this.$refs.m_editor).css('height', (contentHeight + 'px') )
+						editor.layout()
+					}, 1000);
+
+					editor.getModel().onDidChangeContent((event) => {
+						const contentHeight = editor.getModel().getLineCount() * 19 ;
+						console.log(contentHeight);
+						$(this.$refs.m_editor).css('height', (contentHeight + 'px') )
+						editor.layout()
+					  });
+
+					// g.require(['vs/editor/editor.main'], function () {
+					// 	var editor = monaco.editor.create(this.$refs.m_editor, {
+					// 		value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
+					// 		language: 'javascript'
+					// 	});
+					// });
+					
+					// Hover on each property to see its docs!
+					// monaco.editor.create(this.$refs.m_editor, {
+					// 	value: text,
+					// 	language: "javascript",
+					// 	automaticLayout: true,
+					// });
+				  }
+			})
 		}
 		return a.mount(DomTarget);
 	},
-	BootEditor() {
+	BootEditor:function() {
 		g.AppEditor = g.f.CreateApp(
 			g.f.pstring(g.d.EditorObj.Vue),
 			'#editor-dom-wrapper'
 		);
 	},
-	Boot() {
+	Boot:function() {
 		var PageObject = g.f.GetPageObject(g.f.GetPageName());
 		if (PageObject) {
 			PageObject.Vue.template = g.f.ResolveTemplate(PageObject.Vue.template);
@@ -192,7 +278,7 @@ g.f = {
 		}
 		//g.f.BootEditor();
 	},
-	ResolveTemplate(template) {
+	ResolveTemplate:function(template) {
 		if (typeof template == 'string') {
 			return template;
 		}
@@ -212,7 +298,7 @@ g.d = {
 			name: 'home',
 			gcomps: [],
 			Vue: {
-				setup() {
+				setup:function() {
 					const leftDrawerOpen = Vue.ref(false);
 					const rightDrawerOpen = Vue.ref(false);
 					return {
@@ -262,12 +348,12 @@ g.d = {
       </q-footer>
     </q-layout>      
         `,
-				created() {
+				created:function() {
 					// console.log(55);
 					//console.log(this.$toast.add)
 				},
 				computed: {
-					g() {
+					g:function() {
 						return globalThis;
 					}
 				}
@@ -277,9 +363,9 @@ g.d = {
 			name: 'admin',
 			gcomps: [],
 			Vue: {
-				setup() {
+				setup:function() {
 					return {
-						tab: Vue.ref('Funs'),
+						tab: Vue.ref('Funs')
 					};
 				},
 				template: `
@@ -366,30 +452,17 @@ g.d = {
 				  </q-page-container>
 				</q-layout>
         `,
-				created() {
+				created:function() {
 					// console.log(55);
 					//console.log(this.$toast.add)
 				},
 				computed: {
-					g() {
+					g:function() {
 						return globalThis;
 					}
 				},
-				components:{
-					'm-edit-funs': {
-						setup() {
-							return {
-								funs: VueUse.useObservable(
-									Dexie.liveQuery(() => db.funs.toArray())
-								)
-							};
-						},
-						template:`
-						<div>
-						{{ funs }}
-						</div>
-						`
-					}
+				components: {
+					
 				}
 			}
 		}
@@ -401,15 +474,15 @@ g.d = {
 		name: 'home',
 		gcomps: [],
 		Vue: {
-			data() {
+			data:function() {
 				return {};
 			},
 			methods: {
-				print(val) {
+				print:function(val) {
 					console.log(val);
 				}
 			},
-			setup() {
+			setup:function() {
 				return {
 					isB: true,
 					x,
@@ -435,9 +508,9 @@ g.d = {
     
     
    `,
-			created() {},
+			created:function() {},
 			computed: {
-				g() {
+				g:function() {
 					return globalThis;
 				}
 			}

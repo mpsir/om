@@ -10,7 +10,7 @@ globalThis.JSONF = {
                 var isOldType = r1.search("function")
                 if (isOldType != -1) {
                     var all = r1 + " " + r2 + r3
-                    console.log(5);
+                    // console.log(5);
                     return {
                         type: "AsyncFunction",
                         value: all,
