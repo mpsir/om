@@ -34,12 +34,10 @@
   <script src="/node_modules/vue-select/dist/vue-select.umd.js"></script>
   <script src="/node_modules/vue-router/dist/vue-router.global.prod.js"></script>
   <script src="/Lib/jquery-ui-1.13.2.custom/external/jquery/jquery.min.js"></script>
-  <script src="/Frame/JS/F.js"></script>
 </head>
 
-<body onload="g.f.start()">
-  <div id="page-dom-wrapper"> </div>
-  <div id="editor-dom-wrapper"></div>
+<body onload="start()">
+  <div id="app-div"> </div>
   <script src="/Lib/quasar/quasar.umd.prod.js"></script>
   <script>
     var require = { paths: { vs: '/node_modules/monaco-editor/min/vs' } };
@@ -47,6 +45,11 @@
   <script src="/node_modules/monaco-editor/min/vs/loader.js"></script>
   <script src="/node_modules/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
   <script src="/node_modules/monaco-editor/min/vs/editor/editor.main.js"></script>
+  <script>
+    async function start(){
+      console.log('ok');
+    }
+  </script>
 </body>
 
 </html>
