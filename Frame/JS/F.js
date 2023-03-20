@@ -150,7 +150,7 @@ g.f = {
 		{
 			// comps
 			a.component('draggable', window['vue3-draggable']);
-			a.component('v-select', window['vue-select']);
+			//a.component('v-select', window['vue-select']);
 			a.component('m-comp-1', {
 				data() {
 					return { d1: 1 };
