@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>ShreeRam-L</title>
   <meta charset="UTF-8">
@@ -29,21 +30,39 @@
   <script src="/Lib/@vueuse/shared@9.13.0/index.iife.min.js"></script>
   <script src="/Lib/@vueuse/core@9.13.0/index.iife.min.js"></script>
   <script src="/Lib/@vueuse/rxjs/index.iife.min.js"></script>
-  <script src="/Lib/vue3-shortkey.js"></script>
+  <script src="/Frame/JS/vue3-shortkey.js"></script>
   <script src="/Lib/vue-router/vue-router.global.prod.js"></script>
   <script src="/Lib/jquery-ui-1.13.2.custom/external/jquery/jquery.min.js"></script>
-  <script src="/Lib/mitt.umd.js"></script>
-  <script> 
-    var g = globalThis;
-  </script>
-  <script src="/Frame/JS/App/app.umd.js"></script>
 </head>
-<body onload="g.f.start()">
-  <div id="app-div"> </div>
+
+<body onload="start()">
+
+  <div id="app-div">
+
+    <q-layout view="hHh lpR fFf">
+
+      <q-page-container style="padding: 16px;">
+
+        <div class="row justify-evenly">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+        </div>
+
+      </q-page-container>
+
+    </q-layout>
+
+  </div>
+
   <script src="/Lib/quasar/quasar.umd.prod.js"></script>
-  <script> var require = { paths: { vs: '/Lib/monaco-editor/min/vs' } }; </script>
+  <script>
+    var require = { paths: { vs: '/Lib/monaco-editor/min/vs' } };
+  </script>
   <script src="/Lib/monaco-editor/min/vs/loader.js"></script>
   <script src="/Lib/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
   <script src="/Lib/monaco-editor/min/vs/editor/editor.main.js"></script>
+  <script src="/Frame/JS/App.js"></script>
 </body>
+
 </html>
