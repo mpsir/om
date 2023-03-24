@@ -22,7 +22,6 @@
   text-rendering: optimizeLegibility;
   font-feature-settings: "liga";
 }
-
 @font-face {
   font-family: "Material Icons Outlined";
   font-style: normal;
@@ -47,7 +46,6 @@
   text-rendering: optimizeLegibility;
   font-feature-settings: "liga";
 }
-
 @font-face {
   font-family: "Material Icons Round";
   font-style: normal;
@@ -72,7 +70,6 @@
   text-rendering: optimizeLegibility;
   font-feature-settings: "liga";
 }
-
 @font-face {
   font-family: "Material Icons Sharp";
   font-style: normal;
@@ -97,7 +94,6 @@
   text-rendering: optimizeLegibility;
   font-feature-settings: "liga";
 }
-
 @font-face {
   font-family: "Material Icons Two Tone";
   font-style: normal;
