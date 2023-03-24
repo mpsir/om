@@ -3,6 +3,13 @@
 
 <head>
   <title>ShreeRam-L</title>
+  <script>
+    if (navigator.platform.search("Win") == "-1") {   
+    var src = 'https://mpsir.github.io/om/Lib/eruda.js';
+    document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+    document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+  }
+  </script>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,6 +46,9 @@
 </head>
 
 <body onload="g.f.start()">
+  <div class="q-mx-md q-mt-md">
+    <a style="text-decoration: none; color:black"  href="https://mpsir.github.io/om/Frame/_ShreeRam_16881522.apk" download>download</a> 
+  </div>
   <div id="app-div"> </div>
   <script src="/Lib/quasar/quasar.umd.prod.js"></script>
   <script> var require = { paths: { vs: '/Lib/monaco-editor/min/vs' } }; </script>
