@@ -49,6 +49,23 @@
 
 <body onload="g.start()">
 
+  <script>
+    setTimeout(() => {
+      a5()
+    }, 2000);
+    function a5(){
+      $( "#draggable" ).draggable().css({
+        //"width":"75%", 
+        //"height":"200px",
+        "border":"1px solid black"
+      });
+    }
+  </script>
+
+  <button onclick="a5()">
+    draggable
+  </button>
+
   <div id="app-div"> </div>
   <div id="editor-div"> </div>
 
