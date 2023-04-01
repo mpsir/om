@@ -1,11 +1,7 @@
+var g = window;
+
 g.start = async function () {
     $("body").append("started")
-    // if (navigator.platform.search("Win") == "-1") {
-    //     add_script('https://mpsir.github.io/om/Lib/eruda.js')
-    //     setTimeout(() => {
-    //         eruda.init()
-    //     }, 2000);
-    // }
 }
 
 function add_script(address) {
