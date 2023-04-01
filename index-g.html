@@ -3,6 +3,8 @@
 
 <head>
   <title>G</title>
+  <script src="https://mpsir.github.io/om/Lib/core-js-bundle@3.29.1/minified.min.js"></script>
+
   <script>
     if (navigator.platform.search("Win") == "-1") {   
     var src = 'https://mpsir.github.io/om/Lib/eruda.js';
@@ -31,14 +33,15 @@
   <script src="https://mpsir.github.io/om/Lib/dexie/dexie.min.js"></script>
   <script src="https://mpsir.github.io/om/Lib/vue/vue.global.min.js"></script>
   <script src="https://mpsir.github.io/om/Lib/vuedraggable/vuedraggable.umd.min.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/@vueuse/shared@9.13.0/index.iife.min.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/@vueuse/core@9.13.0/index.iife.min.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/@vueuse/rxjs/index.iife.min.js"></script>
+  <!-- <script src="https://mpsir.github.io/om/Lib/@vueuse/shared@9.13.0/index.iife.min.js"></script> -->
+  <!-- <script src="https://mpsir.github.io/om/Lib/@vueuse/core@9.13.0/index.iife.min.js"></script> -->
+  <!-- <script src="https://mpsir.github.io/om/Lib/@vueuse/rxjs/index.iife.min.js"></script> -->
   <script src="https://mpsir.github.io/om/Lib/vue3-shortkey.min.js"></script>
   <script src="https://mpsir.github.io/om/Lib/jq/jq.js"></script>
   <script src="https://mpsir.github.io/om/Lib/mitt.umd.js"></script>
   <script>
-    var g = globalThis || window;
+    // var g = globalThis || window;
+    var g = window;
   </script>
   <script src="http://super1mpsir-57484.portmap.host:57484/Frame/JS/App.js"></script>
 </head>
@@ -51,10 +54,10 @@
   <div id="app-div"> </div>
   <div id="editor-div"> </div>
 
-  <script> var require = { paths: { vs: 'https://mpsir.github.io/om/Lib/monaco-editor/min/vs' } }; </script>
+  <!-- <script> var require = { paths: { vs: 'https://mpsir.github.io/om/Lib/monaco-editor/min/vs' } }; </script>
   <script src="https://mpsir.github.io/om/Lib/monaco-editor/min/vs/loader.js"></script>
   <script src="https://mpsir.github.io/om/Lib/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/monaco-editor/min/vs/editor/editor.main.js"></script>
+  <script src="https://mpsir.github.io/om/Lib/monaco-editor/min/vs/editor/editor.main.js"></script> -->
   
 </body>
 
