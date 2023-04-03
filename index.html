@@ -2,7 +2,12 @@
 <html lang="en">
 
 <head>
-  <title>Index</title>
+  <script>
+    var g = globalThis;
+    g.comps = {}
+    g.d = {}
+  </script>
+  <title>Sir-L</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,31 +33,42 @@
   <script src="/Lib/@vueuse/core@9.13.0/index.iife.min.js"></script>
   <script src="/Lib/@vueuse/rxjs/index.iife.min.js"></script>
   <script src="/Lib/vue3-shortkey.min.js"></script>
+  <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
   <script src="/Lib/jq/jquery.js"></script>
+  <script>if (window.module) module = window.module;</script>
   <script src="/Lib/jq/jquery-ui.min.js"></script>
   <script src="/Lib/jq/touch.js"></script>
   <script src="/Lib/mitt.umd.js"></script>
-  <!-- <script src="/Frame/JS/App.js"></script> -->
+  <script src="/Frame/JS/App/app.umd.js"></script>
 </head>
 
-<body onload="g.start()">
-  <h3>index-local</h3>
-
-  <a href="index-g.html">index-g</a>
-  <div>
-    <a href="/Frame/PortMapG.apk" download="w3logo">
-      Android App
-    </a>
-  </div>
+<body onload="AppStart()">
   <div id="app-div"> </div>
   <div id="editor-div"> </div>
-  <script>
-  // alert(5)
-  </script>
+
   <script> var require = { paths: { vs: '/Lib/monaco-editor/min/vs' } }; </script>
   <script src="/Lib/monaco-editor/min/vs/loader.js"></script>
   <script src="/Lib/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
   <script src="/Lib/monaco-editor/min/vs/editor/editor.main.js"></script>
+
+  <script>
+        var AppStart = async function () {
+
+            console.log("App is Starting ...");
+            
+            g.f.App.Create_Default_App({
+                name: "home",
+                template: `<div>home page from db</div>`,
+                VApp: {
+                    data: `function (){ return {} }`,
+                    setup: `function (props, { attrs, slots, emit, expose }) { return { } }`,
+                    computed: `{ g(){ return g } }`,
+                    components: `{}`
+                },
+            })
+
+        }
+    </script>
 
 </body>
 

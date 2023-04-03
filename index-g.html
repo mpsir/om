@@ -2,7 +2,12 @@
 <html lang="en">
 
 <head>
-  <title>G</title>
+  <script>
+    var g = globalThis;
+    g.comps = {}
+    g.d = {}
+  </script>
+  <title>Sir-G</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,21 +34,17 @@
   <script src="https://mpsir.github.io/om/Lib/@vueuse/core@9.13.0/index.iife.min.js"></script>
   <script src="https://mpsir.github.io/om/Lib/@vueuse/rxjs/index.iife.min.js"></script>
   <script src="https://mpsir.github.io/om/Lib/vue3-shortkey.min.js"></script>
+  <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
   <script src="https://mpsir.github.io/om/Lib/jq/jquery.js"></script>
+  <script>if (window.module) module = window.module;</script>
   <script src="https://mpsir.github.io/om/Lib/jq/jquery-ui.min.js"></script>
   <script src="https://mpsir.github.io/om/Lib/jq/touch.js"></script>
   <script src="https://mpsir.github.io/om/Lib/mitt.umd.js"></script>
-  <!-- <script src="http://super1mpsir-57484.portmap.host:57484/Frame/JS/App.js"></script> -->
+  <script src="http://super1mpsir-57484.portmap.host:57484/Frame/JS/App/app.umd.js"></script>
 </head>
 
-<body onload="g.start()">
-  <h3>index-g</h3>
-  <div>
-    <a href="http://super1mpsir-57484.portmap.host:57484/Frame/PortMapG.apk" download="w3logo">
-      Android App
-    </a> 
-  </div>
-  <a href="index.html">index</a>
+<body onload="AppStart()">
+
   <div id="app-div"> </div>
   <div id="editor-div"> </div>
 
@@ -51,6 +52,25 @@
   <script src="https://mpsir.github.io/om/Lib/monaco-editor/min/vs/loader.js"></script>
   <script src="https://mpsir.github.io/om/Lib/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
   <script src="https://mpsir.github.io/om/Lib/monaco-editor/min/vs/editor/editor.main.js"></script>
+
+  <script>
+        var AppStart = async function () {
+
+            console.log("App is Starting ...");
+            
+            g.f.App.Create_Default_App({
+                name: "home",
+                template: `<div>home page from db</div>`,
+                VApp: {
+                    data: `function (){ return {} }`,
+                    setup: `function (props, { attrs, slots, emit, expose }) { return { } }`,
+                    computed: `{ g(){ return g } }`,
+                    components: `{}`
+                },
+            })
+
+        }
+    </script>
 
 </body>
 
