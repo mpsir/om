@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Server-Index</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/Lib/core-js-bundle@3.29.1/minified.min.js"></script>
+  <link rel="stylesheet" href="/Lib/material-icons/iconfont/material-icons.css">
+  <link rel="stylesheet" href="/Lib/quasar/quasar.css">
+  <link rel="stylesheet" href="/Frame/CSS/roboto-local.css">
+  <link rel="stylesheet" href="/Frame/CSS/Boot.css">
+  <link rel="stylesheet" href="/Lib/jq/jquery-ui.min.css">
+  <link
+    href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAADUsYIAS6/pAAI29gD9/f4A+fHmAA8x0gC8vroAx6HiACBbtgAHbPMAUIvjAD7f+AA6lt4Ah+L9AKyemQD8/vwA/f78AP7+/ADw+P0ATYDRANvUxgCp+PgA6KfAAPRdwQC1ldQA+P79APDXtQB+W6sAqTWYAPz+/QDLx8sArLypAP7+/QD51qcABB/NAOO2hgBXaacAkDZ+APb49gCguuoA2cK4AAMy6wDI9v4A/f7+ANSYuwAFL+MA/v7+AMV7qgBcQ8gA64PMAPLZuQDv1/kAy2frAMK1zgDt7e0ACTbxAOa8oAAH2vsAxV/hAN6F0ABneOEA4IjxAP7+/wCILHsAb4FkAHjKuAChl+sAZEWSAO3l7ADvv/wA3bOBAA1F6QDaluwAj0DIANG1zwD4+f4Al3VLAB2n7gCEW6YApmnQADJmtADJl+IA8s28AP3a0QDKm74A79GxAP7//gD09PQA///+AGmD5QDXg/EA3j6qAKNOkACe7/4A3Y32AB89pQD1f9IAq+z+AD1k5AD9//8A/v//AP///wBxpJkAYqr9AP3t3wDw8PAAtrydALy0xAD7/voASdbuAP39/QDu7u4A39/fAE7Q3gBQlv0AqntEAEux/ADktZcA+P3+AGnLwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZWVlZWVlZWVlZEQrZWVlZWVlZWVlYx5hckpOMWVlZWVlZWVlLlxDZwE7HDACLmVlZWVlBGovPyYqGRAFX2JlZWVlR1l3MlZWZWVlEilGZWVlHQwIditlZWVlZRFATBFlZSwYN2VlZWVlZWVlGkg1ZS4kJS5lV29waWllZTM8XmUuFgZlZVc2cGlpbmVlPUVlIUEAZWVlZWVlZWVlZXUfFGUjUi5lZVhlZWVlZQNoU2VlBxNJC3FaNGtlZWVgG1suZStPUU0JOkIOZWU+DRdUZWVlLj4VOSBVZjgtCm10K2VlZWVlZWVlbHMoUCJdD2VlZWVlZWVlZWVlZSdLZWVlZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+    rel="icon" type="image/x-icon" />
+  <link rel="stylesheet" data-name="vs/editor/editor.main" href="/Lib/monaco-editor/min/vs/editor/editor.main.css" />
+  <link rel="stylesheet" href="/Lib/primeflex/primeflex.css">
+  <link rel="stylesheet" href="/Lib/primeflex/themes/saga-blue.css">
+  <link rel="stylesheet" href="/Lib/vue-select/vue-select.css">
+  <script> "function" != typeof JSON.decycle && (JSON.decycle = function (e, t) { "use strict"; var n = new WeakMap; return function e(a, r) { var o, c; return void 0 !== t && (a = t(a)), "object" != typeof a || null === a || a instanceof Boolean || a instanceof Date || a instanceof Number || a instanceof RegExp || a instanceof String ? a : void 0 !== (o = n.get(a)) ? { $ref: o } : (n.set(a, r), Array.isArray(a) ? (c = [], a.forEach((function (t, n) { c[n] = e(t, r + "[" + n + "]") }))) : (c = {}, Object.keys(a).forEach((function (t) { c[t] = e(a[t], r + "[" + JSON.stringify(t) + "]") }))), c) }(e, "$") }), "function" != typeof JSON.retrocycle && (JSON.retrocycle = function retrocycle($) { "use strict"; var px = /^\$(?:\[(?:\d+|"(?:[^\\"\u0000-\u001f]|\\(?:[\\"\/bfnrt]|u[0-9a-zA-Z]{4}))*")\])*$/; return function rez(value) { value && "object" == typeof value && (Array.isArray(value) ? value.forEach((function (element, i) { if ("object" == typeof element && null !== element) { var path = element.$ref; "string" == typeof path && px.test(path) ? value[i] = eval(path) : rez(element) } })) : Object.keys(value).forEach((function (name) { var item = value[name]; if ("object" == typeof item && null !== item) { var path = item.$ref; "string" == typeof path && px.test(path) ? value[name] = eval(path) : rez(item) } }))) }($), $ }); </script>
+  <script src="/Lib/socket-io-client.js"></script>
+  <script src="/Lib/rxjs.umd.min.js"></script>
+  <script src="/Lib/sortablejs/Sortable.min.js"></script>
+  <script src="/Lib/dexie/dexie.min.js"></script>
+  <script src="/Lib/vue/vue.global.min.js"></script>
+  <script src="/Lib/vue-select/vue-select.umd.js"></script>
+  <script src="/Lib/vuedraggable/vuedraggable.umd.min.js"></script>
+  <script src="/Lib/@vueuse/shared@9.13.0/index.iife.min.js"></script>
+  <script src="/Lib/@vueuse/core@9.13.0/index.iife.min.js"></script>
+  <script src="/Lib/@vueuse/rxjs/index.iife.min.js"></script>
+  <script src="/Lib/vue3-shortkey.min.js"></script>
+  <script src="/Lib/jq/jquery.js"></script>
+  <script src="/Lib/jq/jquery-ui.min.js"></script>
+  <script src="/Lib/jq/touch.js"></script>
+  <script src="/Lib/mitt.umd.js"></script>
+</head>
+
+<body>
+
+  <div id="app-div">
+    <div class="p-2">
+      <div v-if="g.r.App_Index != null">
+        <div>
+          <button class="p-2" @click="update_App_Index()">Update to server</button>
+          <button class="p-2" @click="ServerRestart()">Server-Restart</button>
+        </div>
+        <div class="text-h6 text-500 p-2">Server</div>
+
+        <div class="my-2">
+          <toggle-content :show_inner_p="false">
+            <template v-slot:control>
+              <button class="toggle-handle p-2">r</button>
+            </template>
+            <div class="my-2">
+              <pre>{{g.r}}</pre>
+            </div>
+          </toggle-content>
+        </div>
+
+        <div>
+          <toggle-content :show_inner_p="true">
+            <template v-slot:control>
+              <button class="toggle-handle p-2">Index</button>
+            </template>
+            <div class="my-2">
+              <monaco-editor class="text-500" :update_text="'update'" @update="g.r.App_Index = $event"
+                :parsed="g.r.App_Index">
+              </monaco-editor>
+            </div>
+          </toggle-content>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var g = globalThis;
+    g.d = {}
+    g.r = Vue.reactive({
+      IsLive: true,
+      IsEditor: true,
+      App_Index: null
+    })
+    $(document).ready(function () {
+
+      g.App_Wrapper = Vue.createApp({
+        computed: { g() { return g } },
+        methods: {
+          update_App_Index() {
+            socket.emit(
+              'msg',
+              {
+                type: "admin",
+                subt_type: "Set_App_Index",
+                data: JSON.parse(JSON.stringify(g.r.App_Index))
+              }
+            )
+          },
+          ServerRestart() {
+            socket.emit(
+              'msg',
+              {
+                type: "admin",
+                subt_type: "ServerRestart"
+                // data: JSON.parse(JSON.stringify(g.r.App_Index))
+              }
+            )
+          }
+        }
+      })
+
+      var new_f = {
+        update: function () {
+          if (g.App) {
+            g.App_Wrapper.unmount()
+            $('#app-div').removeAttr('data-v-app')
+            g.f.Create_Default_App()
+          }
+        },
+        Create_Default_App: function () {
+          g.App_Wrapper.use(Quasar)
+          g.App_Wrapper.component("monaco-editor", g.comps.monaco_editor)
+          g.App_Wrapper.component("toggle-content", g.comps.toggle_content)
+          g.App = g.App_Wrapper.mount('#app-div')
+        },
+        got_msg(socket, data, c_back) {
+          switch (data.type) {
+            case 'runEV':
+              eval(data.data)
+              break;
+            case 'Set_App_Index': g.r.App_Index = data.data; break;
+            default: break;
+          }
+        },
+        add_socket: function () {
+          g.socket = io(g.f.get_socket_address())
+          socket.on('connect', function () {
+            socket.emit(
+              'msg',
+              { type: "admin", subt_type: "Get_App_Index" },
+              function (data) { g.r.App_Index = data }
+            )
+          });
+          socket.on('disconnect', function (socket) { console.log('socket dis-connected to server'); });
+          socket.on('reconnect', function (socket) { console.log('socket re-connect to server'); });
+          socket.on('msg', function (data, c_back) { g.f.got_msg(socket, data, c_back) });
+        }
+      }
+
+      g.f = {
+        ...g.f,
+        ...new_f
+      }
+
+      g.f.Create_Default_App()
+      g.f.add_socket()
+
+    });
+  </script>
+
+  <script src="/Frame/JS/App/app.js"></script>
+
+  <div>
+    <script src="/Lib/quasar/quasar.js"></script>
+    <script> var require = { paths: { vs: '/Lib/monaco-editor/min/vs' } }; </script>
+    <script src="/Lib/monaco-editor/min/vs/loader.js"></script>
+    <script src="/Lib/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
+    <script src="/Lib/monaco-editor/min/vs/editor/editor.main.js"></script>
+  </div>
+
+</body>
+
+</html>
