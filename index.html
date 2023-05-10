@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Sir</title>
+  <title>Index</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,9 @@
   <link rel="stylesheet" href="/CSS/roboto-local.css">
   <link rel="stylesheet" href="/CSS/Boot.css">
   <link rel="stylesheet" href="/Lib/jq/jquery-ui.min.css">
-  <link href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAADUsYIAS6/pAAI29gD9/f4A+fHmAA8x0gC8vroAx6HiACBbtgAHbPMAUIvjAD7f+AA6lt4Ah+L9AKyemQD8/vwA/f78AP7+/ADw+P0ATYDRANvUxgCp+PgA6KfAAPRdwQC1ldQA+P79APDXtQB+W6sAqTWYAPz+/QDLx8sArLypAP7+/QD51qcABB/NAOO2hgBXaacAkDZ+APb49gCguuoA2cK4AAMy6wDI9v4A/f7+ANSYuwAFL+MA/v7+AMV7qgBcQ8gA64PMAPLZuQDv1/kAy2frAMK1zgDt7e0ACTbxAOa8oAAH2vsAxV/hAN6F0ABneOEA4IjxAP7+/wCILHsAb4FkAHjKuAChl+sAZEWSAO3l7ADvv/wA3bOBAA1F6QDaluwAj0DIANG1zwD4+f4Al3VLAB2n7gCEW6YApmnQADJmtADJl+IA8s28AP3a0QDKm74A79GxAP7//gD09PQA///+AGmD5QDXg/EA3j6qAKNOkACe7/4A3Y32AB89pQD1f9IAq+z+AD1k5AD9//8A/v//AP///wBxpJkAYqr9AP3t3wDw8PAAtrydALy0xAD7/voASdbuAP39/QDu7u4A39/fAE7Q3gBQlv0AqntEAEux/ADktZcA+P3+AGnLwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZWVlZWVlZWVlZEQrZWVlZWVlZWVlYx5hckpOMWVlZWVlZWVlLlxDZwE7HDACLmVlZWVlBGovPyYqGRAFX2JlZWVlR1l3MlZWZWVlEilGZWVlHQwIditlZWVlZRFATBFlZSwYN2VlZWVlZWVlGkg1ZS4kJS5lV29waWllZTM8XmUuFgZlZVc2cGlpbmVlPUVlIUEAZWVlZWVlZWVlZXUfFGUjUi5lZVhlZWVlZQNoU2VlBxNJC3FaNGtlZWVgG1suZStPUU0JOkIOZWU+DRdUZWVlLj4VOSBVZjgtCm10K2VlZWVlZWVlbHMoUCJdD2VlZWVlZWVlZWVlZSdLZWVlZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" rel="icon" type="image/x-icon" />
+  <link
+    href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAADUsYIAS6/pAAI29gD9/f4A+fHmAA8x0gC8vroAx6HiACBbtgAHbPMAUIvjAD7f+AA6lt4Ah+L9AKyemQD8/vwA/f78AP7+/ADw+P0ATYDRANvUxgCp+PgA6KfAAPRdwQC1ldQA+P79APDXtQB+W6sAqTWYAPz+/QDLx8sArLypAP7+/QD51qcABB/NAOO2hgBXaacAkDZ+APb49gCguuoA2cK4AAMy6wDI9v4A/f7+ANSYuwAFL+MA/v7+AMV7qgBcQ8gA64PMAPLZuQDv1/kAy2frAMK1zgDt7e0ACTbxAOa8oAAH2vsAxV/hAN6F0ABneOEA4IjxAP7+/wCILHsAb4FkAHjKuAChl+sAZEWSAO3l7ADvv/wA3bOBAA1F6QDaluwAj0DIANG1zwD4+f4Al3VLAB2n7gCEW6YApmnQADJmtADJl+IA8s28AP3a0QDKm74A79GxAP7//gD09PQA///+AGmD5QDXg/EA3j6qAKNOkACe7/4A3Y32AB89pQD1f9IAq+z+AD1k5AD9//8A/v//AP///wBxpJkAYqr9AP3t3wDw8PAAtrydALy0xAD7/voASdbuAP39/QDu7u4A39/fAE7Q3gBQlv0AqntEAEux/ADktZcA+P3+AGnLwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZWVlZWVlZWVlZEQrZWVlZWVlZWVlYx5hckpOMWVlZWVlZWVlLlxDZwE7HDACLmVlZWVlBGovPyYqGRAFX2JlZWVlR1l3MlZWZWVlEilGZWVlHQwIditlZWVlZRFATBFlZSwYN2VlZWVlZWVlGkg1ZS4kJS5lV29waWllZTM8XmUuFgZlZVc2cGlpbmVlPUVlIUEAZWVlZWVlZWVlZXUfFGUjUi5lZVhlZWVlZQNoU2VlBxNJC3FaNGtlZWVgG1suZStPUU0JOkIOZWU+DRdUZWVlLj4VOSBVZjgtCm10K2VlZWVlZWVlbHMoUCJdD2VlZWVlZWVlZWVlZSdLZWVlZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+    rel="icon" type="image/x-icon" />
   <link rel="stylesheet" data-name="vs/editor/editor.main" href="/Lib/monaco-editor/min/vs/editor/editor.main.css" />
   <link rel="stylesheet" href="/Lib/vue-select/vue-select.css">
   <script src="/Lib/socket-io-client.js"></script>
@@ -28,26 +31,74 @@
   <script src="/Lib/jq/jquery.js"></script>
   <script src="/Lib/jq/jquery-ui.min.js"></script>
   <script src="/Lib/jq/touch.js"></script>
-  <script>
-    var g = globalThis;
-    g.d = {}
-  </script>
-  <!-- <script src="/Frame/JS/App/app.js"></script> -->
+  <script src="/js/JSONF.js"></script>
+  <script src="/js/Funs.js"></script>
+  <script src="/js/FunsDom.js"></script>
 </head>
 
-<body>
+<body style="margin: 16px; padding:16px">
+
+  <a href="/apk/PortMapG.apk" download>
+    Mukesh Ji -- Ludo
+  </a>
 
   <div id="app-div"> </div>
   <div id="editor-div"> </div>
 
   <script>
+    var g = globalThis
+
+    var g = globalThis;
+        g.d = {}
+        g.r = Vue.reactive({
+            IsLive: true,
+            IsEditor: true
+        })
+
     $(document).ready(function () {
       console.log("\nApp is Starting ...\n");
-      // g.App_Wrapper = Vue.createApp(g.d.pages.home)
-      // g.App_Wrapper.use(Quasar)
-      // g.App = g.App_Wrapper.mount('#app-div')
-      // console.log("App has started.\n\n");
+      g.f = {
+        ...g.Funs,
+        ...g.FunsDom
+      }
+
+      delete g.Funs
+      delete g.FunsDom
+
+      AddDB()
+
+      // const PageName = g.f.GetPageName()
+      // console.log('PageName :', PageName);
+      // g.f.CreatePage(PageName)
+      // g.f.add_socket()
     });
+  </script>
+
+  <script>
+
+    var f1 = function(){
+      console.log('f1');
+    }
+
+
+    var AddDB = async function(){
+      var IsExists = await g.Dexie.exists("ShreeRam")
+
+        g.db = await new Dexie("ShreeRam")
+        await g.db.version(1).stores({ settings: "++id, &name" });
+        if (! IsExists) {
+          console.log('new install'); 
+          // await g.f.DB.Init() 
+        }
+
+        const settings_observer = await Dexie.liveQuery(() => db.settings.toArray());
+        settings_observer.subscribe({
+            next: result => g.r.settings = result,
+            error: error => console.log(error)
+        });
+
+      setTimeout(() => { f1() }, 50);
+    }
   </script>
 
   <script src="/Lib/quasar/quasar.js"></script>
@@ -57,4 +108,5 @@
   <script src="/Lib/monaco-editor/min/vs/editor/editor.main.js"></script>
 
 </body>
+
 </html>
