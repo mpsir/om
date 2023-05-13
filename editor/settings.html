@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Sir</title>
+  <title>Editor</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,16 +32,29 @@
   <script src="/Lib/jq/jquery.js"></script>
   <script src="/Lib/jq/jquery-ui.min.js"></script>
   <script src="/Lib/jq/touch.js"></script>
-
   <script src="/Lib/iframe-resize/iframe-host.js"></script>
   <script src="/Lib/iframe-resize/iframe-client.js"></script>
-
   <script src="/js/JSONF.js"></script>
 </head>
 
 <body onload="g.Start(IsDev=false)">
 
   <div id="app-div"> </div>
+
+  <script type="text/html" id="app-temp">
+    <div>
+      Settings
+    </div>
+  </script>
+
+  <script>
+    g.CustomApp = {
+      template: $("#app-temp").text(),
+      setup() {
+        return { }
+      }
+    }
+  </script>
 
   <script src="/Lib/quasar/quasar.js"></script>
   <script> var require = { paths: { vs: '/Lib/monaco-editor/min/vs' } }; </script>

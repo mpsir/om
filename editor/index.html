@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Sir</title>
+  <title>Editor</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,16 +32,74 @@
   <script src="/Lib/jq/jquery.js"></script>
   <script src="/Lib/jq/jquery-ui.min.js"></script>
   <script src="/Lib/jq/touch.js"></script>
-
   <script src="/Lib/iframe-resize/iframe-host.js"></script>
   <script src="/Lib/iframe-resize/iframe-client.js"></script>
-
   <script src="/js/JSONF.js"></script>
 </head>
 
 <body onload="g.Start(IsDev=false)">
 
   <div id="app-div"> </div>
+
+  <script type="text/html" id="app-temp">
+    <div>
+      <q-splitter class="m-0 p-0" v-model="splitterModel" >
+
+        <template v-slot:before>
+          <q-tabs inline-label v-model="tab" vertical class="text-black" >
+            <q-tab no-caps name="settings" label="Settings"></q-tab>
+            <q-tab  no-caps name="pages" label="Pages"></q-tab>
+            <q-tab  no-caps name="comps" label="Comps"></q-tab>
+            <q-tab  no-caps name="directives" label="Directives"></q-tab>
+            <q-tab  no-caps name="temps" label="Temps"></q-tab>
+            <q-tab  no-caps name="mixins" label="Mixins"></q-tab>
+            <q-tab  no-caps name="composables" label="Composables"></q-tab>
+            <q-tab  no-caps name="css" label="CSS"></q-tab>
+            <q-tab  no-caps name="js" label="JS"></q-tab>
+            <q-tab  no-caps name="images" label="Images"></q-tab>
+            <q-tab  no-caps name="audios" label="Audios"></q-tab>
+            <q-tab  no-caps name="videos" label="Videos"></q-tab>
+            <q-tab  no-caps name="svg" label="Svg"></q-tab>
+            <q-tab  no-caps name="blobs" label="Blobs"></q-tab>
+          </q-tabs>
+        </template>
+  
+        <template v-slot:after>
+          <q-tab-panels v-model="tab" vertical>
+            
+            <q-tab-panel name="settings"> <i-frame src="/editor/settings.html"></i-frame> </q-tab-panel>
+            <q-tab-panel name="pages"> <i-frame src="/editor/pages.html"></i-frame> </q-tab-panel>
+            <q-tab-panel name="comps"> <i-frame src="/editor/comps.html"></i-frame> </q-tab-panel>
+            <q-tab-panel name="directives"> <i-frame src="/editor/directives.html"></i-frame> </q-tab-panel>
+            <q-tab-panel name="temps"> <i-frame src="/editor/temps.html"></i-frame> </q-tab-panel>
+            <q-tab-panel name="mixins"> <i-frame src="/editor/mixins.html"></i-frame> </q-tab-panel>
+            <q-tab-panel name="composables"> <i-frame src="/editor/composables.html"></i-frame> </q-tab-panel>
+            <q-tab-panel name="css"> <i-frame src="/editor/css.html"></i-frame> </q-tab-panel>
+            <q-tab-panel name="js"> <i-frame src="/editor/js.html"></i-frame> </q-tab-panel>
+            <q-tab-panel name="images"> <i-frame src="/editor/images.html"></i-frame> </q-tab-panel>
+            <q-tab-panel name="audios"> <i-frame src="/editor/audios.html"></i-frame> </q-tab-panel>
+            <q-tab-panel name="videos"> <i-frame src="/editor/videos.html"></i-frame> </q-tab-panel>
+            <q-tab-panel name="svg"> <i-frame src="/editor/svg.html"></i-frame> </q-tab-panel>
+            <q-tab-panel name="blobs"> <i-frame src="/editor/blobs.html"></i-frame> </q-tab-panel>
+  
+          </q-tab-panels>
+        </template>
+  
+      </q-splitter>
+    </div>
+  </script>
+
+  <script>
+    g.CustomApp = {
+      template: $("#app-temp").text(),
+      setup() {
+        return {
+          tab: Vue.ref('settings'),
+          splitterModel: Vue.ref(10)
+        }
+      }
+    }
+  </script>
 
   <script src="/Lib/quasar/quasar.js"></script>
   <script> var require = { paths: { vs: '/Lib/monaco-editor/min/vs' } }; </script>
