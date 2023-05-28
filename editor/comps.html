@@ -35,24 +35,40 @@
   <script src="/Lib/iframe-resize/iframe-host.js"></script>
   <script src="/Lib/iframe-resize/iframe-client.js"></script>
   <script src="/js/JSONF.js"></script>
+  <script src="/js/install.js"></script>
 </head>
 
-<body onload="g.Start(IsDev=false)">
+<body onload="g.StartDynamic(IsDev=false)">
 
   <div id="app-div"> </div>
 
   <script type="text/html" id="app-temp">
-    <div>
-      comps
-    </div>
+
+    <h5 style="margin: 0px; margin-bottom: 8px;">Components</h5>
+    
+    <json_editor v-if="Array.isArray(pages)" :parsed="pages" />  
+
   </script>
 
   <script>
     g.CustomApp = {
       template: $("#app-temp").text(),
       setup() {
-        return { }
-      }
+        return {
+          pages: g.f.GetLiveData(async function () {
+            return JSONF.parse(JSON.stringify(await g.db.comps.toArray()))
+          })
+        }
+      },
+      computed: {
+        g: function () {
+          return g
+        }
+      },
+      components: [
+        'json_editor',
+        // { name: 'c1', template: "this is c1" }
+      ]
     }
   </script>
 

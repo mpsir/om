@@ -35,15 +35,24 @@
   <script src="/Lib/iframe-resize/iframe-host.js"></script>
   <script src="/Lib/iframe-resize/iframe-client.js"></script>
   <script src="/js/JSONF.js"></script>
+  <script src="/js/install.js"></script>
 </head>
 
-<body onload="g.Start(IsDev=false)">
+<body onload="g.StartDynamic(IsDev=false)">
 
   <div id="app-div"> </div>
 
   <script type="text/html" id="app-temp">
+
+    <h5 style="margin: 0px; margin-bottom: 8px;">Blobs</h5>
+
     <div>
-      blobs
+      {{ pages }}
+    </div>
+
+    <div v-if="pages">
+      {{ g.console.log( pages ) }}
+      {{ g.console.log( g.JSONF.parse( g.JSONF.stringify(pages) ) ) }}
     </div>
   </script>
 
@@ -51,7 +60,16 @@
     g.CustomApp = {
       template: $("#app-temp").text(),
       setup() {
-        return { }
+        return {
+          pages: g.f.GetLiveData(async function () {
+            return JSONF.parse(JSON.stringify(await g.db.blobs.toArray()))
+          })
+        }
+      },
+      computed: {
+        g: function () {
+          return g
+        }
       }
     }
   </script>

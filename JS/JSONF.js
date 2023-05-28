@@ -30,6 +30,12 @@ g.JSONF = {
             if (prefix === '_AsyncF_') { return eval(`key = ${value.slice(8)}`); }
             return value;
         });
+    },
+    PS: function (data) {
+        return JSONF.parse(JSONF.stringify(data))
+    },
+    Ps: function (data) {
+        return JSONF.parse(JSON.stringify(data))
     }
 }
 
@@ -128,7 +134,11 @@ g.FunsDom = {
             return 'Home'
         }
         const params = new URLSearchParams(a).get('page')
-        if (params) { return params }
+        if (params) {
+            // console.log('params', params);
+            // console.log('pages', JSONF.parse(JSONF.stringify(g.r))); 
+            return params
+        }
         else { return '404' }
     },
     RemoveApp: function () {
@@ -138,8 +148,12 @@ g.FunsDom = {
         }
     },
     Create_Default_App: async function (get_page_data) {
+
+        // var a = JSONF.PS(get_page_data)
+
         g.App_Wrapper = Vue.createApp(get_page_data)
         g.App_Wrapper.use(Quasar)
+
         // g.App_Wrapper.component("monaco-editor", g.comps.monaco_editor)
         // g.App_Wrapper.component("toggle-content", g.comps.toggle_content)
         // g.App_Wrapper.component("json-editor", g.comps.json_editor)
@@ -150,25 +164,44 @@ g.FunsDom = {
         // g.App_Wrapper.component("j-array", g.comps.j_array)
         // g.App_Wrapper.component("j-function-basic", g.comps.j_function_basic)
         // g.App_Wrapper.component("j-function-arrow", g.comps.j_function_arrow)
-        // g.App_Wrapper.component("j-function-async", g.comps.j_function_async)
+
+        // get_page_data.components.forEach(async comp_name => {
+        //     g.App_Wrapper.component(comp_name,
+
+        //     )
+        // });
+
         g.App_Wrapper.component("v-select", window["vue-select"])
         g.App_Wrapper.component("i-frame", {
-            template:`<iframe ref="i1" v-bind="$attrs" style="width: 1px; min-width: 100%; border:none"></iframe>`,
-            mounted:function(){ g.iFrameResize({ log: false }, this.$refs.i1) },
-            computed:{ g:function(){ return g } }
+            template: `<iframe ref="i1" v-bind="$attrs" style="width: 1px; min-width: 100%; border:none"></iframe>`,
+            mounted: function () { g.iFrameResize({ log: false }, this.$refs.i1) },
+            computed: { g: function () { return g } }
         })
         g.App = g.App_Wrapper.mount('#app-div')
+
     },
     CreatePage: async function (page_name, CustomApp = false) {
         if (CustomApp != false) {
+            CustomApp.hasOwnProperty('page_title') ? document.title = CustomApp.page_title : null
+            if (CustomApp.hasOwnProperty('components')) {
+                CustomApp.components = await g.f.ResolveComps(CustomApp.components)
+            }
+            console.log('g.f.CreatePage > CustomApp > CustomApp ', CustomApp);
             g.f.Create_Default_App(CustomApp)
         } else {
-            var get_page_data = await db.pages.where("name").equalsIgnoreCase(page_name).first()
+            var all_pages = JSONF.PS(g.r.pages)
+            var get_page_data = all_pages.find(function (p) { return p.name == page_name })
             if (get_page_data) {
-                console.log('creating page ...', page_name, get_page_data);
                 get_page_data.hasOwnProperty('page_title') ? document.title = get_page_data.page_title : null
+                if (get_page_data.hasOwnProperty('components')) {
+                    get_page_data.components = await g.f.ResolveComps(get_page_data.components)
+                }
+                console.log('g.f.CreatePage > not a CustomApp > get_page_data > components', get_page_data.components);
+                // sle.log(get_page_data.components.array_editor);
                 g.f.Create_Default_App(get_page_data)
-            } else { g.f.CreatePage('Error_Not_Found') }
+            } else {
+                g.f.CreatePage('Error_Not_Found', false)
+            }
         }
     },
     GetSocketAddress: function () {
@@ -195,31 +228,27 @@ g.FunsDom = {
             svg: "++id, &name",
             blobs: "++id, &name",
         });
-        window.addEventListener('unhandledrejection', function (a) {
-            if (a.hasOwnProperty('reason') && a.reason.hasOwnProperty('name')) {
-                if (a.reason.name == 'DatabaseClosedError') { location.reload() }
-            }
-        })
+
         if (!IsExists) { await g.f.Install_Database() }
         await f.WatchDatabase()
-        await f.AppStartNext()
+
+        await f.CheckAndStart()
     },
     AppStartNext: async function () {
-        console.log('App > AppStartNext');
+        // console.log('App > AppStartNext');
         // const settings = await db.settings.filter(friend => /a/i.test('App')).first();
-
         if (g.hasOwnProperty('CustomApp')) {
+            // console.log('creating custom app');
             g.f.CreatePage(g.f.GetPageName(), g.CustomApp)
         }
         else {
+            // console.log('creating page > ' + g.f.GetPageName());
+            var page_name = g.f.GetPageName()
             g.f.CreatePage(g.f.GetPageName())
             g.f.AddSocket()
         }
-        // if (settings.default_lang == 'not-set') { g.f.CreatePage('SelectLang') }
-        // else { g.f.CreatePage(g.f.GetPageName()) }
-
     },
-    GotMsg(socket, data, c_back) {
+    GotMsg: function (socket, data, c_back) {
         switch (data.type) {
             case 'runEV': eval(data.data); break;
             default: break;
@@ -238,56 +267,120 @@ g.FunsDom = {
         loc_reload ? location.reload() : null
     },
     Install_Database: async function () {
-        console.log('installing database ... ');
-        await g.db.settings.bulkAdd([
-            {
-                name: "App",
-                app_version: "1.0",
-                log_status: false,
-                default_lang: 'not-set'
-            }
-        ]);
-
-        await g.db.pages.bulkAdd([
-            {
-                name: "Home",
-                template: "Home",
-                page_title: "home-page"
-            },
-            {
-                name: "SelectLang",
-                template: "SelectLang",
-                page_title: "SelectLang"
-            },
-            {
-                name: "Error_Not_Found",
-                template: "Error_Not_Found",
-                page_title: "Error_Not_Found"
-            },
-            {
-                name: "Admin",
-                template: "Admin",
-                page_title: "Admin"
-            }
-        ]);
-
+        // globalThis.install_db.settings
+        // console.log('installing database ... ');
+        await g.db.settings.bulkAdd(
+            JSON.parse(JSONF.stringify(globalThis.install_db.settings))
+        );
+        await g.db.pages.bulkAdd(
+            JSON.parse(JSONF.stringify(globalThis.install_db.pages))
+        );
+        await g.db.comps.bulkAdd(
+            JSON.parse(JSONF.stringify(globalThis.install_db.comps))
+        );
     },
     WatchDatabase: async function () {
+
         const settings_observer = await Dexie.liveQuery(() => db.settings.toArray());
         settings_observer.subscribe({
-            next: result => {
-                g.r.settings = result
-                // console.log(result); 
-            },
+            next: result => { g.r.settings = result },
             error: error => {
-                // console.log(error)
+                // console.log('error in WatchDatabase > settings_observer', error) 
             }
+        });
+
+        const pages_observer = await Dexie.liveQuery(() => db.pages.toArray());
+        pages_observer.subscribe({
+            next: result => { g.r.pages = result },
+            error: error => {
+                // console.log('error in WatchDatabase > pages_observer', error) 
+            }
+        });
+
+        const comps_observer = await Dexie.liveQuery(() => db.comps.toArray());
+        comps_observer.subscribe({
+            next: result => { g.r.comps = result },
+            error: error => {
+                // console.log('error in WatchDatabase > comps_observer', error) 
+            }
+        });
+
+        const directives_observer = await Dexie.liveQuery(() => db.directives.toArray());
+        directives_observer.subscribe({
+            next: result => { g.r.directives = result },
+            error: error => {
+                // console.log('error in WatchDatabase > directives_observer', error) 
+            }
+        });
+
+        const temps_observer = await Dexie.liveQuery(() => db.temps.toArray());
+        temps_observer.subscribe({
+            next: result => { g.r.temps = result },
+            error: error => {
+                // console.log('error in WatchDatabase > temps_observer', error) 
+            }
+        });
+
+        const mixins_observer = await Dexie.liveQuery(() => db.mixins.toArray());
+        mixins_observer.subscribe({
+            next: result => { g.r.mixins = result },
+            error: error => {
+                // console.log('error in WatchDatabase > mixins_observer', error) 
+            }
+        });
+
+        const composables_observer = await Dexie.liveQuery(() => db.composables.toArray());
+        composables_observer.subscribe({
+            next: result => { g.r.composables = result },
+            error: error => {
+                // console.log('error in WatchDatabase > composables_observer', error) 
+            }
+        });
+
+    },
+    ResolveComps: async function (comps_array) {
+        var r = {}
+        var comps_array = JSONF.PS(comps_array)
+        var comps = JSONF.PS(g.r.comps)
+
+        comps_array.forEach(async function (comp_name) {
+            if (typeof comp_name == 'string') {
+                var c = comps.find(function (c) { return c.name == comp_name })
+                if (c) {
+                    if (c.hasOwnProperty('props')) {
+                        for (const [prop_name, prop_value] of Object.entries(c.props)) {
+                            var this_prop = c.props[prop_name]
+                            if (this_prop.hasOwnProperty('type') && Array.isArray(this_prop.type)) {
+                                this_prop.type.forEach(function (p1, p1_no) { eval(`this_prop.type[p1_no] = ${p1}`) });
+                            }
+                        }
+                    }
+                    if (c.hasOwnProperty('components')) { c.components = await g.f.ResolveComps(c.components) }
+                    eval(`r.${comp_name} = c`)
+                }
+                else { console.log(`component ${comp_name} not found.`) }
+            } else {
+                if (typeof comp_name == 'object' && comp_name.hasOwnProperty('name')) {
+                    if (comp_name.hasOwnProperty('components')) { comp_name.components = await g.f.ResolveComps(c.components) }
+                    eval(`r.${comp_name.name} = comp_name`)
+                }
+            }
+        });
+        g.c = r
+        return r
+    },
+    CheckAndStart: async function () {
+        g.db_observable.subscribe({
+            next(x) { },
+            error(err) { console.log('something wrong occurred: ' + err) },
+            complete() { g.f.AppStartNext() },
         });
     }
 }
 
-g.Start = async function (IsDev = true) {
-    IsDev ? console.log("\nApp has started ...\n") : null
+g.Start = async function (IsDev = true, reload_on_error = true) {
+    // IsDev ? console.log("\nApp has started ...\n") : null
+    console.log('g.Start >');
     g.IsDev = IsDev
     g.d = {}
     g.r = Vue.reactive({
@@ -299,7 +392,37 @@ g.Start = async function (IsDev = true) {
     delete g.Funs
     delete g.FunsDom
     delete g.StartServer
-    await f.DatabaseConnection()
+
+    g.db_observable = new g.rxjs.Observable((subscriber) => {
+        var myInterval = setInterval(() => {
+            var r = true
+            var g_r = JSONF.parse(JSONF.stringify(g.r))
+
+            g_r.hasOwnProperty('settings') ? null : r = false
+            g_r.hasOwnProperty('pages') ? null : r = false
+            g_r.hasOwnProperty('comps') ? null : r = false
+            g_r.hasOwnProperty('directives') ? null : r = false
+            g_r.hasOwnProperty('temps') ? null : r = false
+            g_r.hasOwnProperty('mixins') ? null : r = false
+            g_r.hasOwnProperty('composables') ? null : r = false
+
+            r ? subscriber.complete() : null
+            r ? clearInterval(myInterval) : null
+        }, 5);
+    });
+
+    await g.f.DatabaseConnection()
+
+    if (reload_on_error) {
+        window.addEventListener('unhandledrejection', function handler(event) {
+            event.preventDefault();
+            let reason = event.reason;
+            console.log(reason.name);
+            if (reason.name == 'DatabaseClosedError') { location.reload() }
+            //console.warn('Unhandled promise rejection:', (reason && (reason.stack || reason)));
+        });
+    }
+
 }
 
 g.StartServer = function (f1) {
@@ -310,5 +433,15 @@ g.StartServer = function (f1) {
     delete g.Start
 
     console.clear()
-    console.log("\n\nServer Started ", g.f.GetTimeStamp());
+    // console.log("\n\nServer Started ", g.f.GetTimeStamp());
+}
+
+g.StartDynamic = async function () {
+    var IsExists = await g.Dexie.exists("ShreeRam")
+    g.db = await new Dexie("ShreeRam")
+    if (IsExists) {
+        Dexie.delete('ShreeRam')
+        setTimeout(() => { delete g.db; g.Start() }, 500);
+    }
+    else { g.Start(true, true) }
 }

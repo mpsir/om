@@ -2,51 +2,223 @@
 <html lang="en">
 
 <head>
-  <title>G</title>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .btn-hide-1 {
+            background-color: transparent;
+            border: none;
+            padding-left: 0px;
+            cursor: pointer;
+        }
 
-  <link rel="stylesheet" href="https://mpsir.github.io/om/Lib/material-icons/iconfont/material-icons.css">
-  <link rel="stylesheet" href="https://mpsir.github.io/om/Lib/quasar/quasar.css">
-  <link rel="stylesheet" href="https://mpsir.github.io/om/CSS/roboto.css">
-  <link rel="stylesheet" href="https://mpsir.github.io/om/Lib/jq/jquery-ui.min.g.css">
-  <link
-    href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAADUsYIAS6/pAAI29gD9/f4A+fHmAA8x0gC8vroAx6HiACBbtgAHbPMAUIvjAD7f+AA6lt4Ah+L9AKyemQD8/vwA/f78AP7+/ADw+P0ATYDRANvUxgCp+PgA6KfAAPRdwQC1ldQA+P79APDXtQB+W6sAqTWYAPz+/QDLx8sArLypAP7+/QD51qcABB/NAOO2hgBXaacAkDZ+APb49gCguuoA2cK4AAMy6wDI9v4A/f7+ANSYuwAFL+MA/v7+AMV7qgBcQ8gA64PMAPLZuQDv1/kAy2frAMK1zgDt7e0ACTbxAOa8oAAH2vsAxV/hAN6F0ABneOEA4IjxAP7+/wCILHsAb4FkAHjKuAChl+sAZEWSAO3l7ADvv/wA3bOBAA1F6QDaluwAj0DIANG1zwD4+f4Al3VLAB2n7gCEW6YApmnQADJmtADJl+IA8s28AP3a0QDKm74A79GxAP7//gD09PQA///+AGmD5QDXg/EA3j6qAKNOkACe7/4A3Y32AB89pQD1f9IAq+z+AD1k5AD9//8A/v//AP///wBxpJkAYqr9AP3t3wDw8PAAtrydALy0xAD7/voASdbuAP39/QDu7u4A39/fAE7Q3gBQlv0AqntEAEux/ADktZcA+P3+AGnLwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZWVlZWVlZWVlZEQrZWVlZWVlZWVlYx5hckpOMWVlZWVlZWVlLlxDZwE7HDACLmVlZWVlBGovPyYqGRAFX2JlZWVlR1l3MlZWZWVlEilGZWVlHQwIditlZWVlZRFATBFlZSwYN2VlZWVlZWVlGkg1ZS4kJS5lV29waWllZTM8XmUuFgZlZVc2cGlpbmVlPUVlIUEAZWVlZWVlZWVlZXUfFGUjUi5lZVhlZWVlZQNoU2VlBxNJC3FaNGtlZWVgG1suZStPUU0JOkIOZWU+DRdUZWVlLj4VOSBVZjgtCm10K2VlZWVlZWVlbHMoUCJdD2VlZWVlZWVlZWVlZSdLZWVlZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
-    rel="icon" type="image/x-icon" />
-  <link rel="stylesheet" data-name="vs/editor/editor.main"
-    href="https://mpsir.github.io/om/Lib/monaco-editor/min/vs/editor/editor.main.css" />
-  <link rel="stylesheet" href="https://mpsir.github.io/om/Lib/vue-select/vue-select.css">
-
-  <script src="https://mpsir.github.io/om/Lib/core-js-bundle@3.29.1/minified.min.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/socket-io-client.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/rxjs.umd.min.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/sortablejs/Sortable.min.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/dexie/dexie.min.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/vue/vue.global.min.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/vue-select/vue-select.umd.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/vuedraggable/vuedraggable.umd.min.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/@vueuse/shared@9.13.0/index.iife.min.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/@vueuse/core@9.13.0/index.iife.min.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/@vueuse/rxjs/index.iife.min.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/vue3-shortkey.min.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/jq/jquery.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/jq/jquery-ui.min.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/jq/touch.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/iframe-resize/iframe-host.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/iframe-resize/iframe-client.js"></script>
-  <script src="http://super1mpsir-57484.portmap.host:57484/js/JSONF.js"></script>
+        .ghost {
+            background-color: black;
+            color: white
+        }
+    </style>
+    <title>Sir</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Lib/material-icons/iconfont/material-icons.css">
+    <link rel="stylesheet" href="/Lib/quasar/quasar.css">
+    <link rel="stylesheet" href="/CSS/roboto-local.css">
+    <link rel="stylesheet" href="/Lib/jq/jquery-ui.min.css">
+    <link rel="icon" type="image/x-icon"
+        href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAADUsYIAS6/pAAI29gD9/f4A+fHmAA8x0gC8vroAx6HiACBbtgAHbPMAUIvjAD7f+AA6lt4Ah+L9AKyemQD8/vwA/f78AP7+/ADw+P0ATYDRANvUxgCp+PgA6KfAAPRdwQC1ldQA+P79APDXtQB+W6sAqTWYAPz+/QDLx8sArLypAP7+/QD51qcABB/NAOO2hgBXaacAkDZ+APb49gCguuoA2cK4AAMy6wDI9v4A/f7+ANSYuwAFL+MA/v7+AMV7qgBcQ8gA64PMAPLZuQDv1/kAy2frAMK1zgDt7e0ACTbxAOa8oAAH2vsAxV/hAN6F0ABneOEA4IjxAP7+/wCILHsAb4FkAHjKuAChl+sAZEWSAO3l7ADvv/wA3bOBAA1F6QDaluwAj0DIANG1zwD4+f4Al3VLAB2n7gCEW6YApmnQADJmtADJl+IA8s28AP3a0QDKm74A79GxAP7//gD09PQA///+AGmD5QDXg/EA3j6qAKNOkACe7/4A3Y32AB89pQD1f9IAq+z+AD1k5AD9//8A/v//AP///wBxpJkAYqr9AP3t3wDw8PAAtrydALy0xAD7/voASdbuAP39/QDu7u4A39/fAE7Q3gBQlv0AqntEAEux/ADktZcA+P3+AGnLwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZWVlZWVlZWVlZEQrZWVlZWVlZWVlYx5hckpOMWVlZWVlZWVlLlxDZwE7HDACLmVlZWVlBGovPyYqGRAFX2JlZWVlR1l3MlZWZWVlEilGZWVlHQwIditlZWVlZRFATBFlZSwYN2VlZWVlZWVlGkg1ZS4kJS5lV29waWllZTM8XmUuFgZlZVc2cGlpbmVlPUVlIUEAZWVlZWVlZWVlZXUfFGUjUi5lZVhlZWVlZQNoU2VlBxNJC3FaNGtlZWVgG1suZStPUU0JOkIOZWU+DRdUZWVlLj4VOSBVZjgtCm10K2VlZWVlZWVlbHMoUCJdD2VlZWVlZWVlZWVlZSdLZWVlZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" />
+    <link rel="stylesheet" data-name="vs/editor/editor.main" href="/Lib/monaco-editor/min/vs/editor/editor.main.css" />
+    <link rel="stylesheet" href="/Lib/vue-select/vue-select.css">
+    <script> var g = globalThis </script>
+    <script src="/Lib/core-js-bundle@3.29.1/minified.min.js"></script>
+    <script src="/Lib/socket-io-client.js"></script>
+    <script src="/Lib/rxjs.umd.min.js"></script>
+    <script src="/Lib/sortablejs/Sortable.min.js"></script>
+    <script src="/Lib/dexie/dexie.min.js"></script>
+    <script src="/Lib/vue/vue.global.min.js"></script>
+    <script src="/Lib/vue-select/vue-select.umd.js"></script>
+    <script src="/Lib/vuedraggable/vuedraggable.umd.min.js"></script>
+    <script src="/Lib/@vueuse/shared@9.13.0/index.iife.min.js"></script>
+    <script src="/Lib/@vueuse/core@9.13.0/index.iife.min.js"></script>
+    <script src="/Lib/@vueuse/rxjs/index.iife.min.js"></script>
+    <script src="/Lib/vue3-shortkey.min.js"></script>
+    <script src="/Lib/jq/jquery.js"></script>
+    <script src="/Lib/jq/jquery-ui.min.js"></script>
+    <script src="/Lib/jq/touch.js"></script>
+    <script src="/Lib/iframe-resize/iframe-host.js"></script>
+    <script src="/Lib/iframe-resize/iframe-client.js"></script>
+    <script src="/Lib/randomBytes.js"></script>
+    <script src="/Lib/serialize.js"></script>
+    <script src="/JS/sir/sir.umd.cjs"></script>
 </head>
 
-<body onload="g.Start()">
-  <div id="app-div"> </div>
-  <div id="editor-div"> </div>
+<body onload="Start()" style="padding: 8px;">
 
-  <script src="https://mpsir.github.io/om/Lib/quasar/quasar.js"></script>
-  <script> var require = { paths: { vs: 'https://mpsir.github.io/om/Lib/monaco-editor/min/vs' } };  </script>
-  <script src="https://mpsir.github.io/om/Lib/monaco-editor/min/vs/loader.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
-  <script src="https://mpsir.github.io/om/Lib/monaco-editor/min/vs/editor/editor.main.js"></script>
+
+    <div id="app-div">
+        <div class="page-app" style="display: none;">
+
+
+
+            <draggable v-if="false" v-model="myArray" group="people" @start="drag=true" @end="drag=false" item-key="id">
+                <template #item="{element}">
+                    <div>{{element.name}}</div>
+                </template>
+            </draggable>
+
+            <div v-if="false">
+                <button @click="array_t[0]">click</button>
+            </div>
+
+            <span v-if="false" class="material-icons" style="font-size: 24px;">face</span>
+
+            <div class="q-my-md" v-if="false"><input type="text" v-model="array_t[0]" /></div>
+
+            <div v-if="true" class="q-m-lg q-mb-lg"><j-edit :model-value="object_t"
+                    @update:model-value="object_t = g.f.PS($event); g.console.log('page > object_t > ', g.f.PS(object_t))"></j-edit>
+            </div>
+            <div v-if="true" class="q-m-lg"><j-edit :model-value="array_t"
+                    @update:model-value="array_t = g.f.PS($event); g.console.log('page > array_t >', g.f.PS(array_t))"></j-edit>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script>
+        function Start() {
+            var page = {
+                setup: function (props, { attrs, slots, emit, expose }) {
+                    return { g: Vue.computed(() => g) };
+                },
+                data: function () {
+                    return {
+                        // label: Vue.ref('Click me'),
+                        t1: g.f.P(`
+                            [
+                                {
+                                    "id": 0,
+                                    "name": "a",
+                                    "data": 5
+                                },
+                                {
+                                    "id": 1,
+                                    "name": "b",
+                                    "data": function(){}
+                                }
+                            ]
+                        `),
+                        t2: g.f.P(`
+                            [
+                                {
+                                    "id": 0,
+                                    "name": 0,
+                                    "data": "1"
+                                },
+                                {
+                                    "id": 1,
+                                    "name": 1,
+                                    "data": 2
+                                },
+                                {
+                                    "id": 2,
+                                    "name": 2,
+                                    "data": function () { }
+                                }
+                            ]
+                        `),
+                        isAppStarted: false,
+                        myArray: [
+                            { name: 'a1', id: 1 },
+                            { name: 'a2', id: 2 },
+                        ],
+                        string_t: 'test_string',
+                        number_t: 55,
+
+                        object_t: {
+                            nul: null,
+                            undefine: undefined,
+                            strin: "string",
+                            numbe: 5,
+                            boolea: false,
+                            obj: {
+                                nul: null,
+                                undefine: undefined,
+                                strin: "string",
+                                numbe: 5,
+                                boolea: false,
+                                obj: { a: 5 },
+                                arr: [{ a: 5 }]
+                            },
+                            arr: [1, 2,
+                                null,
+                                undefined,
+                                "string",
+                                5,
+                                false,
+                                { a: 5 },
+                                [{ a: 5 }]
+                            ],
+                            date1: new Date(),
+                            map1: new Map(),
+                            set1: new Set(),
+                            fun1: function () { g.console.alert(5) },
+                            regexp: /w3schools/i,
+                            bigint1: BigInt(10)
+                        },
+
+                        array_t: [
+                            null,
+                            undefined,
+                            "string",
+                            5,
+                            false,
+                            {
+                                nul: null,
+                                undefine: undefined,
+                                strin: "string",
+                                numbe: 5,
+                                boolea: false,
+                                obj: { a: 5 },
+                                arr: [{ a: 5 }]
+                            },
+                            [1, 2, {
+                                nul: null,
+                                undefine: undefined,
+                                strin: "string",
+                                numbe: 5,
+                                boolea: false,
+                                obj: { a: 5 },
+                                arr: [{ a: 5 }]
+                            }],
+                            new Date(),
+                            new Map(),
+                            new Set(),
+                            function () { g.console.alert(5) },
+                            /w3schools/i,
+                            BigInt(10)
+                        ],
+
+                        bool_t: false,
+                        null_t: null,
+                        undefined_t: undefined,
+                        date_t: new Date(),
+                        map_t: new Map([['hello', 'world']]),
+                        set_t: new Set([123, 456]),
+                        fn_t: function echo(arg) { return arg; },
+                        re_t: /w3schools/i,
+                        big_t: BigInt(10)
+                    }
+                },
+                mounted: function () { g.$(".page-app").css({ "display": "block" }) }
+            }
+            Sir.CreateApp(page, { Quasar: true, Sir: true, Ast: true })
+        }
+    </script>
+    <script src="/Lib/quasar/quasar.js"></script>
+    <script> var require = { paths: { vs: '/Lib/monaco-editor/min/vs' } }; </script>
+    <script src="/Lib/monaco-editor/min/vs/loader.js"></script>
+    <script src="/Lib/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
+    <script src="/Lib/monaco-editor/min/vs/editor/editor.main.js"></script>
+
 </body>
 
 </html>

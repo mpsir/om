@@ -35,9 +35,11 @@
   <script src="/Lib/iframe-resize/iframe-host.js"></script>
   <script src="/Lib/iframe-resize/iframe-client.js"></script>
   <script src="/js/JSONF.js"></script>
+  <script src="/js/install.js"></script>
 </head>
 
-<body onload="g.Start(IsDev=false)">
+<body onload="g.Start(IsDev=false, false)">
+
 
   <div id="app-div"> </div>
 
@@ -46,28 +48,35 @@
       <q-splitter class="m-0 p-0" v-model="splitterModel" >
 
         <template v-slot:before>
-          <q-tabs inline-label v-model="tab" vertical class="text-black" >
-            <q-tab no-caps name="settings" label="Settings"></q-tab>
-            <q-tab  no-caps name="pages" label="Pages"></q-tab>
-            <q-tab  no-caps name="comps" label="Comps"></q-tab>
-            <q-tab  no-caps name="directives" label="Directives"></q-tab>
-            <q-tab  no-caps name="temps" label="Temps"></q-tab>
-            <q-tab  no-caps name="mixins" label="Mixins"></q-tab>
-            <q-tab  no-caps name="composables" label="Composables"></q-tab>
-            <q-tab  no-caps name="css" label="CSS"></q-tab>
-            <q-tab  no-caps name="js" label="JS"></q-tab>
-            <q-tab  no-caps name="images" label="Images"></q-tab>
-            <q-tab  no-caps name="audios" label="Audios"></q-tab>
-            <q-tab  no-caps name="videos" label="Videos"></q-tab>
-            <q-tab  no-caps name="svg" label="Svg"></q-tab>
-            <q-tab  no-caps name="blobs" label="Blobs"></q-tab>
+         <div v-if="false" style="margin: 6px; text-align: center;">
+          <q-btn color="yellow" glossy text-color="black" push label="Save" icon="verified_user"></q-btn>
+         </div>
+       
+         <div style="margin: 6px; text-align: center;">
+          <q-btn no-caps @click="g.f.DeleteDB()" color="transparent" glossy text-color="black" 
+          push style="border:none" class="px-2" label="DB Refresh" icon="refresh"></q-btn>
+         </div>
+          <q-tabs style="text-align: left;" v-model="tab" vertical class="text-black" >
+            <q-tab style="min-height:0px;"  no-caps name="settings" label="Settings"></q-tab>
+            <q-tab style="min-height:0px" no-caps name="pages" label="Pages"></q-tab>
+            <q-tab style="min-height:0px" no-caps name="comps" label="Comps"></q-tab>
+            <q-tab style="min-height:0px" no-caps name="directives" label="Directives"></q-tab>
+            <q-tab style="min-height:0px" no-caps name="temps" label="Temps"></q-tab>
+            <q-tab style="min-height:0px" no-caps name="mixins" label="Mixins"></q-tab>
+            <q-tab style="min-height:0px" no-caps name="composables" label="Composables"></q-tab>
+            <q-tab style="min-height:0px" no-caps name="css" label="CSS"></q-tab>
+            <q-tab style="min-height:0px" no-caps name="js" label="JS"></q-tab>
+            <q-tab style="min-height:0px" no-caps name="images" label="Images"></q-tab>
+            <q-tab style="min-height:0px" no-caps name="audios" label="Audios"></q-tab>
+            <q-tab style="min-height:0px" no-caps name="videos" label="Videos"></q-tab>
+            <q-tab style="min-height:0px" no-caps name="svg" label="Svg"></q-tab>
+            <q-tab style="min-height:0px" no-caps name="blobs" label="Blobs"></q-tab>
           </q-tabs>
         </template>
   
         <template v-slot:after>
           <q-tab-panels v-model="tab" vertical>
-            
-            <q-tab-panel name="settings"> <i-frame src="/editor/settings.html"></i-frame> </q-tab-panel>
+            <q-tab-panel name="settings"> <i-frame src="/editor/settings.html"></i-frame></q-tab-panel>
             <q-tab-panel name="pages"> <i-frame src="/editor/pages.html"></i-frame> </q-tab-panel>
             <q-tab-panel name="comps"> <i-frame src="/editor/comps.html"></i-frame> </q-tab-panel>
             <q-tab-panel name="directives"> <i-frame src="/editor/directives.html"></i-frame> </q-tab-panel>
@@ -81,7 +90,6 @@
             <q-tab-panel name="videos"> <i-frame src="/editor/videos.html"></i-frame> </q-tab-panel>
             <q-tab-panel name="svg"> <i-frame src="/editor/svg.html"></i-frame> </q-tab-panel>
             <q-tab-panel name="blobs"> <i-frame src="/editor/blobs.html"></i-frame> </q-tab-panel>
-  
           </q-tab-panels>
         </template>
   
@@ -90,14 +98,24 @@
   </script>
 
   <script>
+    async function testing(){
+      var a = await db.settings.filter(friend => /a/i.test('App')).first();
+      a.log_status = !a.log_status
+      // console.log(a);
+      db.settings.put(a);
+    }
+  </script>
+
+  <script>
     g.CustomApp = {
       template: $("#app-temp").text(),
       setup() {
         return {
-          tab: Vue.ref('settings'),
-          splitterModel: Vue.ref(10)
+          tab: Vue.ref('comps'),
+          splitterModel: Vue.ref(15)
         }
-      }
+      },
+      computed:{ g:function(){return g} }
     }
   </script>
 
