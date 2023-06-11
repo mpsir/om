@@ -425,17 +425,6 @@ g.Start = async function (IsDev = true, reload_on_error = true) {
 
 }
 
-g.StartServer = function (f1) {
-    g.f = { ...g.Funs, ...f1 }
-
-    delete g.FunsDom
-    delete g.Funs
-    delete g.Start
-
-    console.clear()
-    // console.log("\n\nServer Started ", g.f.GetTimeStamp());
-}
-
 g.StartDynamic = async function () {
     var IsExists = await g.Dexie.exists("ShreeRam")
     g.db = await new Dexie("ShreeRam")

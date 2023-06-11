@@ -1,157 +1,93 @@
-globalThis.install_db = {
-    settings: [
-        { // App
-            name: "App",
-            app_version: "1.2",
-            log_status: false,
-            default_lang: 'eng'
-        }
-    ],
-    pages: [
-        { // Home
-            name: "Home",
-            template: `
-            <div style="padding:16px"> <json_editor :parsed="pages" /> </div>
-            <pre v-if="true" style="padding:16px"> {{ g.r }} </pre>`,
-            page_title: "home-page",
-            computed: {
-                g: function () { return g }
-            },
-            data: function () {
-                return {
-                    pages: [1]
-                }
-            },
-            components: [
-                 'object_editor', 'array_editor', 'json_editor',
-            ]
-        },
-        { // SelectLang
-            name: "SelectLang",
-            template: "SelectLang",
-            page_title: "SelectLang"
-        },
-        { // Error_Not_Found
-            name: "Error_Not_Found",
-            template: "Error_Not_Found",
-            page_title: "Error_Not_Found"
-        },
-    ],
-    comps: [
-        { // json_editor
-            name: "json_editor",
-            template: `
-            <div class="p-0 m-0" v-bind="$attrs"> 
-                <div v-if="Array.isArray(Value)">
-                    <div>[</div>
-                    <div style="margin-left:16px">
-                        <array_editor></array_editor>
-                    </div>
-                    <div>]</div>
-                </div>
-                <div v-else>
-                    <div>{</div>
-                    <div style="margin-left:16px">
-                    <object_editor></object_editor>
-                    </div>
-                    <div>}</div>
-                </div>
-            </div>`,
-            computed: {
-                g: function () { return g }
-            },
-            data: function () { return { Value: null } },
-            setup: function (props, { attrs, slots, emit, expose }) {
-                return { g: Vue.computed(() => g) };
-            },
-            props: {
-                parsed: {
-                    required: true,
-                    type: ["Array", "Object"]
-                }
-            },
-            emits: ['update'],
-            created: function () {
-                this.update_parsed()
-            },
-            watch: {
-                parsed: {
-                    handler: function (newValue, oldValue) { this.update_parsed() },
-                    deep: true
-                }
-            },
-            methods: {
-                update_parsed: function () { this.Value = this.parsed },
-                update_parent: function () { this.$emit('update', this.Value) },
-            }
-        },
-        { // 'object_editor'
-            name: "object_editor",
-            template: `
-            <div class="p-0 m-0" v-bind="$attrs"> 
-            object_editor
-            </div>`,
-            computed: {
-                g: function () { return g }
-            },
-            data: function () { return { Value: null } },
-            setup: function (props, { attrs, slots, emit, expose }) {
-                return { g: Vue.computed(() => g) };
-            },
-            props: {
-                parsed: {
-                    required: true,
-                    type: ["Object"]
-                }
-            },
-            emits: ['update'],
-            created: function () {
-                this.update_parsed()
-            },
-            watch: {
-                parsed: {
-                    handler: function (newValue, oldValue) { this.update_parsed() },
-                    deep: true
-                }
-            },
-            methods: {
-                update_parsed: function () { this.Value = this.parsed },
-                update_parent: function () { this.$emit('update', this.Value) },
-            }
-        },
-        { // array_editor
-            name: "array_editor",
-            template: `
-            <div class="p-0 m-0" v-bind="$attrs"> 
-                array_editor
-            </div>`,
-            computed: {
-                g: function () { return g }
-            },
-            data: function () { return { Value: null } },
-            setup: function (props, { attrs, slots, emit, expose }) {
-                return { g: Vue.computed(() => g) };
-            },
-            props: {
-                parsed: {
-                    required: true,
-                    type: ["Array"]
-                }
-            },
-            emits: ['update'],
-            created: function () {
-                this.update_parsed()
-            },
-            watch: {
-                parsed: {
-                    handler: function (newValue, oldValue) { this.update_parsed() },
-                    deep: true
-                }
-            },
-            methods: {
-                update_parsed: function () { this.Value = this.parsed },
-                update_parent: function () { this.$emit('update', this.Value) },
-            }
-        }
-    ]
-}
+g.ReturnInstall = function(){ globalThis.install_db = {
+
+settings:[
+  {
+    "name": "App",
+    "user": {
+      "status": false,
+      "name": "user_name",
+      "pass": "user_password",
+      "role": "",
+      "balance": 0,
+      "gender": "male"
+    },
+    "defaultLang": "unset",
+    "version": 2
+  }
+],
+
+pages:[
+  {
+    "name": "Home",
+    "pageTitle": "Home",
+    "data": "{\n  \"template\": \"\\u003Cdiv class=\\\"page-app\\\" style=\\\"display: none;\\\"\\u003E\\n     \\u003Chr \\u002F\\u003E\\n     \\u003Cdiv v-if=\\\"g.r.settings[0].user.status\\\" class=\\\"q-py-sm\\\"\\u003E\\n          Welcome\\n          \\u003Cspan style=\\\"text-decoration: underline;\\\"\\u003E {{ g.r.settings[0].user.printName }} \\u003C\\u002Fspan\\u003E \\u003Cbr\\u002F\\u003E\\n          \\u003Cspan\\u003E ({{g.r.settings[0].user.role}}*) \\u003C\\u002Fspan\\u003E\\n     \\u003C\\u002Fdiv\\u003E\\n     \\u003Cdiv v-else\\u003E\\n          Welcome Guest\\n     \\u003C\\u002Fdiv\\u003E\\n     \\u003Chr \\u002F\\u003E\\n     \\u003Cdiv class=\\\"q-py-sm\\\"\\u003E\\n          \\u003Cbutton class=\\\"q-mx-sm\\\" v-if=\\\"g.r.settings[0].user.status\\\" @click=\\\"g.f.PageChangeTo('Admin')\\\"\\u003EAdmin\\u003C\\u002Fbutton\\u003E\\n          \\u003Cbutton class=\\\"q-mr-sm\\\" v-if=\\\"g.r.settings[0].user.status && g.r.settings[0].user.role=='super-admin'\\\" \\n          @click=\\\"g.r.IsLive = ! g.r.IsLive\\\"\\u003EIsLive {{ g.r.IsLive }} \\u003C\\u002Fbutton\\u003E\\n          \\u003Clogout v-if=\\\"g.r.settings[0].user.status\\\"\\u003E\\u003C\\u002Flogout\\u003E\\n          \\u003Clogin v-else\\u003E\\u003C\\u002Flogin\\u003E\\n     \\u003C\\u002Fdiv\\u003E\\n     \\u003Chr \\u002F\\u003E\\n     \\u003Cdiv v-if=\\\"g.r.settings[0].user.status\\\"\\u003E\\n          \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E\\n               Your Games and Softwares\\n          \\u003C\\u002Fdiv\\u003E\\n          \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E\\n               \\u003Cbutton class=\\\"q-mb-sm\\\" @click=\\\"g.f.PageChangeTo('MyGame-1')\\\"\\u003ENotes\\u003C\\u002Fbutton\\u003E\\n          \\u003C\\u002Fdiv\\u003E\\n     \\u003C\\u002Fdiv\\u003E\\n     \\u003Chr v-if=\\\"g.r.settings[0].user.status\\\" \\u002F\\u003E\\n\\u003C\\u002Fdiv\\u003E\",\n  \"setup\": function (props, { attrs, slots, emit, expose }) {\r\n    return { g: Vue.computed(() =\u003E g) };\r\n},\n  \"data\": function () {\r\n    return {\r\n    }\r\n},\n  \"mounted\": function () { g.$(\".page-app\").css({ \"display\": \"block\" }) },\n  \"components\": {\n    \"login\": \"\",\n    \"logout\": \"\"\n  }\n}"
+  },
+  {
+    "name": "NotFound",
+    "pageTitle": "Page-Not-Found",
+    "data": "{\n  \"template\": \"\\u003Cdiv class=\\\"page-app\\\" style=\\\"display: none;\\\"\\u003E\\n    \\u003Cspan v-if=\\\"false\\\" class=\\\"material-icons\\\" style=\\\"font-size: 24px;\\\"\\u003Eface\\u003C\\u002Fspan\\u003E\\n    \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E\\n        Page\\n        \\u003Cspan style=\\\"color:blue\\\"\\u003E {{ g.f.GetPageName() }} \\u003C\\u002Fspan\\u003E\\n        not found.\\n    \\u003C\\u002Fdiv\\u003E\\n    \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E\\n        \\u003Ca v-if=\\\"false\\\" href=\\\"\\u002F\\\"\\u003EHome\\u003C\\u002Fa\\u003E\\n        \\u003Cbutton @click=\\\"g.f.PageChangeTo('Home')\\\"\\u003EHome\\u003C\\u002Fbutton\\u003E\\n    \\u003C\\u002Fdiv\\u003E\\n    \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E\\n        \\u003Cbutton @click=\\\"g.f.PageChangeTo('Admin')\\\"\\u003EAdmin\\u003C\\u002Fbutton\\u003E\\n    \\u003C\\u002Fdiv\\u003E\\n\\u003C\\u002Fdiv\\u003E\",\n  \"setup\": function (props, { attrs, slots, emit, expose }) {\r\n                        return { g: Vue.computed(() =\u003E g) };\r\n                    },\n  \"data\": function () {\r\n                        return {\r\n                        }\r\n                    },\n  \"mounted\": function () { g.$(\".page-app\").css({ \"display\": \"block\" }) }\n}"
+  },
+  {
+    "name": "Admin",
+    "pageTitle": "Admin",
+    "data": "{\n  \"template\": \"\\u003Cdiv class=\\\"page-app\\\" style=\\\"display: none;\\\"\\u003E\\n    \\u003Chr \\u002F\\u003E\\n    \\u003Cdiv v-if=\\\"g.r.settings[0].user.status\\\"\\u003E\\n        \\u003Cdiv\\u003E Admin \\u003C\\u002Fdiv\\u003E\\n        \\u003Chr \\u002F\\u003E\\n        \\u003Cdiv\\u003E\\n            \\u003Cbutton class=\\\"q-my-sm q-mr-sm\\\" @click=\\\"g.f.PageChangeTo('Home')\\\"\\u003EHome\\u003C\\u002Fbutton\\u003E\\n            \\u003Clogout\\u003E\\u003C\\u002Flogout\\u003E\\n            \\u003Ctemplate v-if=\\\"g.r.settings[0].user.role == 'super-admin' \\\"\\u003E\\n                \\u003Cbutton class=\\\"q-mx-sm\\\" @click=\\\"g.r.IsLive = ! g.r.IsLive\\\"\\u003E\\n                    IsLive {{ g.r.IsLive }} \\n                \\u003C\\u002Fbutton\\u003E\\n                \\u003Cbutton\\u003E\\n                    \\u003Ca class=\\\"q-ma-sm\\\" style=\\\"text-decoration:none; color:black\\\" href=\\\"\\u002FServer.html\\\"\\u003EServer\\u003C\\u002Fa\\u003E\\n                \\u003C\\u002Fbutton\\u003E\\n                \\u003Cbutton class=\\\"q-ml-sm\\\" @click=\\\"g.f.DeleteDB()\\\"\\u003EDeleteDB\\u003C\\u002Fbutton\\u003E\\n            \\u003C\\u002Ftemplate\\u003E\\n        \\u003C\\u002Fdiv\\u003E\\n        \\u003Chr \\u002F\\u003E\\n        \\u003Cdiv v-if=\\\"g.r.settings[0].user.role == 'super-admin' \\\"\\u003E\\n            \\u003Cdiv\\u003E \\u003Cbutton class=\\\"q-mt-sm\\\" @click=\\\"g.f.PageChangeTo('Settings')\\\"\\u003ESettings\\u003C\\u002Fbutton\\u003E \\u003C\\u002Fdiv\\u003E\\n            \\u003Cdiv\\u003E \\u003Cbutton class=\\\"q-mt-sm\\\" @click=\\\"g.f.PageChangeTo('Pages')\\\"\\u003EPages\\u003C\\u002Fbutton\\u003E \\u003C\\u002Fdiv\\u003E\\n            \\u003Cdiv\\u003E \\u003Cbutton class=\\\"q-mt-sm\\\" @click=\\\"g.f.PageChangeTo('Comps')\\\"\\u003EComps\\u003C\\u002Fbutton\\u003E \\u003C\\u002Fdiv\\u003E\\n            \\u003Cdiv\\u003E \\u003Cbutton class=\\\"q-mt-sm\\\" @click=\\\"g.f.PageChangeTo('Directives')\\\"\\u003EDirectives\\u003C\\u002Fbutton\\u003E \\u003C\\u002Fdiv\\u003E\\n            \\u003Cdiv\\u003E \\u003Cbutton class=\\\"q-mt-sm\\\" @click=\\\"g.f.PageChangeTo('Temps')\\\"\\u003ETemps\\u003C\\u002Fbutton\\u003E \\u003C\\u002Fdiv\\u003E\\n            \\u003Cdiv\\u003E \\u003Cbutton class=\\\"q-mt-sm\\\" @click=\\\"g.f.PageChangeTo('Mixins')\\\"\\u003EMixins\\u003C\\u002Fbutton\\u003E \\u003C\\u002Fdiv\\u003E\\n            \\u003Cdiv\\u003E \\u003Cbutton class=\\\"q-my-sm\\\" @click=\\\"g.f.PageChangeTo('Composables')\\\"\\u003EComposables\\u003C\\u002Fbutton\\u003E \\u003C\\u002Fdiv\\u003E\\n            \\u003Chr \\u002F\\u003E\\n            \\u003Cdiv class=\\\"q-py-sm\\\"\\u003E\\n                \\u003Ctoggle-content :show_inner_p=\\\"false\\\"\\u003E\\n                    \\u003Ctemplate #control\\u003E \\u003Cbutton class=\\\"toggle-handle\\\"\\u003Eg.f\\u003C\\u002Fbutton\\u003E \\u003C\\u002Ftemplate\\u003E\\n                    \\u003Cdiv\\u003E\\n                        \\u003Cj-edit :model-value=\\\"g.f.PS(g.f)\\\" :isopen=\\\"true\\\"\\n                            @update:model-value=\\\"update_g_f(g.f.PS($event))\\\"\\u003E\\n                        \\u003C\\u002Fj-edit\\u003E\\n                    \\u003C\\u002Fdiv\\u003E\\n                \\u003C\\u002Ftoggle-content\\u003E\\n            \\u003C\\u002Fdiv\\u003E\\n            \\u003Chr \\u002F\\u003E\\n            \\u003Cdiv class=\\\"q-py-sm\\\"\\u003E\\n                \\u003Ctoggle-content :show_inner_p=\\\"false\\\"\\u003E\\n                    \\u003Ctemplate #control\\u003E \\u003Cbutton class=\\\"toggle-handle\\\"\\u003Eg.r\\u003C\\u002Fbutton\\u003E \\u003C\\u002Ftemplate\\u003E\\n                    \\u003Cdiv\\u003E\\n                        \\u003Cj-edit :model-value=\\\"g.f.PS(g.r)\\\" :isopen=\\\"true\\\"\\n                            @update:model-value=\\\"update_g_r(g.f.PS($event))\\\"\\u003E\\n                        \\u003C\\u002Fj-edit\\u003E\\n                    \\u003C\\u002Fdiv\\u003E\\n                \\u003C\\u002Ftoggle-content\\u003E\\n            \\u003C\\u002Fdiv\\u003E\\n            \\u003Chr \\u002F\\u003E\\n            \\u003Cdiv class=\\\"q-py-sm\\\"\\u003E\\n                \\u003Ctoggle-content :show_inner_p=\\\"false\\\"\\u003E\\n                    \\u003Ctemplate #control\\u003E \\u003Cbutton class=\\\"toggle-handle\\\"\\u003EBackUp\\u003C\\u002Fbutton\\u003E \\u003C\\u002Ftemplate\\u003E\\n                    \\u003Cdiv\\u003E\\n                        \\n                        \\u003Cdiv\\u003E \\u003Cbutton class=\\\"q-my-sm\\\" @click=\\\"ReturnBkp()\\\"\\u003E1. Update bkp first\\u003C\\u002Fbutton\\u003E\\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv\\u003E \\u003Cbutton class=\\\"q-my-sm\\\" v-if=\\\"g.f.PS(this.thisBkp) != ''\\\" @click=\\\"SendBkp()\\\"\\u003E2. Send bkp to server\\u003C\\u002Fbutton\\u003E\\n                        \\u003C\\u002Fdiv\\u003E\\n                        \\u003Ctoggle-content :show_inner_p=\\\"false\\\"\\u003E\\n                            \\u003Ctemplate #control\\u003E \\u003Cbutton class=\\\"toggle-handle\\\"\\u003EShow-bkp\\u003C\\u002Fbutton\\u003E \\u003C\\u002Ftemplate\\u003E\\n                            \\u003Cdiv\\u003E\\n                                \\u003Cpre\\u003E{{thisBkp}}\\u003C\\u002Fpre\\u003E\\n                            \\u003C\\u002Fdiv\\u003E\\n                        \\u003C\\u002Ftoggle-content\\u003E\\n                    \\u003C\\u002Fdiv\\u003E\\n                \\u003C\\u002Ftoggle-content\\u003E\\n            \\u003C\\u002Fdiv\\u003E\\n        \\u003C\\u002Fdiv\\u003E\\n        \\u003Chr\\u002F\\u003E\\n        \\u003Cdiv\\u003E\\n            \\u003Cbutton class=\\\"q-my-sm\\\" @click=\\\"g.f.PageChangeTo('MyGame-1')\\\"\\u003ENotes\\u003C\\u002Fbutton\\u003E\\n        \\u003C\\u002Fdiv\\u003E\\n    \\u003C\\u002Fdiv\\u003E\\n    \\u003Cdiv v-else\\u003E\\n        Not Logged In ??? \\u003Cbr\\u002F\\u003E\\n        \\u003Cbutton class=\\\"q-my-sm\\\" @click=\\\"g.f.PageChangeTo('Home')\\\"\\u003EGo to Home\\u003C\\u002Fbutton\\u003E \\u003Cbr\\u002F\\u003E\\n        \\u003Clogin\\u003E\\u003C\\u002Flogin\\u003E\\n    \\u003C\\u002Fdiv\\u003E\\n    \\u003Chr \\u002F\\u003E\\n\\u003C\\u002Fdiv\\u003E\",\n  \"setup\": function (props, { attrs, slots, emit, expose }) {\r\n                        return { g: Vue.computed(() =\u003E g) };\r\n                    },\n  \"data\": function () {\r\n    return { thisBkp: \"\" }\r\n},\n  \"mounted\": function () { g.$(\".page-app\").css({ \"display\": \"block\" }) },\n  \"methods\": {\n    \"update_g_r\": function (data) {\r\n                            var data = data\r\n                            var a = Object.keys(data)\r\n                            a.forEach(a_key =\u003E {\r\n                                var b = `g.r.${a_key} = data.${a_key}`\r\n                                eval(b)\r\n                            });\r\n                        },\n    \"update_g_f\": function (data) {\r\n                            var data = data\r\n                            var a = Object.keys(data)\r\n                            a.forEach(a_key =\u003E {\r\n                                var b = `g.f.${a_key} = data.${a_key}`\r\n                                eval(b)\r\n                            });\r\n                        },\n    \"ReturnBkp\": async function () {\r\n                            var settings = await g.db.settings.toArray()\r\n                                settings[0].user = { \r\n                                    \"status\": false,\r\n                                    \"name\": \"user_name\",\r\n                                    \"pass\": \"user_password\",\r\n                                    \"role\": \"\",\r\n                                    \"balance\": 0,\r\n                                    \"gender\": \"male\"\r\n                                }\r\n                                settings[0].defaultLang = \"unset\"\r\n                                settings.forEach(setti =\u003E {\r\n                                    delete setti.id\r\n                                });\r\n                            var pages = await g.db.pages.toArray()\r\n                            pages.forEach(page =\u003E {\r\n                                delete page.id\r\n                            });\r\n                            var comps = await g.db.comps.toArray()\r\n                            comps.forEach(comp =\u003E {\r\n                                delete comp.id\r\n                            });\r\n\r\n                            var Bkp = \"\"\r\n                            Bkp += `g.ReturnInstall = function(){ globalThis.install_db = {\\n\\n`\r\n                            Bkp += `settings:${g.f.S(settings)},\r\n\r\npages:${g.f.S(pages)},\r\n\r\ncomps:${g.f.S(comps)}\r\n\r\n`\r\n                            Bkp += `}}`\r\n                            this.thisBkp = Bkp\r\n                        },\n    \"SendBkp\": function() {\r\n    if (g.f.PS(this.thisBkp) != '') {\r\n        g.socket.emit(\r\n            'msg',\r\n            {\r\n                type: 'admin',\r\n                subt_type: \"UpdateBkp\",\r\n                data: this.thisBkp\r\n            }\r\n        )\r\n    }\r\n    return \"\"\r\n}\n  },\n  \"components\": {\n    \"login\": \"\",\n    \"logout\": \"\"\n  }\n}"
+  },
+  {
+    "name": "MyGame-1",
+    "pageTitle": "Game1",
+    "data": "{\n  \"template\": \"\\u003Cdiv  class=\\\"page-app\\\" style=\\\"display: none;\\\"\\u003E\\n    \\u003Chr \\u002F\\u003E\\n    \\u003Cdiv class=\\\"q-py-sm\\\"\\u003E Notes \\u003C\\u002Fdiv\\u003E\\n    \\u003Chr\\u002F\\u003E\\n    \\u003Cdiv class=\\\"q-py-sm\\\"\\u003E\\n        \\u003Cbutton @click=\\\"g.f.PageChangeTo('Home')\\\"\\u003EHome\\u003C\\u002Fbutton\\u003E\\n        \\u003Cbutton class=\\\"q-mx-sm\\\" @click=\\\"g.f.PageChangeTo('Admin')\\\"\\u003EAdmin\\u003C\\u002Fbutton\\u003E\\n        \\u003Cbutton v-if=\\\"g.r.settings[0].user.status\\\" @click=\\\"g.r.IsLive = ! g.r.IsLive\\\"\\u003EIsLive {{ g.r.IsLive }} \\u003C\\u002Fbutton\\u003E\\n    \\u003C\\u002Fdiv\\u003E    \\n    \\u003Chr \\u002F\\u003E\\n\\u003C\\u002Fdiv\\u003E\",\n  \"setup\": function (props, { attrs, slots, emit, expose }) {\r\n                        return { g: Vue.computed(() =\u003E g) };\r\n                    },\n  \"data\": function () {\r\n                        return {\r\n                        }\r\n                    },\n  \"mounted\": function () { g.$(\".page-app\").css({ \"display\": \"block\" }) }\n}"
+  },
+  {
+    "name": "Pages",
+    "pageTitle": "Pages",
+    "data": "{\n  \"template\": \"\\u003Cdiv class=\\\"page-app\\\" style=\\\"display: none;\\\"\\u003E\\n    \\u003Cdiv\\u003E Pages \\u003C\\u002Fdiv\\u003E\\n    \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E\\n        \\u003Cbutton @click=\\\"g.f.PageChangeTo('Home')\\\"\\u003EHome\\u003C\\u002Fbutton\\u003E\\n        \\u003Cbutton class=\\\"q-mx-sm\\\" @click=\\\"g.f.PageChangeTo('Admin')\\\"\\u003EAdmin\\u003C\\u002Fbutton\\u003E\\n        \\u003Cbutton class=\\\"q-mx-sm\\\" @click=\\\"g.r.IsLive = ! g.r.IsLive\\\"\\u003EIsLive {{ g.r.IsLive }} \\u003C\\u002Fbutton\\u003E\\n    \\u003C\\u002Fdiv\\u003E\\n    \\u003Chr\\u002F\\u003E\\n    \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E\\n        \\u003Cbutton @click=\\\"g.db.pages.bulkPut(g.f.PS(g.r.pages))\\\"\\u003E Update Pages \\u003C\\u002Fbutton\\u003E\\n    \\u003C\\u002Fdiv\\u003E\\n    \\u003Chr\\u002F\\u003E\\n    \\u003Cdiv class=\\\"q-my-md\\\" v-if=\\\"true\\\"\\u003E\\n        \\u003Cdiv v-for=\\\"(p, p_no) in g.f.PS(g.r.pages)\\\" class=\\\"q-my-sm\\\"\\u003E\\n            \\u003Ctoggle-content :show_inner_p=\\\"false\\\"\\u003E\\n                \\u003Ctemplate #control\\u003E\\n                    \\u003Cbutton class=\\\"toggle-handle\\\"\\u003E{{ p.name }}\\u003C\\u002Fbutton\\u003E\\n                \\u003C\\u002Ftemplate\\u003E\\n                \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E\\n                    \\u003Cbutton  @click=\\\"g.db.pages.delete(p.id)\\\"\\u003EX\\u003C\\u002Fbutton\\u003E\\n                    \\u003Cbutton class=\\\"q-mx-sm\\\"\\u003EDup\\u003C\\u002Fbutton\\u003E\\n                \\u003C\\u002Fdiv\\u003E\\n                \\u003Cdiv\\u003E\\n                    \\u003Cj-edit :model-value=\\\"g.f.PS(g.r.pages[p_no])\\\" :isopen=\\\"true\\\"\\n                        @update:model-value=\\\"g.r.pages[p_no] = g.f.PS($event)\\\"\\u003E \\u003C\\u002Fj-edit\\u003E\\n                \\u003C\\u002Fdiv\\u003E\\n            \\u003C\\u002Ftoggle-content\\u003E\\n        \\u003C\\u002Fdiv\\u003E\\n    \\u003C\\u002Fdiv\\u003E\\n\\u003C\\u002Fdiv\\u003E\",\n  \"setup\": function (props, { attrs, slots, emit, expose }) {\r\n                        return { g: Vue.computed(() =\u003E g) };\r\n                    },\n  \"mounted\": function () { g.$(\".page-app\").css({ \"display\": \"block\" }) },\n  \"components\": {}\n}"
+  },
+  {
+    "name": "Comps",
+    "pageTitle": "Comps",
+    "data": "{\n  \"template\": \"\\u003Cdiv class=\\\"page-app\\\" style=\\\"display: none;\\\"\\u003E\\n    \\u003Cspan v-if=\\\"false\\\" class=\\\"material-icons\\\" style=\\\"font-size: 24px;\\\"\\u003Eface\\u003C\\u002Fspan\\u003E\\n    \\u003Cdiv\\u003E Comps \\u003C\\u002Fdiv\\u003E\\n    \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E\\n        \\u003Cbutton @click=\\\"g.r.IsLive = ! g.r.IsLive\\\"\\u003EIsLive {{ g.r.IsLive }} \\u003C\\u002Fbutton\\u003E\\n        \\u003Cbutton class=\\\"q-mx-sm\\\" @click=\\\"g.f.PageChangeTo('Home')\\\"\\u003EHome\\u003C\\u002Fbutton\\u003E\\n        \\u003Cbutton class=\\\"q-mx-sm\\\" @click=\\\"g.f.PageChangeTo('Admin')\\\"\\u003EAdmin\\u003C\\u002Fbutton\\u003E\\n    \\u003C\\u002Fdiv\\u003E\\n    \\u003Chr \\u002F\\u003E\\n    \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E\\n        \\u003Cbutton @click=\\\"updateComps()\\\"\\u003E\\n                                Update Comps \\n                            \\u003C\\u002Fbutton\\u003E\\n    \\u003C\\u002Fdiv\\u003E\\n    \\u003Chr \\u002F\\u003E\\n    \\u003Cdiv v-if=\\\"true\\\" class=\\\"q-my-md\\\"\\u003E\\n        \\u003Cdiv v-for=\\\"(p, p_no) in g.f.PS(g.r.comps)\\\" class=\\\"q-my-sm\\\"\\u003E\\n            \\u003Ctoggle-content :show_inner_p=\\\"false\\\"\\u003E\\n                \\u003Ctemplate #control\\u003E\\n                    \\u003Cbutton class=\\\"toggle-handle\\\"\\u003E{{ p.name }}\\u003C\\u002Fbutton\\u003E\\n                \\u003C\\u002Ftemplate\\u003E\\n                \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E\\n                    \\u003Cbutton @click=\\\"g.db.comps.delete(p.id)\\\"\\u003EX\\u003C\\u002Fbutton\\u003E\\n                    \\u003Cbutton class=\\\"q-mx-sm\\\"\\u003EDup\\u003C\\u002Fbutton\\u003E\\n                \\u003C\\u002Fdiv\\u003E\\n                \\u003Cdiv\\u003E\\n                    \\u003Cj-edit :model-value=\\\"g.f.PS(g.r.comps[p_no])\\\" :isopen=\\\"true\\\"\\n                        @update:model-value=\\\"g.r.comps[p_no] = g.f.PS($event)\\\"\\u003E\\n                    \\u003C\\u002Fj-edit\\u003E\\n                \\u003C\\u002Fdiv\\u003E\\n\\n                \\u003Cdiv v-for=\\\"(prp, prp_no) in g.f.P(g.r.comps[p_no].data).props\\\"\\n                    v-if=\\\"false && g.f.P(g.r.comps[p_no].data).hasOwnProperty('props')\\\"\\u003E\\n                    {{ prp }}\\n                \\u003C\\u002Fdiv\\u003E\\n\\n            \\u003C\\u002Ftoggle-content\\u003E\\n        \\u003C\\u002Fdiv\\u003E\\n    \\u003C\\u002Fdiv\\u003E\\n\\u003C\\u002Fdiv\\u003E\",\n  \"setup\": function (props, { attrs, slots, emit, expose }) {\r\n                        return { g: Vue.computed(() =\u003E g) };\r\n                    },\n  \"data\": function () { return {} },\n  \"mounted\": function () { g.$(\".page-app\").css({ \"display\": \"block\" }) },\n  \"methods\": {\n    \"updateComps\": function () {\r\n                            var a = g.f.PS(g.r.comps)\r\n                            g.console.log('a', a)\r\n                            g.db.comps.bulkPut(a);\r\n                        }\n  },\n  \"components\": {}\n}"
+  },
+  {
+    "name": "Settings",
+    "pageTitle": "Settings",
+    "data": "{\n  \"template\": \"\\n                    \\u003Cdiv class=\\\"page-app\\\" style=\\\"display: none;\\\"\\u003E\\n                        \\u003Cspan v-if=\\\"false\\\" class=\\\"material-icons\\\" style=\\\"font-size: 24px;\\\"\\u003Eface\\u003C\\u002Fspan\\u003E\\n                        \\u003Cdiv\\u003E Settings \\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv\\u003E\\u003Cbutton @click=\\\"g.r.IsLive = ! g.r.IsLive\\\"\\u003EIsLive {{ g.r.IsLive }} \\u003C\\u002Fbutton\\u003E\\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\u003Cbutton @click=\\\"g.f.PageChangeTo('Home')\\\"\\u003EHome\\u003C\\u002Fbutton\\u003E  \\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\u003Cbutton @click=\\\"g.f.PageChangeTo('Admin')\\\"\\u003EAdmin\\u003C\\u002Fbutton\\u003E  \\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv\\u003E \\n                        \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\n                            \\u003Cbutton @click=\\\"updateSettings()\\\"\\u003E\\n                                Update Settings \\n                            \\u003C\\u002Fbutton\\u003E \\n                        \\u003C\\u002Fdiv\\u003E\\n                            \\u003Cdiv\\u003E\\n                                \\u003Cj-edit :model-value=\\\"g.f.PS(g.r.settings)\\\" :isopen=\\\"true\\\" @update:model-value=\\\"g.r.settings = g.f.PS($event)\\\"\\u003E \\u003C\\u002Fj-edit\\u003E\\n                            \\u003C\\u002Fdiv\\u003E\\n                        \\u003C\\u002Fdiv\\u003E\\n                    \\u003C\\u002Fdiv\\u003E\",\n  \"setup\": function (props, { attrs, slots, emit, expose }) {\r\n                        return { g: Vue.computed(() =\u003E g) };\r\n                    },\n  \"data\": function () { return {} },\n  \"mounted\": function () { g.$(\".page-app\").css({ \"display\": \"block\" }) },\n  \"methods\": {\n    \"updateSettings\": function () {\r\n                            var a = g.f.PS(g.r.settings)\r\n                            g.db.settings.bulkPut(a);\r\n                        }\n  }\n}"
+  },
+  {
+    "name": "Directives",
+    "pageTitle": "Directives",
+    "data": "{\n  \"template\": \"\\n                    \\u003Cdiv class=\\\"page-app\\\" style=\\\"display: none;\\\"\\u003E\\n                        \\u003Cspan v-if=\\\"false\\\" class=\\\"material-icons\\\" style=\\\"font-size: 24px;\\\"\\u003Eface\\u003C\\u002Fspan\\u003E\\n                        \\u003Cdiv\\u003E Directives \\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv\\u003E\\u003Cbutton @click=\\\"g.r.IsLive = ! g.r.IsLive\\\"\\u003EIsLive {{ g.r.IsLive }} \\u003C\\u002Fbutton\\u003E\\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\u003Cbutton @click=\\\"g.f.PageChangeTo('Home')\\\"\\u003EHome\\u003C\\u002Fbutton\\u003E  \\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\u003Cbutton @click=\\\"g.f.PageChangeTo('Admin')\\\"\\u003EAdmin\\u003C\\u002Fbutton\\u003E  \\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv\\u003E \\n                        \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\n                            \\u003Cbutton @click=\\\"updateDirectives()\\\"\\u003E\\n                                Update Directives \\n                            \\u003C\\u002Fbutton\\u003E \\n                        \\u003C\\u002Fdiv\\u003E\\n                            \\u003Cdiv\\u003E\\n                                \\u003Cj-edit :model-value=\\\"g.f.PS(g.r.directives)\\\" :isopen=\\\"true\\\" @update:model-value=\\\"g.r.directives = g.f.PS($event)\\\"\\u003E \\u003C\\u002Fj-edit\\u003E\\n                            \\u003C\\u002Fdiv\\u003E\\n                        \\u003C\\u002Fdiv\\u003E\\n                    \\u003C\\u002Fdiv\\u003E\",\n  \"setup\": function (props, { attrs, slots, emit, expose }) {\r\n                        return { g: Vue.computed(() =\u003E g) };\r\n                    },\n  \"data\": function () { return {} },\n  \"mounted\": function () { g.$(\".page-app\").css({ \"display\": \"block\" }) },\n  \"methods\": {\n    \"updateDirectives\": function () {\r\n                            var a = g.f.PS(g.r.directives)\r\n                            g.db.directives.bulkPut(a);\r\n                        }\n  }\n}"
+  },
+  {
+    "name": "Temps",
+    "pageTitle": "Temps",
+    "data": "{\n  \"template\": \"\\n                    \\u003Cdiv class=\\\"page-app\\\" style=\\\"display: none;\\\"\\u003E\\n                        \\u003Cspan v-if=\\\"false\\\" class=\\\"material-icons\\\" style=\\\"font-size: 24px;\\\"\\u003Eface\\u003C\\u002Fspan\\u003E\\n                        \\u003Cdiv\\u003E Temps \\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv\\u003E\\u003Cbutton @click=\\\"g.r.IsLive = ! g.r.IsLive\\\"\\u003EIsLive {{ g.r.IsLive }} \\u003C\\u002Fbutton\\u003E\\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\u003Cbutton @click=\\\"g.f.PageChangeTo('Home')\\\"\\u003EHome\\u003C\\u002Fbutton\\u003E  \\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\u003Cbutton @click=\\\"g.f.PageChangeTo('Admin')\\\"\\u003EAdmin\\u003C\\u002Fbutton\\u003E  \\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv v-if=\\\"g.r.settings[0].user.status\\\"\\u003E\\u003Cbutton @click=\\\"g.r.IsLive = ! g.r.IsLive\\\"\\u003EIsLive {{ g.r.IsLive }} \\u003C\\u002Fbutton\\u003E\\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv\\u003E \\n                        \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\n                            \\u003Cbutton @click=\\\"updateTemps()\\\"\\u003E\\n                                Update Temps \\n                            \\u003C\\u002Fbutton\\u003E \\n                        \\u003C\\u002Fdiv\\u003E\\n                            \\u003Cdiv\\u003E\\n                                \\u003Cj-edit :model-value=\\\"g.f.PS(g.r.temps)\\\" :isopen=\\\"true\\\" @update:model-value=\\\"g.r.temps = g.f.PS($event)\\\"\\u003E \\u003C\\u002Fj-edit\\u003E\\n                            \\u003C\\u002Fdiv\\u003E\\n                        \\u003C\\u002Fdiv\\u003E\\n                    \\u003C\\u002Fdiv\\u003E\",\n  \"setup\": function (props, { attrs, slots, emit, expose }) {\r\n                        return { g: Vue.computed(() =\u003E g) };\r\n                    },\n  \"data\": function () { return {} },\n  \"mounted\": function () { g.$(\".page-app\").css({ \"display\": \"block\" }) },\n  \"methods\": {\n    \"updateTemps\": function () {\r\n                            var a = g.f.PS(g.r.temps)\r\n                            g.db.temps.bulkPut(a);\r\n                        }\n  }\n}"
+  },
+  {
+    "name": "Mixins",
+    "pageTitle": "Mixins",
+    "data": "{\n  \"template\": \"\\n                    \\u003Cdiv class=\\\"page-app\\\" style=\\\"display: none;\\\"\\u003E\\n                        \\u003Cspan v-if=\\\"false\\\" class=\\\"material-icons\\\" style=\\\"font-size: 24px;\\\"\\u003Eface\\u003C\\u002Fspan\\u003E\\n                        \\u003Cdiv\\u003E Mixins \\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv\\u003E\\u003Cbutton @click=\\\"g.r.IsLive = ! g.r.IsLive\\\"\\u003EIsLive {{ g.r.IsLive }} \\u003C\\u002Fbutton\\u003E\\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\u003Cbutton @click=\\\"g.f.PageChangeTo('Home')\\\"\\u003EHome\\u003C\\u002Fbutton\\u003E  \\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\u003Cbutton @click=\\\"g.f.PageChangeTo('Admin')\\\"\\u003EAdmin\\u003C\\u002Fbutton\\u003E  \\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv\\u003E \\n                        \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\n                            \\u003Cbutton @click=\\\"updateMixins()\\\"\\u003E\\n                                Update Mixins \\n                            \\u003C\\u002Fbutton\\u003E \\n                        \\u003C\\u002Fdiv\\u003E\\n                            \\u003Cdiv\\u003E\\n                                \\u003Cj-edit :model-value=\\\"g.f.PS(g.r.mixins)\\\" :isopen=\\\"true\\\" @update:model-value=\\\"g.r.mixins = g.f.PS($event)\\\"\\u003E \\u003C\\u002Fj-edit\\u003E\\n                            \\u003C\\u002Fdiv\\u003E\\n                        \\u003C\\u002Fdiv\\u003E\\n                    \\u003C\\u002Fdiv\\u003E\",\n  \"setup\": function (props, { attrs, slots, emit, expose }) {\r\n                        return { g: Vue.computed(() =\u003E g) };\r\n                    },\n  \"data\": function () { return {} },\n  \"mounted\": function () { g.$(\".page-app\").css({ \"display\": \"block\" }) },\n  \"methods\": {\n    \"updateMixins\": function () {\r\n                            var a = g.f.PS(g.r.mixins)\r\n                            g.db.mixins.bulkPut(a);\r\n                        }\n  }\n}"
+  },
+  {
+    "name": "Composables",
+    "pageTitle": "Composables",
+    "data": "{\n  \"template\": \"\\n                    \\u003Cdiv class=\\\"page-app\\\" style=\\\"display: none;\\\"\\u003E\\n                        \\u003Cspan v-if=\\\"false\\\" class=\\\"material-icons\\\" style=\\\"font-size: 24px;\\\"\\u003Eface\\u003C\\u002Fspan\\u003E\\n                        \\u003Cdiv\\u003E Composables \\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv\\u003E\\u003Cbutton @click=\\\"g.r.IsLive = ! g.r.IsLive\\\"\\u003EIsLive {{ g.r.IsLive }} \\u003C\\u002Fbutton\\u003E\\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\u003Cbutton @click=\\\"g.f.PageChangeTo('Home')\\\"\\u003EHome\\u003C\\u002Fbutton\\u003E  \\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\u003Cbutton @click=\\\"g.f.PageChangeTo('Admin')\\\"\\u003EAdmin\\u003C\\u002Fbutton\\u003E  \\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv\\u003E \\n                        \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\n                            \\u003Cbutton @click=\\\"updateComposables()\\\"\\u003E\\n                                Update Composables \\n                            \\u003C\\u002Fbutton\\u003E \\n                        \\u003C\\u002Fdiv\\u003E\\n                            \\u003Cdiv\\u003E\\n                                \\u003Cj-edit :model-value=\\\"g.f.PS(g.r.composables)\\\" :isopen=\\\"true\\\" @update:model-value=\\\"g.r.composables = g.f.PS($event)\\\"\\u003E \\u003C\\u002Fj-edit\\u003E\\n                            \\u003C\\u002Fdiv\\u003E\\n                        \\u003C\\u002Fdiv\\u003E\\n                    \\u003C\\u002Fdiv\\u003E\",\n  \"setup\": function (props, { attrs, slots, emit, expose }) {\r\n                        return { g: Vue.computed(() =\u003E g) };\r\n                    },\n  \"data\": function () { return {} },\n  \"mounted\": function () { g.$(\".page-app\").css({ \"display\": \"block\" }) },\n  \"methods\": {\n    \"updateComposables\": function () {\r\n                            var a = g.f.PS(g.r.composables)\r\n                            g.db.composables.bulkPut(a);\r\n                        }\n  }\n}"
+  },
+  {
+    "name": "SetDefaultLang",
+    "pageTitle": "SetDefaultLang",
+    "data": "{\n  \"template\": \"\\n                    \\u003Cdiv class=\\\"page-app\\\" style=\\\"display: none;\\\"\\u003E\\n                        \\u003Cspan v-if=\\\"false\\\" class=\\\"material-icons\\\" style=\\\"font-size: 24px;\\\"\\u003Eface\\u003C\\u002Fspan\\u003E\\n                        \\u003Cdiv class=\\\"q-my-md\\\"\\u003E\\n                            \\u003Cdiv\\u003E Please choose your default Language \\u003C\\u002Fdiv\\u003E\\n                            \\u003Cdiv\\u003E\\n                                \\u003Cbutton @click=\\\"setHindi()\\\"\\u003EHindi\\u003C\\u002Fbutton\\u003E\\n                                \\u003Cbutton class=\\\"q-ml-sm\\\" @click=\\\"setEnglish()\\\"\\u003EEnglish\\u003C\\u002Fbutton\\u003E\\n                            \\u003C\\u002Fdiv\\u003E\\n                        \\u003C\\u002Fdiv\\u003E\\n                        \\u003Cdiv class=\\\"q-my-md\\\"\\u003E\\n                            \\u003Cdiv\\u003E Please choose your default Language \\u003C\\u002Fdiv\\u003E\\n                            \\u003Cdiv\\u003E\\n                                \\u003Cbutton @click=\\\"setHindi()\\\"\\u003EHindi\\u003C\\u002Fbutton\\u003E\\n                                \\u003Cbutton class=\\\"q-ml-sm\\\" @click=\\\"setEnglish()\\\"\\u003EEnglish\\u003C\\u002Fbutton\\u003E\\n                            \\u003C\\u002Fdiv\\u003E\\n                        \\u003C\\u002Fdiv\\u003E\\n                    \\u003C\\u002Fdiv\\u003E\",\n  \"setup\": function (props, { attrs, slots, emit, expose }) {\r\n                        return { g: Vue.computed(() =\u003E g) };\r\n                    },\n  \"data\": function () { return {} },\n  \"mounted\": function () { g.$(\".page-app\").css({ \"display\": \"block\" }) },\n  \"methods\": {\n    \"setHindi\": function () {\r\n                            var settings = g.f.PS(g.r.settings)\r\n                            settings[0].defaultLang = \"Hindi\"\r\n                            g.db.settings.bulkPut(settings)\r\n                            \u002F\u002F g.r.settings[0].defaultLang = \"Eng\"\r\n                            \u002F\u002F g.console.log('setting lang as hindi')\r\n                        },\n    \"setEnglish\": function () {\r\n                            var settings = g.f.PS(g.r.settings)\r\n                            settings[0].defaultLang = \"English\"\r\n                            g.db.settings.bulkPut(settings)\r\n                            \u002F\u002F g.r.settings[0].defaultLang = \"Eng\"\r\n                            \u002F\u002F g.console.log('setting lang as hindi')\r\n                        }\n  }\n}"
+  }
+],
+
+comps:[
+  {
+    "name": "login",
+    "data": "{\n  \"template\": \"\\u003Cdiv\\u003E\\n    \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\u003Cinput v-model=\\\"uname\\\" \\u002F\\u003E \\u003C\\u002Fdiv\\u003E\\n    \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\u003Cinput v-model=\\\"upass\\\" \\u002F\\u003E \\u003C\\u002Fdiv\\u003E\\n    \\u003Cdiv class=\\\"q-my-sm\\\"\\u003E \\u003Cbutton @click=\\\"login_try()\\\"\\u003ESubmit\\u003C\\u002Fbutton\\u003E \\u003C\\u002Fdiv\\u003E\\n\\u003C\\u002Fdiv\\u003E\",\n  \"setup\": function (props, { attrs, slots, emit, expose }) {\r\n                        return { g: Vue.computed(() =\u003E g) };\r\n                    },\n  \"data\": function () {\r\n                        return {\r\n                            uname: \"uname\",\r\n                            upass: \"password\"\r\n                        }\r\n                    },\n  \"methods\": {\n    \"login_try\": function () {\r\n                            g.socket.emit(\r\n                                'msg',\r\n                                {\r\n                                    type: 'admin',\r\n                                    subt_type: \"logIn\",\r\n                                    data: {\r\n                                        uname: this.uname,\r\n                                        upass: this.upass\r\n                                    }\r\n                                }\r\n                            )\r\n                        }\n  },\n  \"components\": {}\n}"
+  },
+  {
+    "name": "logout",
+    "data": "{\n  \"template\": \"\\u003Cbutton @click=\\\"logout_try()\\\"\\u003ELogout\\u003C\\u002Fbutton\\u003E\",\n  \"setup\": function (props, { attrs, slots, emit, expose }) {\r\n                        return { g: Vue.computed(() =\u003E g) };\r\n                    },\n  \"data\": function () {\r\n                        return {\r\n                        }\r\n                    },\n  \"methods\": {\n    \"logout_try\": function () { \u002F\u002F logOut\r\n                            g.socket.emit(\r\n                                'msg',\r\n                                {\r\n                                    type: 'admin',\r\n                                    subt_type: \"logOut\"\r\n                                }\r\n                            )\r\n                        }\n  }\n}"
+  }
+]
+
+}}

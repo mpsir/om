@@ -8,6 +8,7 @@
             border: none;
             padding-left: 0px;
             cursor: pointer;
+            
         }
 
         .ghost {
@@ -15,7 +16,7 @@
             color: white
         }
     </style>
-    <title>Sir</title>
+    <title>Home</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,170 +48,18 @@
     <script src="/Lib/iframe-resize/iframe-client.js"></script>
     <script src="/Lib/my-random-bytes.js"></script>
     <script src="/Lib/my-serialize.js"></script>
+    <script src="/JS/install.js" crossorigin="anonymous"></script>
     <script src="/JS/sir/sir.umd.cjs"></script>
 </head>
 
-<body onload="Start()" style="padding: 8px;">
-
-
-    <div id="app-div">
-        <div class="page-app" style="display: none;">
-
-
-
-            <draggable v-if="false" v-model="myArray" group="people" @start="drag=true" @end="drag=false" item-key="id">
-                <template #item="{element}">
-                    <div>{{element.name}}</div>
-                </template>
-            </draggable>
-
-            <div v-if="false">
-                <button @click="array_t[0]">click</button>
-            </div>
-
-            <span v-if="false" class="material-icons" style="font-size: 24px;">face</span>
-
-            <div class="q-my-md" v-if="false"><input type="text" v-model="array_t[0]" /></div>
-
-            <div v-if="true" class="q-m-lg q-mb-lg"><j-edit :model-value="object_t"
-                    @update:model-value="object_t = g.f.PS($event); g.console.log('page > object_t > ', g.f.PS(object_t))"></j-edit>
-            </div>
-            <div v-if="true" class="q-m-lg"><j-edit :model-value="array_t"
-                    @update:model-value="array_t = g.f.PS($event); g.console.log('page > array_t >', g.f.PS(array_t))"></j-edit>
-            </div>
-
-
-        </div>
-    </div>
-
+<body onload="g.Sir.PageStart()" style="padding: 8px;">
+    <div id="app-div"> </div>
     <script>
-        function Start() {
-            var page = {
-                setup: function (props, { attrs, slots, emit, expose }) {
-                    return { g: Vue.computed(() => g) };
-                },
-                data: function () {
-                    return {
-                        // label: Vue.ref('Click me'),
-                        t1: g.f.P(`
-                            [
-                                {
-                                    "id": 0,
-                                    "name": "a",
-                                    "data": 5
-                                },
-                                {
-                                    "id": 1,
-                                    "name": "b",
-                                    "data": function(){}
-                                }
-                            ]
-                        `),
-                        t2: g.f.P(`
-                            [
-                                {
-                                    "id": 0,
-                                    "name": 0,
-                                    "data": "1"
-                                },
-                                {
-                                    "id": 1,
-                                    "name": 1,
-                                    "data": 2
-                                },
-                                {
-                                    "id": 2,
-                                    "name": 2,
-                                    "data": function () { }
-                                }
-                            ]
-                        `),
-                        isAppStarted: false,
-                        myArray: [
-                            { name: 'a1', id: 1 },
-                            { name: 'a2', id: 2 },
-                        ],
-                        string_t: 'test_string',
-                        number_t: 55,
-
-                        object_t: {
-                            nul: null,
-                            undefine: undefined,
-                            strin: "string",
-                            numbe: 5,
-                            boolea: false,
-                            obj: {
-                                nul: null,
-                                undefine: undefined,
-                                strin: "string",
-                                numbe: 5,
-                                boolea: false,
-                                obj: { a: 5 },
-                                arr: [{ a: 5 }]
-                            },
-                            arr: [1, 2,
-                                null,
-                                undefined,
-                                "string",
-                                5,
-                                false,
-                                { a: 5 },
-                                [{ a: 5 }]
-                            ],
-                            date1: new Date(),
-                            map1: new Map(),
-                            set1: new Set(),
-                            fun1: function () { g.console.alert(5) },
-                            regexp: /w3schools/i,
-                            bigint1: BigInt(10)
-                        },
-
-                        array_t: [
-                            null,
-                            undefined,
-                            "string",
-                            5,
-                            false,
-                            {
-                                nul: null,
-                                undefine: undefined,
-                                strin: "string",
-                                numbe: 5,
-                                boolea: false,
-                                obj: { a: 5 },
-                                arr: [{ a: 5 }]
-                            },
-                            [1, 2, {
-                                nul: null,
-                                undefine: undefined,
-                                strin: "string",
-                                numbe: 5,
-                                boolea: false,
-                                obj: { a: 5 },
-                                arr: [{ a: 5 }]
-                            }],
-                            new Date(),
-                            new Map(),
-                            new Set(),
-                            function () { g.console.alert(5) },
-                            /w3schools/i,
-                            BigInt(10)
-                        ],
-
-                        bool_t: false,
-                        null_t: null,
-                        undefined_t: undefined,
-                        date_t: new Date(),
-                        map_t: new Map([['hello', 'world']]),
-                        set_t: new Set([123, 456]),
-                        fn_t: function echo(arg) { return arg; },
-                        re_t: /w3schools/i,
-                        big_t: BigInt(10)
-                    }
-                },
-                mounted: function () { g.$(".page-app").css({ "display": "block" }) }
-            }
-            Sir.CreateApp(page, { Quasar: true, Sir: true, Ast: true })
+        if(g == undefined){
+            location.reload()
+        }
+        if(g.Sir == undefined){
+            location.reload()
         }
     </script>
     <script src="/Lib/quasar/quasar.js"></script>
@@ -218,7 +67,6 @@
     <script src="/Lib/monaco-editor/min/vs/loader.js"></script>
     <script src="/Lib/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
     <script src="/Lib/monaco-editor/min/vs/editor/editor.main.js"></script>
-
 </body>
 
 </html>
