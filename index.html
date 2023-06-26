@@ -16,6 +16,9 @@
             color: white
         }
     </style>
+    <script>
+        globalThis.ev = eval
+    </script>
     <title>Home</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,10 +58,7 @@
 <body onload="g.Sir.PageStart()" style="padding: 8px;">
     <div id="app-div"> </div>
     <script>
-        if(g == undefined){
-            location.reload()
-        }
-        if(g.Sir == undefined){
+        if(g == undefined || g.Sir == undefined){
             location.reload()
         }
     </script>
