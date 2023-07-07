@@ -1,79 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <style>
-        .btn-hide-1 {
-            background-color: transparent;
-            border: none;
-            padding-left: 0px;
-            cursor: pointer;
-        }
-
-        .ghost {
-            background-color: black;
-            color: white
-        }
-    </style>
-    <script>
-        globalThis.ev = eval
-    </script>
-    <title>Sir</title>
+    <title>Home</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://mpsir.github.io/om/Lib/material-icons/iconfont/material-icons.css"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://mpsir.github.io/om/Lib/quasar/quasar.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://mpsir.github.io/om/CSS/roboto.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://mpsir.github.io/om/Lib/jq/jquery-ui.min.css" crossorigin="anonymous">
-    <link rel="icon" type="image/x-icon" crossorigin="anonymous"
-        href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAADUsYIAS6/pAAI29gD9/f4A+fHmAA8x0gC8vroAx6HiACBbtgAHbPMAUIvjAD7f+AA6lt4Ah+L9AKyemQD8/vwA/f78AP7+/ADw+P0ATYDRANvUxgCp+PgA6KfAAPRdwQC1ldQA+P79APDXtQB+W6sAqTWYAPz+/QDLx8sArLypAP7+/QD51qcABB/NAOO2hgBXaacAkDZ+APb49gCguuoA2cK4AAMy6wDI9v4A/f7+ANSYuwAFL+MA/v7+AMV7qgBcQ8gA64PMAPLZuQDv1/kAy2frAMK1zgDt7e0ACTbxAOa8oAAH2vsAxV/hAN6F0ABneOEA4IjxAP7+/wCILHsAb4FkAHjKuAChl+sAZEWSAO3l7ADvv/wA3bOBAA1F6QDaluwAj0DIANG1zwD4+f4Al3VLAB2n7gCEW6YApmnQADJmtADJl+IA8s28AP3a0QDKm74A79GxAP7//gD09PQA///+AGmD5QDXg/EA3j6qAKNOkACe7/4A3Y32AB89pQD1f9IAq+z+AD1k5AD9//8A/v//AP///wBxpJkAYqr9AP3t3wDw8PAAtrydALy0xAD7/voASdbuAP39/QDu7u4A39/fAE7Q3gBQlv0AqntEAEux/ADktZcA+P3+AGnLwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZWVlZWVlZWVlZEQrZWVlZWVlZWVlYx5hckpOMWVlZWVlZWVlLlxDZwE7HDACLmVlZWVlBGovPyYqGRAFX2JlZWVlR1l3MlZWZWVlEilGZWVlHQwIditlZWVlZRFATBFlZSwYN2VlZWVlZWVlGkg1ZS4kJS5lV29waWllZTM8XmUuFgZlZVc2cGlpbmVlPUVlIUEAZWVlZWVlZWVlZXUfFGUjUi5lZVhlZWVlZQNoU2VlBxNJC3FaNGtlZWVgG1suZStPUU0JOkIOZWU+DRdUZWVlLj4VOSBVZjgtCm10K2VlZWVlZWVlbHMoUCJdD2VlZWVlZWVlZWVlZSdLZWVlZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" />
-    <link rel="stylesheet" data-name="vs/editor/editor.main" crossorigin="anonymous"
-        href="https://mpsir.github.io/om/Lib/monaco-editor/min/vs/editor/editor.main.css" />
-    <link rel="stylesheet" href="https://mpsir.github.io/om/Lib/vue-select/vue-select.css" crossorigin="anonymous">
-    <script> var g = globalThis </script>
-    <script src="https://mpsir.github.io/om/Lib/core-js-bundle@3.29.1/minified.min.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/socket-io-client.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/rxjs.umd.min.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/sortablejs/Sortable.min.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/dexie/dexie.min.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/vue/vue.global.min.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/vue-select/vue-select.umd.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/vuedraggable/vuedraggable.umd.min.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/@vueuse/shared@9.13.0/index.iife.min.js"
-        crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/@vueuse/core@9.13.0/index.iife.min.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/@vueuse/rxjs/index.iife.min.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/vue3-shortkey.min.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/jq/jquery.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/jq/jquery-ui.min.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/jq/touch.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/iframe-resize/iframe-host.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/iframe-resize/iframe-client.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/my-random-bytes.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/my-serialize.js" crossorigin="anonymous"></script>
-    <script src="/JS/install.js" crossorigin="anonymous"></script>
-    <script src="/JS/sir/sir.umd.cjs" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAADUsYIAS6/pAAI29gD9/f4A+fHmAA8x0gC8vroAx6HiACBbtgAHbPMAUIvjAD7f+AA6lt4Ah+L9AKyemQD8/vwA/f78AP7+/ADw+P0ATYDRANvUxgCp+PgA6KfAAPRdwQC1ldQA+P79APDXtQB+W6sAqTWYAPz+/QDLx8sArLypAP7+/QD51qcABB/NAOO2hgBXaacAkDZ+APb49gCguuoA2cK4AAMy6wDI9v4A/f7+ANSYuwAFL+MA/v7+AMV7qgBcQ8gA64PMAPLZuQDv1/kAy2frAMK1zgDt7e0ACTbxAOa8oAAH2vsAxV/hAN6F0ABneOEA4IjxAP7+/wCILHsAb4FkAHjKuAChl+sAZEWSAO3l7ADvv/wA3bOBAA1F6QDaluwAj0DIANG1zwD4+f4Al3VLAB2n7gCEW6YApmnQADJmtADJl+IA8s28AP3a0QDKm74A79GxAP7//gD09PQA///+AGmD5QDXg/EA3j6qAKNOkACe7/4A3Y32AB89pQD1f9IAq+z+AD1k5AD9//8A/v//AP///wBxpJkAYqr9AP3t3wDw8PAAtrydALy0xAD7/voASdbuAP39/QDu7u4A39/fAE7Q3gBQlv0AqntEAEux/ADktZcA+P3+AGnLwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZWVlZWVlZWVlZEQrZWVlZWVlZWVlYx5hckpOMWVlZWVlZWVlLlxDZwE7HDACLmVlZWVlBGovPyYqGRAFX2JlZWVlR1l3MlZWZWVlEilGZWVlHQwIditlZWVlZRFATBFlZSwYN2VlZWVlZWVlGkg1ZS4kJS5lV29waWllZTM8XmUuFgZlZVc2cGlpbmVlPUVlIUEAZWVlZWVlZWVlZXUfFGUjUi5lZVhlZWVlZQNoU2VlBxNJC3FaNGtlZWVgG1suZStPUU0JOkIOZWU+DRdUZWVlLj4VOSBVZjgtCm10K2VlZWVlZWVlbHMoUCJdD2VlZWVlZWVlZWVlZSdLZWVlZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" />
+    <style>
+        .btn-hide-1 { background-color: transparent; border: none; padding-left: 0px; cursor: pointer; }
+        .ghost { background-color: black; color: white }
+    </style>
+    <script> var g = globalThis; g.ev = eval; </script>
+    <script src="/JS/sir/sir.umd.cjs"></script>
 </head>
-
-<body onload="g.Sir.PageStart()" style="padding: 8px;">
-    <div id="app-div"> </div>
-    <script>
-        if(g == undefined){
-            location.reload()
-        }
-        if(!Sir){
-            location.reload()
-        }
-    </script>
-    <script src="https://mpsir.github.io/om/Lib/quasar/quasar.js" crossorigin="anonymous"></script>
-    <script> var require = { paths: { vs: 'https://mpsir.github.io/om/Lib/monaco-editor/min/vs' } }; </script>
-    <script src="https://mpsir.github.io/om/Lib/monaco-editor/min/vs/loader.js" crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/monaco-editor/min/vs/editor/editor.main.nls.js"
-        crossorigin="anonymous"></script>
-    <script src="https://mpsir.github.io/om/Lib/monaco-editor/min/vs/editor/editor.main.js"
-        crossorigin="anonymous"></script>
-</body>
-
+<body onload="g.AppStart()"> </body>
 </html>
