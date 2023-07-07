@@ -1,14 +1,14 @@
-var e = "";
+var t = "";
 function s() {
-  const t = location.origin;
-  t == "http://localhost:8080" && (e = "http://localhost:8080"), t == "http://localhost:3000" ? e = "http://localhost:3000" : e = "https://mpsir.github.io/om";
+  const e = location.origin;
+  e == "http://localhost:8080" ? t = "http://localhost:8080" : e == "http://localhost:3000" ? t = "http://localhost:3000" : t = "https://mpsir.github.io/om";
 }
 s();
-function r(t, n = !1) {
+function r(e, n = !1) {
   var a = "", o = new XMLHttpRequest();
   return o.withCredentials = !0, o.onreadystatechange = function() {
     this.readyState == 4 && this.status == 200 ? a = this.responseText : console.log("status ", this.status);
-  }, o.open("GET", t, n), o.send(), a;
+  }, o.open("GET", e, n), o.send(), a;
 }
 var i = {
   Version: 3
@@ -27,12 +27,12 @@ async function u() {
 async function p() {
   console.log(`installing ...
 
-`), console.log("TargetURL", e);
-  var t = r(e + "/Lib/core-js-bundle@3.29.1/minified.min.js");
-  console.log(t);
+`), console.log("TargetURL", t);
+  var e = r(t + "/Lib/core-js-bundle@3.29.1/minified.min.js");
+  console.log(e);
 }
-function l(t = !0, n = !0) {
-  console.log("deleting frame ..."), t ? localStorage.clear() : localStorage.removeItem("Frame_VP"), n && location.reload();
+function l(e = !0, n = !0) {
+  console.log("deleting frame ..."), e ? localStorage.clear() : localStorage.removeItem("Frame_VP"), n && location.reload();
 }
 globalThis.AppDelete = l;
 async function f() {
