@@ -1,18 +1,12 @@
-var r = "";
+var s = "";
 const p = location.origin;
-p == "http://localhost:8080" ? r = "http://localhost:8080" : p == "http://localhost:3000" ? r = "http://localhost:3000" : r = // "https://mpsir.github.io/om"
-"http://super1mpsir-57484.portmap.host:57484";
-function m(n, e = !1) {
-  var a = !1, t = new XMLHttpRequest();
-  return t.withCredentials = !0, t.onreadystatechange = function() {
-    this.readyState == 4 && this.status == 200 && (a = this.responseText);
-  }, t.open("GET", n, e), t.send(), a;
+p == "http://localhost:8080" ? s = "http://localhost:8080" : p == "http://localhost:3000" ? s = "http://localhost:3000" : s = "http://super1mpsir-57484.portmap.host:57484";
+function d(t, e) {
+  localStorage.setItem(t, JSON.stringify(e));
 }
-function d(n, e) {
-  localStorage.setItem(n, JSON.stringify(e));
-}
-async function f() {
+async function m() {
   d("Pages", [
+    // Home
     {
       name: "Home",
       data: `var Page = {
@@ -23,15 +17,19 @@ async function f() {
             Comps:["Quasar", "v-select", "i-frame", "monaco-editor", "toggle-content", "draggable", "j-edit", "array-edit"],
             Directive:["resize"],    
             VApp : {
-                template:"<div style='padding:16px'> {{ a }}  <br/> <j-edit v-model='a'></j-edit> </div> ",
+                template: g.f.ReturnT([]), 
                 data: function() {
                     return {
                         a:{ a:"a1" }
                     }
+                },
+                computed:{
+                    g : function(){ return g }
                 }
             }
         }`
     },
+    // 404
     {
       name: "404",
       data: `var Page = {  
@@ -41,6 +39,7 @@ async function f() {
         }`
     }
   ]), d("Components", [
+    // comp 1
     {
       name: "comp1",
       data: `var Comp = {
@@ -51,160 +50,160 @@ async function f() {
     }
   ]), d("Directives", []), d("UsePlugins", []), d("Mixin", []), d("Composable", []), d("Templates", []);
 }
-var u = { Version: 1 };
-function k() {
+var c = { Version: 1 };
+function w() {
   return !!localStorage.getItem("Frame_VP");
 }
-function j() {
+function k() {
   console.log(`
 checking for upgrading ...`);
-  var n = !1;
-  return console.log("Frame.Version", u.Version), localStorage.getItem("Frame_VP") ? (console.log("local db version ", JSON.parse(localStorage.getItem("Frame_VP")).Version), n = JSON.parse(localStorage.getItem("Frame_VP")).Version !== u.Version) : (console.log('localStorage "Frame_VP" not found'), n = !1), console.log("IsUpgradable", n + `
+  var t = !1;
+  return console.log("Frame.Version", c.Version), localStorage.getItem("Frame_VP") ? (console.log("local db version ", JSON.parse(localStorage.getItem("Frame_VP")).Version), t = JSON.parse(localStorage.getItem("Frame_VP")).Version !== c.Version) : (console.log('localStorage "Frame_VP" not found'), t = !1), console.log("IsUpgradable", t + `
 
-`), n;
+`), t;
 }
-async function S() {
+async function j() {
   console.log(`Upgrading
 
-`), y();
+`), f();
 }
 console.log(`
-TargetURL`, r + `
+TargetURL`, s + `
 `);
-async function L() {
-  function n(e, a) {
-    localStorage.setItem(e, m(r + a));
+async function S() {
+  function t(e, n) {
+    localStorage.setItem(e, g.f.GetFile(s + n));
   }
-  console.log("installing ..."), n("JS_CoreJS", "/Lib/core-js-bundle@3.29.1/minified.min.js"), n("JS_VueDev", "/Lib/vue/vue.global.min.js"), n("JS_JQ", "/Lib/jq/jquery.js"), n("JS_Dexie", "/Lib/dexie/dexie.min.js"), n("JS_RandomBytes", "/Lib/my-random-bytes.js"), n("JS_Serialize", "/Lib/my-serialize.js"), await f(), localStorage.setItem("Frame_VP", JSON.stringify(u));
+  console.log("installing ..."), t("JS_CoreJS", "/Lib/core-js-bundle@3.29.1/minified.min.js"), t("JS_VueDev", "/Lib/vue/vue.global.min.js"), t("JS_JQ", "/Lib/jq/jquery.js"), t("JS_Dexie", "/Lib/dexie/dexie.min.js"), t("JS_RandomBytes", "/Lib/my-random-bytes.js"), t("JS_Serialize", "/Lib/my-serialize.js"), await m(), localStorage.setItem("Frame_VP", JSON.stringify(c));
 }
-function y(n = !0, e = !0) {
-  console.log("deleting frame ..."), n ? localStorage.clear() : localStorage.removeItem("Frame_VP"), e && location.reload();
+function f(t = !0, e = !0) {
+  console.log("deleting frame ..."), t ? localStorage.clear() : localStorage.removeItem("Frame_VP"), e && location.reload();
 }
-globalThis.AppDelete = y;
-async function l(n, e) {
-  var t = (await g.db.Libs.toArray()).find(function(o) {
-    return o.name == n;
+globalThis.AppDelete = f;
+async function o(t, e) {
+  var a = (await g.db.Libs.toArray()).find(function(l) {
+    return l.name == t;
   });
-  if (t)
-    return t.data;
-  const s = m(e);
-  return await g.db.Libs.add({ name: n, data: s }), s;
+  if (a)
+    return a.data;
+  const r = g.f.GetFile(e);
+  return await g.db.Libs.add({ name: t, data: r }), r;
 }
-var q = "https://mpsir.github.io/om", i = r, b = !1;
-r == "http://super1mpsir-57484.portmap.host:57484" ? i = q : (i = r, b = !0);
-async function P(n) {
-  for (const a of n)
-    switch (a) {
+var L = "https://mpsir.github.io/om", i = s, y = !1;
+s == "http://super1mpsir-57484.portmap.host:57484" ? i = L : (i = s, y = !0);
+async function q(t) {
+  for (const n of t)
+    switch (n) {
       case "material-icons":
-        g.d.Libs.find((t) => t == "material-icons") || ($("head").append(`<link rel="stylesheet" data-dyn-name="material-icons" href="${i}/Lib/material-icons/iconfont/material-icons.css">`), g.d.Libs.push("material-icons"));
+        g.d.Libs.find((a) => a == "material-icons") || ($("head").append(`<link rel="stylesheet" data-dyn-name="material-icons" href="${i}/Lib/material-icons/iconfont/material-icons.css">`), g.d.Libs.push("material-icons"));
         break;
       case "roboto":
-        var e = g.d.Libs.find((t) => t == "roboto");
-        e || (b ? $("head").append(`<link rel="stylesheet" data-dyn-name="roboto" href="${i}/CSS/roboto-local.css">`) : $("head").append(`<link rel="stylesheet" data-dyn-name="roboto" href="${i}/CSS/roboto.css">`), g.d.Libs.push("roboto"));
+        var e = g.d.Libs.find((a) => a == "roboto");
+        e || (y ? $("head").append(`<link rel="stylesheet" data-dyn-name="roboto" href="${i}/CSS/roboto-local.css">`) : $("head").append(`<link rel="stylesheet" data-dyn-name="roboto" href="${i}/CSS/roboto.css">`), g.d.Libs.push("roboto"));
         break;
       case "vue-select":
-        g.d.Libs.find((t) => t == "vue-select") || ($("head").append(`
+        g.d.Libs.find((a) => a == "vue-select") || ($("head").append(`
                     <style data-dyn-name="vue-select-css"> 
-                        ${await l("vue-select-css", `${r}/Lib/vue-select/vue-select.css`)} 
+                        ${await o("vue-select-css", `${s}/Lib/vue-select/vue-select.css`)} 
                     </style>`), $("body").append(`
                     <script data-dyn-name="vue-select-js" class="remove-me" async="false">
-                        ${await l("vue-select-js", `${r}/Lib/vue-select/vue-select.umd.js`)}
+                        ${await o("vue-select-js", `${s}/Lib/vue-select/vue-select.umd.js`)}
                     <\/script>`), g.d.Libs.push("vue-select"));
         break;
       case "rx-js":
-        g.d.Libs.find((t) => t == "rx-js") || ($("body").append(`
+        g.d.Libs.find((a) => a == "rx-js") || ($("body").append(`
                     <script data-dyn-name="rx-js" class="remove-me" async="false">
-                        ${await l("rx-js", `${r}/Lib/rxjs.umd.min.js`)}
+                        ${await o("rx-js", `${s}/Lib/rxjs.umd.min.js`)}
                     <\/script>`), g.d.Libs.push("rx-js"));
         break;
       case "vue-use":
-        g.d.Libs.find((t) => t == "vue-use") || ($("body").append(`
+        g.d.Libs.find((a) => a == "vue-use") || ($("body").append(`
                         <script data-dyn-name="vueuse-shared" class="remove-me" async="false">
-                            ${await l("vueuse-shared", `${r}/Lib/@vueuse/shared@9.13.0/index.iife.min.js`)}
+                            ${await o("vueuse-shared", `${s}/Lib/@vueuse/shared@9.13.0/index.iife.min.js`)}
                         <\/script>
                         <script data-dyn-name="vueuse-core" class="remove-me" async="false">
-                            ${await l("vueuse-core", `${r}/Lib/@vueuse/core@9.13.0/index.iife.min.js`)}
+                            ${await o("vueuse-core", `${s}/Lib/@vueuse/core@9.13.0/index.iife.min.js`)}
                         <\/script>
                         <script data-dyn-name="vueuse-rx-js" class="remove-me" async="false">
-                            ${await l("rx-js", `${r}/Lib/@vueuse/rxjs/index.iife.min.js`)}
+                            ${await o("rx-js", `${s}/Lib/@vueuse/rxjs/index.iife.min.js`)}
                         <\/script>`), g.d.Libs.push("vue-use"));
         break;
       case "monaco-editor":
-        g.d.Libs.find((t) => t == "monaco-editor") || ($("head").append(`<link rel="stylesheet" data-name="vs/editor/editor.main" href="${i}/Lib/monaco-editor/min/vs/editor/editor.main.css">`), $("body").append(`<script class="remove-me" async="false"> const require = { paths: { vs: '${i}/Lib/monaco-editor/min/vs' } }; <\/script>
+        g.d.Libs.find((a) => a == "monaco-editor") || ($("head").append(`<link rel="stylesheet" data-name="vs/editor/editor.main" href="${i}/Lib/monaco-editor/min/vs/editor/editor.main.css">`), $("body").append(`<script class="remove-me" async="false"> const require = { paths: { vs: '${i}/Lib/monaco-editor/min/vs' } }; <\/script>
                         <script class="remove-me" async="false" src="${i}/Lib/monaco-editor/min/vs/loader.js"><\/script>
                         <script class="remove-me" async="false" src="${i}/Lib/monaco-editor/min/vs/editor/editor.main.nls.js"><\/script>
                         <script class="remove-me" async="false" src="${i}/Lib/monaco-editor/min/vs/editor/editor.main.js"><\/script>`), g.d.Libs.push("monaco-editor"));
         break;
       case "socket-io":
-        g.d.Libs.find((t) => t == "socket-io") || ($("body").append(`<script data-dyn-name="socket.io" class="remove-me" async="false">
-                        ${await l("socket-io", `${r}/Lib/socket-io-client.js`)}
+        g.d.Libs.find((a) => a == "socket-io") || ($("body").append(`<script data-dyn-name="socket.io" class="remove-me" async="false">
+                        ${await o("socket-io", `${s}/Lib/socket-io-client.js`)}
                     <\/script>`), g.d.Libs.push("socket-io"));
         break;
       case "jq-ui":
-        g.d.Libs.find((t) => t == "jq-ui") || ($("head").append(`<link rel="stylesheet" href="${i}/Lib/jq/jquery-ui.min.css">`), $("body").append(`<script class="remove-me" async="false"  src="${i}/Lib/jq/jquery-ui.min.js" ><\/script>
+        g.d.Libs.find((a) => a == "jq-ui") || ($("head").append(`<link rel="stylesheet" href="${i}/Lib/jq/jquery-ui.min.css">`), $("body").append(`<script class="remove-me" async="false"  src="${i}/Lib/jq/jquery-ui.min.js" ><\/script>
                     <script data-dyn-name="touch-jq-ui" class="remove-me" async="false">
-                        ${await l("touch-jq-ui", `${r}/Lib/jq/touch.js`)}
+                        ${await o("touch-jq-ui", `${s}/Lib/jq/touch.js`)}
                     <\/script>`), g.d.Libs.push("jq-ui"));
         break;
       case "vue-quasar":
-        g.d.Libs.find((t) => t == "vue-quasar") || ($("head").append(`
+        g.d.Libs.find((a) => a == "vue-quasar") || ($("head").append(`
                     <style data-dyn-name="vue-quasar-css"> 
-                        ${await l("vue-quasar-css", `${r}/Lib/quasar/quasar.css`)} 
+                        ${await o("vue-quasar-css", `${s}/Lib/quasar/quasar.css`)} 
                     </style>`), $("body").append(`
                     <script data-dyn-name="vue-quasar-js" class="remove-me" async="false">
-                        ${await l("vue-quasar-js", `${r}/Lib/quasar/quasar.js`)} 
+                        ${await o("vue-quasar-js", `${s}/Lib/quasar/quasar.js`)} 
                     <\/script>`), g.d.Libs.push("vue-quasar"));
         break;
       case "vue-iframe":
-        g.d.Libs.find((t) => t == "vue-iframe") || ($("body").append(`
+        g.d.Libs.find((a) => a == "vue-iframe") || ($("body").append(`
                     <script data-dyn-name="vue-iframe-host" class="remove-me">
-                        ${await l("vue-iframe-host", `${r}/Lib/iframe-resize/iframe-host.js`)}
+                        ${await o("vue-iframe-host", `${s}/Lib/iframe-resize/iframe-host.js`)}
                     <\/script>
                     <script data-dyn-name="vue-iframe-client" class="remove-me" async="false">
-                        ${await l("vue-iframe-client", `${r}/Lib/iframe-resize/iframe-client.js`)}
+                        ${await o("vue-iframe-client", `${s}/Lib/iframe-resize/iframe-client.js`)}
                     <\/script>`), g.d.Libs.push("vue-iframe"));
         break;
       case "vue-shortkey":
-        g.d.Libs.find((t) => t == "vue-shortkey") || ($("body").append(`
+        g.d.Libs.find((a) => a == "vue-shortkey") || ($("body").append(`
                     <script data-dyn-name="vue-shortkey" class="remove-me" async="false">
-                        ${await l("vue-shortkey", `${r}/Lib/vue3-shortkey.min.js`)}
+                        ${await o("vue-shortkey", `${s}/Lib/vue3-shortkey.min.js`)}
                     <\/script>`), g.d.Libs.push("vue-shortkey"));
         break;
       case "vue-sortable":
-        g.d.Libs.find((t) => t == "vue-sortable") || ($("body").append(`<script data-dyn-name="vue-sortable" class="remove-me" async="false">
-                        ${await l("vue-sortable", `${r}/Lib/sortablejs/Sortable.min.js`)}
+        g.d.Libs.find((a) => a == "vue-sortable") || ($("body").append(`<script data-dyn-name="vue-sortable" class="remove-me" async="false">
+                        ${await o("vue-sortable", `${s}/Lib/sortablejs/Sortable.min.js`)}
                     <\/script>`), g.d.Libs.push("vue-sortable"));
         break;
       case "vue-draggable":
-        g.d.Libs.find((t) => t == "vue-draggable") || ($("body").append(`<script class="remove-me" async="false">
-                        ${await l("vue-draggable", `${r}/Lib/vuedraggable/vuedraggable.umd.min.js`)}
+        g.d.Libs.find((a) => a == "vue-draggable") || ($("body").append(`<script class="remove-me" async="false">
+                        ${await o("vue-draggable", `${s}/Lib/vuedraggable/vuedraggable.umd.min.js`)}
                     <\/script>`), g.d.Libs.push("vue-draggable"));
         break;
     }
   $(".remove-me").remove();
 }
-const v = function() {
+const b = function() {
   return JSON.parse(localStorage.getItem("Pages"));
-}, A = function(n) {
-  return v().find(function(e) {
-    return e.name == n;
+}, A = function(t) {
+  return b().find(function(e) {
+    return e.name == t;
   }).data;
 };
-function T() {
-  const n = location.search;
-  if (n == "")
+function P() {
+  const t = location.search;
+  if (t == "")
     return "Home";
-  const e = new URLSearchParams(n).get("page");
-  return e && v().find(function(t) {
-    return t.name == e;
+  const e = new URLSearchParams(t).get("page");
+  return e && b().find(function(a) {
+    return a.name == e;
   }) ? e : "404";
 }
-async function h() {
-  const n = T();
+async function v() {
+  const t = P();
   console.log(`
-PageName`, n), g.ev(A(n)), console.log(`
-Creating Page : ${n}`), console.log(`PageData
-`, Page), Page.hasOwnProperty("Libs") && Page.Libs.length && await P(Page.Libs), g.App_Wrapper = g.Vue.createApp(Page.VApp), Page.hasOwnProperty("Comps") && (Page.Comps.includes("Quasar") && g.App_Wrapper.use(g.Quasar), Page.Comps.includes("v-select") && g.App_Wrapper.component("v-select", window["vue-select"]), Page.Comps.includes("i-frame") && g.App_Wrapper.component("i-frame", {
+PageName`, t), g.ev(A(t)), console.log(`
+Creating Page : ${t}`), console.log(`PageData
+`, Page), Page.hasOwnProperty("Libs") && Page.Libs.length && await q(Page.Libs), g.App_Wrapper = g.Vue.createApp(Page.VApp), Page.hasOwnProperty("Comps") && (Page.Comps.includes("Quasar") && g.App_Wrapper.use(g.Quasar), Page.Comps.includes("v-select") && g.App_Wrapper.component("v-select", window["vue-select"]), Page.Comps.includes("i-frame") && g.App_Wrapper.component("i-frame", {
     template: '<iframe ref="i1" v-bind="$attrs" style="width: 1px; min-width: 100%; border:none"></iframe>',
     mounted: function() {
       g.iFrameResize({ log: !1 }, this.$refs.i1);
@@ -233,7 +232,7 @@ Creating Page : ${n}`), console.log(`PageData
     data() {
       return { Value: null, input_type: "string" };
     },
-    setup: function(e, { attrs: a, slots: t, emit: s, expose: o }) {
+    setup: function(e, { attrs: n, slots: a, emit: r, expose: l }) {
       return {
         editor: {},
         g: Vue.computed(() => g)
@@ -252,7 +251,7 @@ Creating Page : ${n}`), console.log(`PageData
     },
     watch: {
       parsed: {
-        handler(e, a) {
+        handler(e, n) {
           this.update_parsed();
         },
         deep: !1
@@ -279,17 +278,17 @@ Creating Page : ${n}`), console.log(`PageData
       }, 100), e.format_on_start && (setTimeout(() => {
         this.editor.getAction("editor.action.formatDocument").run();
       }, 500), this.Value = this.editor.getValue()), this.editor.getModel().onDidChangeContent(
-        (t) => {
+        (a) => {
           e.update_editor(), e.Value = e.editor.getValue(), e.$emit("update:parsed", e.Value);
         }
       );
-      const a = () => {
-        this.editor.getContribution("editor.contrib.folding").getFoldingModel().then((s) => {
-          s.onDidChange(() => {
+      const n = () => {
+        this.editor.getContribution("editor.contrib.folding").getFoldingModel().then((r) => {
+          r.onDidChange(() => {
           });
         });
       };
-      a(), this.editor.onDidChangeModel(a);
+      n(), this.editor.onDidChangeModel(n);
     },
     methods: {
       update_editor: function() {
@@ -326,18 +325,18 @@ Creating Page : ${n}`), console.log(`PageData
       this.show_inner = this.show_inner_p;
     },
     mounted() {
-      var e = this, a = this.$refs.controls, t = $(a).find(".toggle-handle");
-      if (!t[0])
+      var e = this, n = this.$refs.controls, a = $(n).find(".toggle-handle");
+      if (!a[0])
         console.log("no handle found", `
 add "toggle-handle" class to any ui element.`);
       else {
-        var t = t[0];
-        $(t).click(function() {
+        var a = a[0];
+        $(a).click(function() {
           e.show_inner = !e.show_inner;
         });
       }
     },
-    setup: function(e, { attrs: a, slots: t, emit: s, expose: o }) {
+    setup: function(e, { attrs: n, slots: a, emit: r, expose: l }) {
       return { g: Vue.computed(() => g) };
     }
   }), Page.Comps.includes("draggable") && g.App_Wrapper.component("draggable", g.vuedraggable), Page.Comps.includes("j-edit") && g.App_Wrapper.component("j-edit", {
@@ -386,7 +385,7 @@ add "toggle-handle" class to any ui element.`);
     data() {
       return { flowValue: null, isOpened: !0, isReArrange: !1 };
     },
-    setup: function(e, { attrs: a, slots: t, emit: s, expose: o }) {
+    setup: function(e, { attrs: n, slots: a, emit: r, expose: l }) {
       return {
         g: Vue.computed(() => g)
       };
@@ -408,8 +407,8 @@ add "toggle-handle" class to any ui element.`);
     },
     watch: {
       modelValue: {
-        handler: function(e, a) {
-          g.f.PS(e) != g.f.PS(a) && this.updateFlowValue();
+        handler: function(e, n) {
+          g.f.PS(e) != g.f.PS(n) && this.updateFlowValue();
         },
         deep: !0
       }
@@ -573,14 +572,14 @@ add "toggle-handle" class to any ui element.`);
     data() {
       return { flowValue: null };
     },
-    setup: function(e, { attrs: a, slots: t, emit: s, expose: o }) {
-      var c = "padding-left:5px; padding-right:5px; cursor:pointer;", _ = "background-color:black; color:white; border-radius:3px;", V = "", w = g.f.generateUID(4);
+    setup: function(e, { attrs: n, slots: a, emit: r, expose: l }) {
+      var u = "padding-left:5px; padding-right:5px; cursor:pointer;", h = "background-color:black; color:white; border-radius:3px;", _ = "", V = g.f.generateUID(4);
       return {
         g: Vue.computed(() => g),
         alert: Vue.ref(!0),
-        un_checked_style: c + V,
-        checked_style: c + _,
-        this_id: w
+        un_checked_style: u + _,
+        checked_style: u + h,
+        this_id: V
       };
     },
     props: {
@@ -599,8 +598,8 @@ add "toggle-handle" class to any ui element.`);
     },
     watch: {
       modelValue: {
-        handler: function(e, a) {
-          g.f.PS(e) != g.f.PS(a) && this.updateFlowValue();
+        handler: function(e, n) {
+          g.f.PS(e) != g.f.PS(n) && this.updateFlowValue();
         },
         deep: !0
       }
@@ -613,29 +612,29 @@ add "toggle-handle" class to any ui element.`);
         this.$emit("update:modelValue", g.f.PS(e));
       },
       zzz: function(e) {
-        var a = !1, t = !1;
+        var n = !1, a = !1;
         try {
-          var s = g.f.getType(g.f.P(e));
-          s && (a = !0, t = s);
+          var r = g.f.getType(g.f.P(e));
+          r && (n = !0, a = r);
         } catch {
         }
-        return !!(a && (t == "object" || t == "array"));
+        return !!(n && (a == "object" || a == "array"));
       },
       isright: function(e) {
         return g.f.getType(e) == "date" || g.f.getType(e) == "set" || g.f.getType(e) == "map" || g.f.getType(e) == "function" || g.f.getType(e) == "regexp" || g.f.getType(e) == "bigint";
       }
     }
   })), Page.hasOwnProperty("Directive") && Page.Directive.includes("resize") && g.App_Wrapper.directive("resize", {
-    bind: function(e, { value: a = {} }) {
-      e.addEventListener("load", () => iframeResize(a, e));
+    bind: function(e, { value: n = {} }) {
+      e.addEventListener("load", () => iframeResize(n, e));
     },
     unbind: function(e) {
       e.iFrameResizer.removeListeners();
     }
   }), g.App = g.App_Wrapper.mount("#app-div");
 }
-function x() {
-  var n = [
+function T() {
+  var t = [
     "JS_CoreJS",
     "JS_JQ",
     "JS_VueDev",
@@ -643,16 +642,16 @@ function x() {
     "JS_RandomBytes",
     "JS_Serialize"
   ];
-  n.forEach((e) => {
-    let a = document.createElement("script");
-    a.setAttribute("type", "text/javascript"), a.text = localStorage.getItem(e), a.setAttribute("class", "remove-me"), a.setAttribute("async", !1), a.class = "remove-me", document.body.appendChild(a), a.addEventListener("load", () => {
-    }), a.addEventListener("error", (t) => {
-      console.log("Error on loading file", t);
+  t.forEach((e) => {
+    let n = document.createElement("script");
+    n.setAttribute("type", "text/javascript"), n.text = localStorage.getItem(e), n.setAttribute("class", "remove-me"), n.setAttribute("async", !1), n.class = "remove-me", document.body.appendChild(n), n.addEventListener("load", () => {
+    }), n.addEventListener("error", (a) => {
+      console.log("Error on loading file", a);
     });
   });
 }
-async function M() {
-  f(), x(), g.db = await new Dexie("Sir"), await g.db.version(1).stores({
+async function x() {
+  m(), T(), g.db = await new Dexie("Sir"), await g.db.version(1).stores({
     // settings: "++id, &name",
     // pages: "++id, &name",
     // comps: "++id, &name",
@@ -677,108 +676,120 @@ async function M() {
     IsConnected: !1,
     IsConnectedFirstTime: !1,
     IsReConnected: !1
-  });
-  var n = {
-    S: function(e, a = { space: 2 }) {
-      return g.serialize(e, a);
-    },
-    P: function(e) {
-      return g.deserialize(e);
-    },
-    PS: function(e, a = { space: 2 }) {
-      return g.deserialize(g.serialize(e, a));
-    },
-    getType: function(e) {
-      switch (Object.prototype.toString.call(e)) {
-        case "[object RegExp]":
-          return "regexp";
-        case "[object Map]":
-          return "map";
-        case "[object Set]":
-          return "set";
-        case "[object Array]":
-          return "array";
-        case "[object Date]":
-          return "date";
-        case "[object Object]":
-          return "object";
-        case "[object Null]":
-          return "null";
-        case "[object Function]":
-          return "function";
-        case "[object Undefined]":
-          return "undefined";
-        default:
-          return typeof e;
-      }
-    },
-    objectToKeyArray: function(a) {
-      var a = g.f.PS(a), t = [];
-      return Object.entries(a).forEach(function(o, c) {
-        t.splice(t.length + 1, 0, { id: c, name: o[0], data: o[1] });
-      }), t;
-    },
-    KeyArrayToObject: function(a) {
-      var a = g.f.PS(a), t = {};
-      return a.forEach(function(s, o) {
-        t[s.name] = s.data;
-      }), t;
-    },
-    ArrayToKeyArray: function(a) {
-      var a = g.f.PS(a), t = [];
-      return a.forEach(function(s, o) {
-        t.splice(t.length + 1, 0, { id: o, name: o, data: s });
-      }), t;
-    },
-    KeyArrayToArray: function(a) {
-      var a = g.f.PS(a), t = [];
-      return a.forEach(function(s, o) {
-        t[o] = s.data;
-      }), t;
-    },
-    generateUID: function(e = 16) {
-      for (var a = globalThis.randomBytes(e), t = "id", s = 0; s < e; ++s)
-        t += a[s].toString(16);
-      return t;
-    },
-    dup: function(e, a) {
-      var t = g.f.PS(e[a]);
-      t.hasOwnProperty("name") && (t.name = t.name + "_dup"), e.splice(a + 1, 0, t);
-    },
-    RandomId: function() {
-      return "id-" + Date.now();
-    },
-    ArrayMove: function(e, a, t) {
-      if (t >= e.length)
-        for (var s = t - e.length + 1; s--; )
-          e.push(void 0);
-      return e.splice(t, 0, e.splice(a, 1)[0]), e;
-    },
-    ObjToArray: function(e) {
-      return Object.entries(e);
-    },
-    ArrayToObj: function(e) {
-      return Object.fromEntries(e);
-    },
-    GetTimeStamp: function() {
-      var e = /* @__PURE__ */ new Date();
-      return e.getDate() + "/" + (e.getMonth() + 1) + "/" + e.getFullYear() + " @ " + e.getHours() + ":" + e.getMinutes() + ":" + e.getSeconds();
-    }
-  };
-  g.f = { ...g.f, ...n }, await h();
+  }), await v();
 }
-function C() {
+function M() {
   return navigator.userAgent.indexOf("Chrome") != -1;
 }
-g.f.GetLocalSpace = function() {
-  var n = "";
-  for (var e in window.localStorage)
-    window.localStorage.hasOwnProperty(e) && (n += window.localStorage[e]);
-  return n ? 3 + n.length * 16 / (8 * 1024) + " KB" : "Empty (0 KB)";
+g.f = {
+  ...g.f,
+  S: function(t, e = { space: 2 }) {
+    return g.serialize(t, e);
+  },
+  P: function(t) {
+    return g.deserialize(t);
+  },
+  PS: function(t, e = { space: 2 }) {
+    return g.deserialize(g.serialize(t, e));
+  },
+  getType: function(t) {
+    switch (Object.prototype.toString.call(t)) {
+      case "[object RegExp]":
+        return "regexp";
+      case "[object Map]":
+        return "map";
+      case "[object Set]":
+        return "set";
+      case "[object Array]":
+        return "array";
+      case "[object Date]":
+        return "date";
+      case "[object Object]":
+        return "object";
+      case "[object Null]":
+        return "null";
+      case "[object Function]":
+        return "function";
+      case "[object Undefined]":
+        return "undefined";
+      default:
+        return typeof t;
+    }
+  },
+  objectToKeyArray: function(e) {
+    var e = g.f.PS(e), n = [];
+    return Object.entries(e).forEach(function(r, l) {
+      n.splice(n.length + 1, 0, { id: l, name: r[0], data: r[1] });
+    }), n;
+  },
+  KeyArrayToObject: function(e) {
+    var e = g.f.PS(e), n = {};
+    return e.forEach(function(a, r) {
+      n[a.name] = a.data;
+    }), n;
+  },
+  ArrayToKeyArray: function(e) {
+    var e = g.f.PS(e), n = [];
+    return e.forEach(function(a, r) {
+      n.splice(n.length + 1, 0, { id: r, name: r, data: a });
+    }), n;
+  },
+  KeyArrayToArray: function(e) {
+    var e = g.f.PS(e), n = [];
+    return e.forEach(function(a, r) {
+      n[r] = a.data;
+    }), n;
+  },
+  generateUID: function(t = 16) {
+    for (var e = globalThis.randomBytes(t), n = "id", a = 0; a < t; ++a)
+      n += e[a].toString(16);
+    return n;
+  },
+  dup: function(t, e) {
+    var n = g.f.PS(t[e]);
+    n.hasOwnProperty("name") && (n.name = n.name + "_dup"), t.splice(e + 1, 0, n);
+  },
+  RandomId: function() {
+    return "id-" + Date.now();
+  },
+  ArrayMove: function(t, e, n) {
+    if (n >= t.length)
+      for (var a = n - t.length + 1; a--; )
+        t.push(void 0);
+    return t.splice(n, 0, t.splice(e, 1)[0]), t;
+  },
+  ObjToArray: function(t) {
+    return Object.entries(t);
+  },
+  ArrayToObj: function(t) {
+    return Object.fromEntries(t);
+  },
+  GetTimeStamp: function() {
+    var t = /* @__PURE__ */ new Date();
+    return t.getDate() + "/" + (t.getMonth() + 1) + "/" + t.getFullYear() + " @ " + t.getHours() + ":" + t.getMinutes() + ":" + t.getSeconds();
+  },
+  GetFile: function(t, e = !1) {
+    var n = !1, a = new XMLHttpRequest();
+    return a.withCredentials = !0, a.onreadystatechange = function() {
+      this.readyState == 4 && this.status == 200 && (n = this.responseText);
+    }, a.open("GET", t, e), a.send(), n;
+  },
+  GetLocalSpace: function() {
+    var t = "";
+    for (var e in window.localStorage)
+      window.localStorage.hasOwnProperty(e) && (t += window.localStorage[e]);
+    return t ? 3 + t.length * 16 / (8 * 1024) + " KB" : "Empty (0 KB)";
+  },
+  PageRefresh: async function() {
+    console.clear(), console.log("Refreshing Page"), g.App && (await g.App_Wrapper.unmount(), $("#app-div").removeAttr("data-v-app"), v());
+  },
+  ReturnT: function(t) {
+    return typeof t == "string" ? t : C();
+  }
 };
-g.f.PageRefresh = async function() {
-  console.clear(), console.log("Refreshing Page"), g.App && (await g.App_Wrapper.unmount(), $("#app-div").removeAttr("data-v-app"), h());
+var C = function(t) {
+  return "ok some array data";
 };
 globalThis.AppStart = async function() {
-  C() ? (k() || await L(), j() && await S(), await M()) : alert("please use chrome web browser ...");
+  M() ? (w() || await S(), k() && await j(), await x()) : alert("please use chrome web browser ...");
 };
