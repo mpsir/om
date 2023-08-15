@@ -1,209 +1,111 @@
-var s = "";
-const p = location.origin;
-p == "http://localhost:8080" ? s = "http://localhost:8080" : p == "http://localhost:3000" ? s = "http://localhost:3000" : s = "http://super1mpsir-57484.portmap.host:57484";
-function d(t, e) {
-  localStorage.setItem(t, JSON.stringify(e));
-}
-async function m() {
-  d("Pages", [
-    // Home
-    {
-      name: "Home",
-      data: `var Page = {
-            Libs:[ "jq-ui", "material-icons", "roboto", "rx-js", "vue-use", "socket-io", "vue-quasar", 
-                    "vue-iframe", "vue-shortkey", "vue-select", "vue-sortable", 
-                    "vue-draggable", "monaco-editor"
-                ],
-            Comps:["Quasar", "v-select", "i-frame", "monaco-editor", "toggle-content", "draggable", "j-edit", "array-edit"],
-            Directive:["resize"],    
-            VApp : {
-                template: g.f.ReturnT([]), 
-                data: function() {
-                    return {
-                        a:{ a:"a1" }
-                    }
-                },
-                computed:{
-                    g : function(){ return g }
-                }
-            }
-        }`
-    },
-    // 404
-    {
-      name: "404",
-      data: `var Page = {  
-            VApp : {
-                template:"404 page"
-            }
-        }`
-    }
-  ]), d("Components", [
-    // comp 1
-    {
-      name: "comp1",
-      data: `var Comp = {
-                VApp:{
-                    template:"this is comp1"
-                }
-            }`
-    }
-  ]), d("Directives", []), d("UsePlugins", []), d("Mixin", []), d("Composable", []), d("Templates", []);
-}
-var c = { Version: 1 };
-function w() {
-  return !!localStorage.getItem("Frame_VP");
-}
-function k() {
-  console.log(`
-checking for upgrading ...`);
-  var t = !1;
-  return console.log("Frame.Version", c.Version), localStorage.getItem("Frame_VP") ? (console.log("local db version ", JSON.parse(localStorage.getItem("Frame_VP")).Version), t = JSON.parse(localStorage.getItem("Frame_VP")).Version !== c.Version) : (console.log('localStorage "Frame_VP" not found'), t = !1), console.log("IsUpgradable", t + `
-
-`), t;
-}
-async function j() {
-  console.log(`Upgrading
-
-`), f();
-}
-console.log(`
-TargetURL`, s + `
-`);
-async function S() {
-  function t(e, n) {
-    localStorage.setItem(e, g.f.GetFile(s + n));
-  }
-  console.log("installing ..."), t("JS_CoreJS", "/Lib/core-js-bundle@3.29.1/minified.min.js"), t("JS_VueDev", "/Lib/vue/vue.global.min.js"), t("JS_JQ", "/Lib/jq/jquery.js"), t("JS_Dexie", "/Lib/dexie/dexie.min.js"), t("JS_RandomBytes", "/Lib/my-random-bytes.js"), t("JS_Serialize", "/Lib/my-serialize.js"), await m(), localStorage.setItem("Frame_VP", JSON.stringify(c));
-}
-function f(t = !0, e = !0) {
-  console.log("deleting frame ..."), t ? localStorage.clear() : localStorage.removeItem("Frame_VP"), e && location.reload();
-}
-globalThis.AppDelete = f;
-async function o(t, e) {
-  var a = (await g.db.Libs.toArray()).find(function(l) {
+var s = JSON.parse(JSON.stringify(g.TargetURL));
+async function i(t, e) {
+  var n = (await g.db.Libs.toArray()).find(function(l) {
     return l.name == t;
   });
-  if (a)
-    return a.data;
+  if (n)
+    return n.data;
   const r = g.f.GetFile(e);
   return await g.db.Libs.add({ name: t, data: r }), r;
 }
-var L = "https://mpsir.github.io/om", i = s, y = !1;
-s == "http://super1mpsir-57484.portmap.host:57484" ? i = L : (i = s, y = !0);
-async function q(t) {
-  for (const n of t)
-    switch (n) {
+var S = "https://mpsir.github.io/om", o = s, p = !1;
+s == "http://super1mpsir-57484.portmap.host:57484" ? o = S : (o = s, p = !0);
+async function L(t) {
+  for (const a of t)
+    switch (a) {
       case "material-icons":
-        g.d.Libs.find((a) => a == "material-icons") || ($("head").append(`<link rel="stylesheet" data-dyn-name="material-icons" href="${i}/Lib/material-icons/iconfont/material-icons.css">`), g.d.Libs.push("material-icons"));
+        g.d.Libs.find((n) => n == "material-icons") || ($("head").append(`<link rel="stylesheet" data-dyn-name="material-icons" href="${o}/Lib/material-icons/iconfont/material-icons.css">`), g.d.Libs.push("material-icons"));
         break;
       case "roboto":
-        var e = g.d.Libs.find((a) => a == "roboto");
-        e || (y ? $("head").append(`<link rel="stylesheet" data-dyn-name="roboto" href="${i}/CSS/roboto-local.css">`) : $("head").append(`<link rel="stylesheet" data-dyn-name="roboto" href="${i}/CSS/roboto.css">`), g.d.Libs.push("roboto"));
+        var e = g.d.Libs.find((n) => n == "roboto");
+        e || (p ? $("head").append(`<link rel="stylesheet" data-dyn-name="roboto" href="${o}/CSS/roboto-local.css">`) : $("head").append(`<link rel="stylesheet" data-dyn-name="roboto" href="${o}/CSS/roboto.css">`), g.d.Libs.push("roboto"));
         break;
       case "vue-select":
-        g.d.Libs.find((a) => a == "vue-select") || ($("head").append(`
+        g.d.Libs.find((n) => n == "vue-select") || ($("head").append(`
                     <style data-dyn-name="vue-select-css"> 
-                        ${await o("vue-select-css", `${s}/Lib/vue-select/vue-select.css`)} 
+                        ${await i("vue-select-css", `${s}/Lib/vue-select/vue-select.css`)} 
                     </style>`), $("body").append(`
                     <script data-dyn-name="vue-select-js" class="remove-me" async="false">
-                        ${await o("vue-select-js", `${s}/Lib/vue-select/vue-select.umd.js`)}
+                        ${await i("vue-select-js", `${s}/Lib/vue-select/vue-select.umd.js`)}
                     <\/script>`), g.d.Libs.push("vue-select"));
         break;
       case "rx-js":
-        g.d.Libs.find((a) => a == "rx-js") || ($("body").append(`
+        g.d.Libs.find((n) => n == "rx-js") || ($("body").append(`
                     <script data-dyn-name="rx-js" class="remove-me" async="false">
-                        ${await o("rx-js", `${s}/Lib/rxjs.umd.min.js`)}
+                        ${await i("rx-js", `${s}/Lib/rxjs.umd.min.js`)}
                     <\/script>`), g.d.Libs.push("rx-js"));
         break;
       case "vue-use":
-        g.d.Libs.find((a) => a == "vue-use") || ($("body").append(`
+        g.d.Libs.find((n) => n == "vue-use") || ($("body").append(`
                         <script data-dyn-name="vueuse-shared" class="remove-me" async="false">
-                            ${await o("vueuse-shared", `${s}/Lib/@vueuse/shared@9.13.0/index.iife.min.js`)}
+                            ${await i("vueuse-shared", `${s}/Lib/@vueuse/shared@9.13.0/index.iife.min.js`)}
                         <\/script>
                         <script data-dyn-name="vueuse-core" class="remove-me" async="false">
-                            ${await o("vueuse-core", `${s}/Lib/@vueuse/core@9.13.0/index.iife.min.js`)}
+                            ${await i("vueuse-core", `${s}/Lib/@vueuse/core@9.13.0/index.iife.min.js`)}
                         <\/script>
                         <script data-dyn-name="vueuse-rx-js" class="remove-me" async="false">
-                            ${await o("rx-js", `${s}/Lib/@vueuse/rxjs/index.iife.min.js`)}
+                            ${await i("rx-js", `${s}/Lib/@vueuse/rxjs/index.iife.min.js`)}
                         <\/script>`), g.d.Libs.push("vue-use"));
         break;
       case "monaco-editor":
-        g.d.Libs.find((a) => a == "monaco-editor") || ($("head").append(`<link rel="stylesheet" data-name="vs/editor/editor.main" href="${i}/Lib/monaco-editor/min/vs/editor/editor.main.css">`), $("body").append(`<script class="remove-me" async="false"> const require = { paths: { vs: '${i}/Lib/monaco-editor/min/vs' } }; <\/script>
-                        <script class="remove-me" async="false" src="${i}/Lib/monaco-editor/min/vs/loader.js"><\/script>
-                        <script class="remove-me" async="false" src="${i}/Lib/monaco-editor/min/vs/editor/editor.main.nls.js"><\/script>
-                        <script class="remove-me" async="false" src="${i}/Lib/monaco-editor/min/vs/editor/editor.main.js"><\/script>`), g.d.Libs.push("monaco-editor"));
+        g.d.Libs.find((n) => n == "monaco-editor") || ($("head").append(`<link rel="stylesheet" data-name="vs/editor/editor.main" href="${o}/Lib/monaco-editor/min/vs/editor/editor.main.css">`), $("body").append(`<script class="remove-me" async="false"> const require = { paths: { vs: '${o}/Lib/monaco-editor/min/vs' } }; <\/script>
+                        <script class="remove-me" async="false" src="${o}/Lib/monaco-editor/min/vs/loader.js"><\/script>
+                        <script class="remove-me" async="false" src="${o}/Lib/monaco-editor/min/vs/editor/editor.main.nls.js"><\/script>
+                        <script class="remove-me" async="false" src="${o}/Lib/monaco-editor/min/vs/editor/editor.main.js"><\/script>`), g.d.Libs.push("monaco-editor"));
         break;
       case "socket-io":
-        g.d.Libs.find((a) => a == "socket-io") || ($("body").append(`<script data-dyn-name="socket.io" class="remove-me" async="false">
-                        ${await o("socket-io", `${s}/Lib/socket-io-client.js`)}
+        g.d.Libs.find((n) => n == "socket-io") || ($("body").append(`<script data-dyn-name="socket.io" class="remove-me" async="false">
+                        ${await i("socket-io", `${s}/Lib/socket-io-client.js`)}
                     <\/script>`), g.d.Libs.push("socket-io"));
         break;
       case "jq-ui":
-        g.d.Libs.find((a) => a == "jq-ui") || ($("head").append(`<link rel="stylesheet" href="${i}/Lib/jq/jquery-ui.min.css">`), $("body").append(`<script class="remove-me" async="false"  src="${i}/Lib/jq/jquery-ui.min.js" ><\/script>
+        g.d.Libs.find((n) => n == "jq-ui") || ($("head").append(`<link rel="stylesheet" href="${o}/Lib/jq/jquery-ui.min.css">`), $("body").append(`<script class="remove-me" async="false"  src="${o}/Lib/jq/jquery-ui.min.js" ><\/script>
                     <script data-dyn-name="touch-jq-ui" class="remove-me" async="false">
-                        ${await o("touch-jq-ui", `${s}/Lib/jq/touch.js`)}
+                        ${await i("touch-jq-ui", `${s}/Lib/jq/touch.js`)}
                     <\/script>`), g.d.Libs.push("jq-ui"));
         break;
       case "vue-quasar":
-        g.d.Libs.find((a) => a == "vue-quasar") || ($("head").append(`
+        g.d.Libs.find((n) => n == "vue-quasar") || ($("head").append(`
                     <style data-dyn-name="vue-quasar-css"> 
-                        ${await o("vue-quasar-css", `${s}/Lib/quasar/quasar.css`)} 
+                        ${await i("vue-quasar-css", `${s}/Lib/quasar/quasar.css`)} 
                     </style>`), $("body").append(`
                     <script data-dyn-name="vue-quasar-js" class="remove-me" async="false">
-                        ${await o("vue-quasar-js", `${s}/Lib/quasar/quasar.js`)} 
+                        ${await i("vue-quasar-js", `${s}/Lib/quasar/quasar.js`)} 
                     <\/script>`), g.d.Libs.push("vue-quasar"));
         break;
       case "vue-iframe":
-        g.d.Libs.find((a) => a == "vue-iframe") || ($("body").append(`
+        g.d.Libs.find((n) => n == "vue-iframe") || ($("body").append(`
                     <script data-dyn-name="vue-iframe-host" class="remove-me">
-                        ${await o("vue-iframe-host", `${s}/Lib/iframe-resize/iframe-host.js`)}
+                        ${await i("vue-iframe-host", `${s}/Lib/iframe-resize/iframe-host.js`)}
                     <\/script>
                     <script data-dyn-name="vue-iframe-client" class="remove-me" async="false">
-                        ${await o("vue-iframe-client", `${s}/Lib/iframe-resize/iframe-client.js`)}
+                        ${await i("vue-iframe-client", `${s}/Lib/iframe-resize/iframe-client.js`)}
                     <\/script>`), g.d.Libs.push("vue-iframe"));
         break;
       case "vue-shortkey":
-        g.d.Libs.find((a) => a == "vue-shortkey") || ($("body").append(`
+        g.d.Libs.find((n) => n == "vue-shortkey") || ($("body").append(`
                     <script data-dyn-name="vue-shortkey" class="remove-me" async="false">
-                        ${await o("vue-shortkey", `${s}/Lib/vue3-shortkey.min.js`)}
+                        ${await i("vue-shortkey", `${s}/Lib/vue3-shortkey.min.js`)}
                     <\/script>`), g.d.Libs.push("vue-shortkey"));
         break;
       case "vue-sortable":
-        g.d.Libs.find((a) => a == "vue-sortable") || ($("body").append(`<script data-dyn-name="vue-sortable" class="remove-me" async="false">
-                        ${await o("vue-sortable", `${s}/Lib/sortablejs/Sortable.min.js`)}
+        g.d.Libs.find((n) => n == "vue-sortable") || ($("body").append(`<script data-dyn-name="vue-sortable" class="remove-me" async="false">
+                        ${await i("vue-sortable", `${s}/Lib/sortablejs/Sortable.min.js`)}
                     <\/script>`), g.d.Libs.push("vue-sortable"));
         break;
       case "vue-draggable":
-        g.d.Libs.find((a) => a == "vue-draggable") || ($("body").append(`<script class="remove-me" async="false">
-                        ${await o("vue-draggable", `${s}/Lib/vuedraggable/vuedraggable.umd.min.js`)}
+        g.d.Libs.find((n) => n == "vue-draggable") || ($("body").append(`<script class="remove-me" async="false">
+                        ${await i("vue-draggable", `${s}/Lib/vuedraggable/vuedraggable.umd.min.js`)}
                     <\/script>`), g.d.Libs.push("vue-draggable"));
         break;
     }
   $(".remove-me").remove();
 }
-const b = function() {
-  return JSON.parse(localStorage.getItem("Pages"));
-}, A = function(t) {
-  return b().find(function(e) {
-    return e.name == t;
-  }).data;
-};
-function P() {
-  const t = location.search;
-  if (t == "")
-    return "Home";
-  const e = new URLSearchParams(t).get("page");
-  return e && b().find(function(a) {
-    return a.name == e;
-  }) ? e : "404";
-}
-async function v() {
-  const t = P();
-  console.log(`
-PageName`, t), g.ev(A(t)), console.log(`
-Creating Page : ${t}`), console.log(`PageData
-`, Page), Page.hasOwnProperty("Libs") && Page.Libs.length && await q(Page.Libs), g.App_Wrapper = g.Vue.createApp(Page.VApp), Page.hasOwnProperty("Comps") && (Page.Comps.includes("Quasar") && g.App_Wrapper.use(g.Quasar), Page.Comps.includes("v-select") && g.App_Wrapper.component("v-select", window["vue-select"]), Page.Comps.includes("i-frame") && g.App_Wrapper.component("i-frame", {
+async function u(t = g.f.GetPageName()) {
+  g.ev(g.f.GetPageData(t)), console.log(`
+PageName : `, t, Page, `
+
+`), Page.hasOwnProperty("Title") && (document.title = Page.Title), Page.hasOwnProperty("Libs") && Page.Libs.length && await L(Page.Libs), g.App_Wrapper = g.Vue.createApp(Page.VApp), Page.hasOwnProperty("Comps") && (Page.Comps.includes("Quasar") && g.App_Wrapper.use(g.Quasar), Page.Comps.includes("v-select") && g.App_Wrapper.component("v-select", window["vue-select"]), Page.Comps.includes("i-frame") && g.App_Wrapper.component("i-frame", {
     template: '<iframe ref="i1" v-bind="$attrs" style="width: 1px; min-width: 100%; border:none"></iframe>',
     mounted: function() {
       g.iFrameResize({ log: !1 }, this.$refs.i1);
@@ -232,7 +134,7 @@ Creating Page : ${t}`), console.log(`PageData
     data() {
       return { Value: null, input_type: "string" };
     },
-    setup: function(e, { attrs: n, slots: a, emit: r, expose: l }) {
+    setup: function(e, { attrs: a, slots: n, emit: r, expose: l }) {
       return {
         editor: {},
         g: Vue.computed(() => g)
@@ -251,7 +153,7 @@ Creating Page : ${t}`), console.log(`PageData
     },
     watch: {
       parsed: {
-        handler(e, n) {
+        handler(e, a) {
           this.update_parsed();
         },
         deep: !1
@@ -278,17 +180,17 @@ Creating Page : ${t}`), console.log(`PageData
       }, 100), e.format_on_start && (setTimeout(() => {
         this.editor.getAction("editor.action.formatDocument").run();
       }, 500), this.Value = this.editor.getValue()), this.editor.getModel().onDidChangeContent(
-        (a) => {
+        (n) => {
           e.update_editor(), e.Value = e.editor.getValue(), e.$emit("update:parsed", e.Value);
         }
       );
-      const n = () => {
+      const a = () => {
         this.editor.getContribution("editor.contrib.folding").getFoldingModel().then((r) => {
           r.onDidChange(() => {
           });
         });
       };
-      n(), this.editor.onDidChangeModel(n);
+      a(), this.editor.onDidChangeModel(a);
     },
     methods: {
       update_editor: function() {
@@ -325,18 +227,18 @@ Creating Page : ${t}`), console.log(`PageData
       this.show_inner = this.show_inner_p;
     },
     mounted() {
-      var e = this, n = this.$refs.controls, a = $(n).find(".toggle-handle");
-      if (!a[0])
+      var e = this, a = this.$refs.controls, n = $(a).find(".toggle-handle");
+      if (!n[0])
         console.log("no handle found", `
 add "toggle-handle" class to any ui element.`);
       else {
-        var a = a[0];
-        $(a).click(function() {
+        var n = n[0];
+        $(n).click(function() {
           e.show_inner = !e.show_inner;
         });
       }
     },
-    setup: function(e, { attrs: n, slots: a, emit: r, expose: l }) {
+    setup: function(e, { attrs: a, slots: n, emit: r, expose: l }) {
       return { g: Vue.computed(() => g) };
     }
   }), Page.Comps.includes("draggable") && g.App_Wrapper.component("draggable", g.vuedraggable), Page.Comps.includes("j-edit") && g.App_Wrapper.component("j-edit", {
@@ -385,7 +287,7 @@ add "toggle-handle" class to any ui element.`);
     data() {
       return { flowValue: null, isOpened: !0, isReArrange: !1 };
     },
-    setup: function(e, { attrs: n, slots: a, emit: r, expose: l }) {
+    setup: function(e, { attrs: a, slots: n, emit: r, expose: l }) {
       return {
         g: Vue.computed(() => g)
       };
@@ -407,8 +309,8 @@ add "toggle-handle" class to any ui element.`);
     },
     watch: {
       modelValue: {
-        handler: function(e, n) {
-          g.f.PS(e) != g.f.PS(n) && this.updateFlowValue();
+        handler: function(e, a) {
+          g.f.PS(e) != g.f.PS(a) && this.updateFlowValue();
         },
         deep: !0
       }
@@ -572,14 +474,14 @@ add "toggle-handle" class to any ui element.`);
     data() {
       return { flowValue: null };
     },
-    setup: function(e, { attrs: n, slots: a, emit: r, expose: l }) {
-      var u = "padding-left:5px; padding-right:5px; cursor:pointer;", h = "background-color:black; color:white; border-radius:3px;", _ = "", V = g.f.generateUID(4);
+    setup: function(e, { attrs: a, slots: n, emit: r, expose: l }) {
+      var c = "padding-left:5px; padding-right:5px; cursor:pointer;", w = "background-color:black; color:white; border-radius:3px;", V = "", j = g.f.generateUID(4);
       return {
         g: Vue.computed(() => g),
         alert: Vue.ref(!0),
-        un_checked_style: u + _,
-        checked_style: u + h,
-        this_id: V
+        un_checked_style: c + V,
+        checked_style: c + w,
+        this_id: j
       };
     },
     props: {
@@ -598,8 +500,8 @@ add "toggle-handle" class to any ui element.`);
     },
     watch: {
       modelValue: {
-        handler: function(e, n) {
-          g.f.PS(e) != g.f.PS(n) && this.updateFlowValue();
+        handler: function(e, a) {
+          g.f.PS(e) != g.f.PS(a) && this.updateFlowValue();
         },
         deep: !0
       }
@@ -612,77 +514,88 @@ add "toggle-handle" class to any ui element.`);
         this.$emit("update:modelValue", g.f.PS(e));
       },
       zzz: function(e) {
-        var n = !1, a = !1;
+        var a = !1, n = !1;
         try {
           var r = g.f.getType(g.f.P(e));
-          r && (n = !0, a = r);
+          r && (a = !0, n = r);
         } catch {
         }
-        return !!(n && (a == "object" || a == "array"));
+        return !!(a && (n == "object" || n == "array"));
       },
       isright: function(e) {
         return g.f.getType(e) == "date" || g.f.getType(e) == "set" || g.f.getType(e) == "map" || g.f.getType(e) == "function" || g.f.getType(e) == "regexp" || g.f.getType(e) == "bigint";
       }
     }
   })), Page.hasOwnProperty("Directive") && Page.Directive.includes("resize") && g.App_Wrapper.directive("resize", {
-    bind: function(e, { value: n = {} }) {
-      e.addEventListener("load", () => iframeResize(n, e));
+    bind: function(e, { value: a = {} }) {
+      e.addEventListener("load", () => iframeResize(a, e));
     },
     unbind: function(e) {
       e.iFrameResizer.removeListeners();
     }
   }), g.App = g.App_Wrapper.mount("#app-div");
 }
-function T() {
-  var t = [
-    "JS_CoreJS",
-    "JS_JQ",
-    "JS_VueDev",
-    "JS_Dexie",
-    "JS_RandomBytes",
-    "JS_Serialize"
-  ];
-  t.forEach((e) => {
-    let n = document.createElement("script");
-    n.setAttribute("type", "text/javascript"), n.text = localStorage.getItem(e), n.setAttribute("class", "remove-me"), n.setAttribute("async", !1), n.class = "remove-me", document.body.appendChild(n), n.addEventListener("load", () => {
-    }), n.addEventListener("error", (a) => {
-      console.log("Error on loading file", a);
-    });
-  });
+var m = function(t) {
+  var e = "";
+  return t.forEach((a) => {
+  }), e;
+}, f = function(t) {
+  var e = "";
+  return t.forEach((a) => {
+  }), e;
+}, v = function(t) {
+  var e = "";
+  return t.forEach((a) => {
+  }), e;
+}, y = function(t) {
+  var e = "";
+  return t.forEach((a) => {
+  }), e;
+}, b = function(t) {
+  var e = "";
+  return t.forEach((a) => {
+  }), e;
+}, h = function(t) {
+  var e = "";
+  return t.length && (e += " style='", t.forEach(function(a, n) {
+    e += `${a[0]}:${a[1]};`;
+  }), e += "'"), e;
+};
+function q(t) {
+  var e = "";
+  return t.tagName = t.tagName || "div", e += `<${t.tagName}`, t.classes && (e += v(t.classes)), t.styles && (e += h(t.styles)), t.attrs && (e += m(t.attrs)), t.events && (e += y(t.events)), t.binds && (e += f(t.events)), e += ">", t.children && (e += g.f.ReturnT(t.children)), t.slots && (e += b(t.slots)), e += `</${t.tagName}>`, e;
 }
-async function x() {
-  m(), T(), g.db = await new Dexie("Sir"), await g.db.version(1).stores({
-    // settings: "++id, &name",
-    // pages: "++id, &name",
-    // comps: "++id, &name",
-    // directives: "++id, &name",
-    // temps: "++id, &name",
-    // mixins: "++id, &name",
-    // composables: "++id, &name",
-    Libs: "++id, &name",
-    css: "++id, &name",
-    js: "++id, &name",
-    images: "++id, &name",
-    audios: "++id, &name",
-    videos: "++id, &name",
-    svg: "++id, &name",
-    blobs: "++id, &name"
-  }), $("body").append('<div id="app-div"></div>'), $(".remove-me").remove(), g.d = {
-    Libs: []
-  }, g.r = Vue.reactive({
-    IsLive: !0,
-    IsEditor: !0,
-    IsAppStart: !1,
-    IsConnected: !1,
-    IsConnectedFirstTime: !1,
-    IsReConnected: !1
-  }), await v();
+function A(t) {
+  var e = "";
+  return e;
 }
-function M() {
-  return navigator.userAgent.indexOf("Chrome") != -1;
+function P(t) {
+  var e = "";
+  return t.tagName = t.tagName || "div", e += `<${t.tagName}`, t.classes && (e += v(t.classes)), t.styles && (e += h(t.styles)), t.attrs && (e += m(t.attrs)), t.events && (e += y(t.events)), t.binds && (e += f(t.events)), e += ">", t.children && (e += g.f.ReturnT(t.children)), t.slots && (e += b(t.slots)), e += `</${t.tagName}>`, e;
+}
+function T(t) {
+  var e = "";
+  return t.forEach((a) => {
+    if (typeof a == "string")
+      e += a;
+    else
+      switch (a.type) {
+        case "html":
+          e += q(a);
+          break;
+        case "comp":
+          e += P(a);
+          break;
+        case "tmplt":
+          e += A();
+          break;
+      }
+  }), e == "" ? "template is empty." : e;
 }
 g.f = {
-  ...g.f,
+  isCrome: function() {
+    return navigator.userAgent.indexOf("Chrome") != -1;
+  },
   S: function(t, e = { space: 2 }) {
     return g.serialize(t, e);
   },
@@ -717,46 +630,46 @@ g.f = {
     }
   },
   objectToKeyArray: function(e) {
-    var e = g.f.PS(e), n = [];
+    var e = g.f.PS(e), a = [];
     return Object.entries(e).forEach(function(r, l) {
-      n.splice(n.length + 1, 0, { id: l, name: r[0], data: r[1] });
-    }), n;
+      a.splice(a.length + 1, 0, { id: l, name: r[0], data: r[1] });
+    }), a;
   },
   KeyArrayToObject: function(e) {
-    var e = g.f.PS(e), n = {};
-    return e.forEach(function(a, r) {
-      n[a.name] = a.data;
-    }), n;
+    var e = g.f.PS(e), a = {};
+    return e.forEach(function(n, r) {
+      a[n.name] = n.data;
+    }), a;
   },
   ArrayToKeyArray: function(e) {
-    var e = g.f.PS(e), n = [];
-    return e.forEach(function(a, r) {
-      n.splice(n.length + 1, 0, { id: r, name: r, data: a });
-    }), n;
+    var e = g.f.PS(e), a = [];
+    return e.forEach(function(n, r) {
+      a.splice(a.length + 1, 0, { id: r, name: r, data: n });
+    }), a;
   },
   KeyArrayToArray: function(e) {
-    var e = g.f.PS(e), n = [];
-    return e.forEach(function(a, r) {
-      n[r] = a.data;
-    }), n;
+    var e = g.f.PS(e), a = [];
+    return e.forEach(function(n, r) {
+      a[r] = n.data;
+    }), a;
   },
   generateUID: function(t = 16) {
-    for (var e = globalThis.randomBytes(t), n = "id", a = 0; a < t; ++a)
-      n += e[a].toString(16);
-    return n;
+    for (var e = globalThis.randomBytes(t), a = "id", n = 0; n < t; ++n)
+      a += e[n].toString(16);
+    return a;
   },
   dup: function(t, e) {
-    var n = g.f.PS(t[e]);
-    n.hasOwnProperty("name") && (n.name = n.name + "_dup"), t.splice(e + 1, 0, n);
+    var a = g.f.PS(t[e]);
+    a.hasOwnProperty("name") && (a.name = a.name + "_dup"), t.splice(e + 1, 0, a);
   },
   RandomId: function() {
     return "id-" + Date.now();
   },
-  ArrayMove: function(t, e, n) {
-    if (n >= t.length)
-      for (var a = n - t.length + 1; a--; )
+  ArrayMove: function(t, e, a) {
+    if (a >= t.length)
+      for (var n = a - t.length + 1; n--; )
         t.push(void 0);
-    return t.splice(n, 0, t.splice(e, 1)[0]), t;
+    return t.splice(a, 0, t.splice(e, 1)[0]), t;
   },
   ObjToArray: function(t) {
     return Object.entries(t);
@@ -769,10 +682,10 @@ g.f = {
     return t.getDate() + "/" + (t.getMonth() + 1) + "/" + t.getFullYear() + " @ " + t.getHours() + ":" + t.getMinutes() + ":" + t.getSeconds();
   },
   GetFile: function(t, e = !1) {
-    var n = !1, a = new XMLHttpRequest();
-    return a.withCredentials = !0, a.onreadystatechange = function() {
-      this.readyState == 4 && this.status == 200 && (n = this.responseText);
-    }, a.open("GET", t, e), a.send(), n;
+    var a = !1, n = new XMLHttpRequest();
+    return n.withCredentials = !0, n.onreadystatechange = function() {
+      this.readyState == 4 && this.status == 200 && (a = this.responseText);
+    }, n.open("GET", t, e), n.send(), a;
   },
   GetLocalSpace: function() {
     var t = "";
@@ -781,15 +694,254 @@ g.f = {
     return t ? 3 + t.length * 16 / (8 * 1024) + " KB" : "Empty (0 KB)";
   },
   PageRefresh: async function() {
-    console.clear(), console.log("Refreshing Page"), g.App && (await g.App_Wrapper.unmount(), $("#app-div").removeAttr("data-v-app"), v());
+    console.clear(), console.log("Refreshing Page"), g.App && (await g.App_Wrapper.unmount(), $("#app-div").removeAttr("data-v-app"), u());
+  },
+  PageChangeTo: async function(t) {
+    console.clear(), console.log("Changing Page To ", t), g.App && (await g.App_Wrapper.unmount(), $("#app-div").removeAttr("data-v-app"));
+    const e = g.f.PageNames().find(function(a) {
+      return a.name == t;
+    });
+    u(e ? t : "404");
+  },
+  PageNames: function() {
+    return JSON.parse(localStorage.getItem("Pages"));
+  },
+  GetPageName: function() {
+    const t = location.search;
+    if (t == "")
+      return "Home";
+    const e = new URLSearchParams(t).get("page");
+    return e && g.f.PageNames().find(function(n) {
+      return n.name == e;
+    }) ? e : "404";
+  },
+  GetPageData: function(t) {
+    return g.f.PageNames().find(function(e) {
+      return e.name == t;
+    }).data;
   },
   ReturnT: function(t) {
-    return typeof t == "string" ? t : C();
+    return typeof t == "string" ? t : T(t);
+  },
+  AppDelete: async function(t = !0, e = !0) {
+    console.log("deleting frame ..."), t ? localStorage.clear() : localStorage.removeItem("Frame_VP"), e && location.reload();
+  },
+  addScripts: function() {
+    var t = [
+      "JS_CoreJS",
+      "JS_JQ",
+      "JS_VueDev",
+      "JS_Dexie",
+      "JS_RandomBytes",
+      "JS_Serialize"
+    ];
+    t.forEach((e) => {
+      let a = document.createElement("script");
+      a.setAttribute("type", "text/javascript"), a.text = localStorage.getItem(e), a.setAttribute("class", "remove-me"), a.setAttribute("async", !1), a.class = "remove-me", document.body.appendChild(a), a.addEventListener("load", () => {
+      }), a.addEventListener("error", (n) => {
+        console.log("Error on loading file", n);
+      });
+    });
   }
 };
-var C = function(t) {
-  return "ok some array data";
-};
+function x() {
+  return !!localStorage.getItem("Frame_VP");
+}
+const _ = { Version: 1 };
+function C() {
+  var t = !1;
+  return localStorage.getItem("Frame_VP") ? t = JSON.parse(localStorage.getItem("Frame_VP")).Version !== _.Version : t = !1, t;
+}
+function d(t, e) {
+  localStorage.setItem(t, JSON.stringify(e));
+}
+async function k() {
+  d("Pages", [
+    // Home
+    {
+      name: "Home",
+      data: `var Page = {
+            Libs:[ "jq-ui", "material-icons", "roboto", "rx-js", "vue-use", "socket-io", "vue-quasar", 
+                    "vue-iframe", "vue-shortkey", "vue-select", "vue-sortable", 
+                    "vue-draggable", "monaco-editor"
+                ],
+            Comps:["Quasar", "v-select", "i-frame", "monaco-editor", "toggle-content", "draggable", "j-edit", "array-edit"],
+            Directive:["resize"],    
+            VApp : {
+                template: g.f.ReturnT([
+                    {
+                        type:"html",
+                        tagName:"div",
+                        styles:[['padding', '8px'], ['color', 'red']],
+                        children: [ 
+                            "Home"
+                        ]
+                    }
+                ]), 
+                data: function() {
+                    return {
+                        a:{ a:"a1" }
+                    }
+                },
+                computed:{
+                    g : function(){ return g }
+                }
+            }
+        }`
+    },
+    // Admin
+    {
+      name: "Admin",
+      data: `var Page = {
+            Libs:[ "jq-ui", "material-icons", "roboto", "rx-js", "vue-use", "socket-io", "vue-quasar", 
+                    "vue-iframe", "vue-shortkey", "vue-select", "vue-sortable", 
+                    "vue-draggable", "monaco-editor"
+                ],
+            Comps:["Quasar", "v-select", "i-frame", "monaco-editor", "toggle-content", "draggable", "j-edit", "array-edit"],
+            Directive:["resize"],    
+            VApp : {
+                template: g.f.ReturnT([
+                    {
+                        type:"html",
+                        tagName:"div",
+                        styles:[['padding', '8px'], ['color', 'red']],
+                        children: [ 
+                            "Admin"
+                        ]
+                    }
+                ]), 
+                data: function() {
+                    return {
+                        a:{ a:"a1" }
+                    }
+                },
+                computed:{
+                    g : function(){ return g }
+                }
+            }
+        }`
+    },
+    // Pages
+    {
+      name: "Pages",
+      data: `var Page = {
+            Libs:[ "jq-ui", "material-icons", "roboto", "rx-js", "vue-use", "socket-io", "vue-quasar", 
+                    "vue-iframe", "vue-shortkey", "vue-select", "vue-sortable", 
+                    "vue-draggable", "monaco-editor"
+                ],
+            Comps:["Quasar", "v-select", "i-frame", "monaco-editor", "toggle-content", "draggable", "j-edit", "array-edit"],
+            Directive:["resize"],    
+            VApp : {
+                template: g.f.ReturnT([
+                    {
+                        type:"html",
+                        tagName:"div",
+                        styles:[['padding', '8px'], ['color', 'red']],
+                        children: [ 
+                            "Pages"
+                        ]
+                    }
+                ]), 
+                data: function() {
+                    return {
+                        a:{ a:"a1" }
+                    }
+                },
+                computed:{
+                    g : function(){ return g }
+                }
+            }
+        }`
+    },
+    // Comps
+    {
+      name: "Comps",
+      data: `var Page = {
+            Libs:[ "jq-ui", "material-icons", "roboto", "rx-js", "vue-use", "socket-io", "vue-quasar", 
+                    "vue-iframe", "vue-shortkey", "vue-select", "vue-sortable", 
+                    "vue-draggable", "monaco-editor"
+                ],
+            Comps:["Quasar", "v-select", "i-frame", "monaco-editor", "toggle-content", "draggable", "j-edit", "array-edit"],
+            Directive:["resize"],    
+            VApp : {
+                template: g.f.ReturnT([
+                    {
+                        type:"html",
+                        tagName:"div",
+                        styles:[['padding', '8px'], ['color', 'red']],
+                        children: [ 
+                            "Comps"
+                        ]
+                    }
+                ]), 
+                data: function() {
+                    return {
+                        a:{ a:"a1" }
+                    }
+                },
+                computed:{
+                    g : function(){ return g }
+                }
+            }
+        }`
+    },
+    // 404
+    {
+      name: "404",
+      data: `var Page = {  
+            VApp : {
+                template:"404 page"
+            }
+        }`
+    }
+  ]), d("Components", [
+    // comp 1
+    {
+      name: "comp1",
+      data: `var Comp = {
+                VApp:{
+                    template:"this is comp1"
+                }
+            }`
+    }
+  ]), d("Directives", []), d("UsePlugins", []), d("Mixin", []), d("Composable", []), d("Templates", []);
+}
+async function M() {
+  k(), g.f.addScripts(), g.db = await new Dexie("Sir"), await g.db.version(1).stores({
+    Libs: "++id, &name",
+    css: "++id, &name",
+    js: "++id, &name",
+    images: "++id, &name",
+    audios: "++id, &name",
+    videos: "++id, &name",
+    svg: "++id, &name",
+    blobs: "++id, &name"
+    // settings: "++id, &name",
+    // pages: "++id, &name",
+    // comps: "++id, &name",
+    // directives: "++id, &name",
+    // temps: "++id, &name",
+    // mixins: "++id, &name",
+    // composables: "++id, &name",
+  }), $("body").append('<div id="app-div"></div>'), $(".remove-me").remove(), g.d = { Libs: [] }, g.r = Vue.reactive({
+    IsLive: !0,
+    IsEditor: !0,
+    IsAppStart: !1,
+    IsConnected: !1,
+    IsConnectedFirstTime: !1,
+    IsReConnected: !1
+  }), await u();
+}
+async function R() {
+  function t(e, a) {
+    localStorage.setItem(e, g.f.GetFile(g.TargetURL + a));
+  }
+  console.log("installing ..."), t("JS_CoreJS", "/Lib/core-js-bundle@3.29.1/minified.min.js"), t("JS_VueDev", "/Lib/vue/vue.global.min.js"), t("JS_JQ", "/Lib/jq/jquery.js"), t("JS_Dexie", "/Lib/dexie/dexie.min.js"), t("JS_RandomBytes", "/Lib/my-random-bytes.js"), t("JS_Serialize", "/Lib/my-serialize.js"), await k(), localStorage.setItem("Frame_VP", JSON.stringify(_)), console.log("installing completed ...");
+}
 globalThis.AppStart = async function() {
-  M() ? (w() || await S(), k() && await j(), await x()) : alert("please use chrome web browser ...");
+  if (!g.f.isCrome()) {
+    alert("please use chrome web browser ...");
+    return;
+  }
+  x() || await R(), C() && await g.f.AppDelete(), await M();
 };
