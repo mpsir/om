@@ -25,35 +25,6 @@
 
 <body onload="g.AppStart()">
 
-    <div>
-        <div>
-            <div style="margin-top: 8px;">
-                <button onclick="g.f.AppDelete()">AppDelete</button>
-                <button onclick="g.f.PageRefresh()">PageRefresh</button> <br />
-            </div>
-            <div style="margin-top: 8px;">
-                <button onclick="g.f.PageChangeTo('Home')">Home</button>
-                <a href="/?page=Home">#</a>
-            </div>
-            <div style="margin-top: 8px;">
-                <button onclick="g.f.PageChangeTo('Admin')">Admin</button>
-                <a href="/?page=Admin">#</a>
-            </div>
-            <div style="margin-top: 8px;">
-                <button onclick="g.f.PageChangeTo('404')">404</button>
-                <a href="/?page=404">#</a>
-            </div>
-            <div style="margin-top: 8px;">
-                <button onclick="g.f.PageChangeTo('Pages')">Pages</button>
-                <a href="/?page=Pages">#</a>
-            </div>
-            <div style="margin-top: 8px;">
-                <button onclick="g.f.PageChangeTo('Comps')">Comps</button>
-                <a href="/?page=Comps">#</a>
-            </div>
-        </div>
-    </div>
-
     <script class="remove-me">
 
         var g = globalThis;
@@ -63,7 +34,7 @@
 
         function setTarget() {
             const origin = location.origin
-            if (origin == "http://localhost:8080") { TargetURL = "http://localhost:8080" }
+            if (origin == "http://localhost:8081") { TargetURL = "http://localhost:8081" }
             else if (origin == "http://localhost:3000") { TargetURL = "http://localhost:3000" }
             else { TargetURL = "http://super1mpsir-57484.portmap.host:57484" }
         }

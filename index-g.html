@@ -24,6 +24,10 @@
 </head>
 
 <body onload="g.AppStart()">
+
+    <div style="padding:16px; display:none">
+        <button onclick="g.f.AppDelete()">Reset</button>
+    </div>
     
     <script class="remove-me">
 
@@ -34,7 +38,7 @@
         
         function setTarget() {
             const origin = location.origin
-            if (origin == "http://localhost:8080") { TargetURL = "http://localhost:8080" }
+            if (origin == "http://localhost:8081") { TargetURL = "http://localhost:8081" }
             else if (origin == "http://localhost:3000") { TargetURL = "http://localhost:3000" }
             else { TargetURL = "http://super1mpsir-57484.portmap.host:57484" }
         }
