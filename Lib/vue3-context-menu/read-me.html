@@ -1,0 +1,84 @@
+<!--examples\single-test.html-->
+<html>
+  <head>
+    <title>vue3-context-menu test</title>
+    <link rel="stylesheet" href="./vue3-context-menu.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./vue3-context-menu.umd.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div @contextmenu="onContextMenu($event)">{{ message }}</div>
+    </div>
+    <script>
+      const { createApp } = Vue
+
+      createApp({
+        data() {
+          return {
+            message: 'Right click here to show contextmenu !'
+          }
+        },
+        methods: {
+          onContextMenu(e) {
+            //prevent the browser's default menu
+            e.preventDefault();
+            //show our menu
+            this.$contextmenu({
+              items: [
+                { 
+                  label: 'Simple item',
+                  onClick: () => alert('Click Simple item'),
+                },
+                {
+                  label: "Sub menu Example",
+                  children: [
+                    {
+                      label: "Back",
+                      onClick: () => {
+                        console.log("You click Back");
+                      }
+                    },
+                    { label: "Forward", disabled: true },
+                    { 
+                      label: "Reload", 
+                      divided: true, 
+                      icon: "icon-reload-1",
+                      onClick: () => {
+                        alert("You click Reload");
+                      }
+                    },
+                    { 
+                      label: "Save as...",
+                      icon: "icon-save",
+                      onClick: () => {
+                        alert("You click Save as");
+                      }
+                    },
+                    { 
+                      label: "Print...", 
+                      icon: "icon-print",
+                      onClick: () => {
+                        alert("You click Print");
+                      } 
+                    },
+                    { label: "View source", icon: "icon-terminal" },
+                    { label: "Inspect" }
+                  ],
+                },
+              ],
+              iconFontClass: 'iconfont',
+              customClass: "class-a",
+              zIndex: 3,
+              minWidth: 230,
+              x: e.x,
+              y: e.y,
+            });
+          }
+        },  
+      })
+      .use(window['vue3-context-menu'].default)
+      .mount('#app')
+    </script>
+  </body>
+</html>
